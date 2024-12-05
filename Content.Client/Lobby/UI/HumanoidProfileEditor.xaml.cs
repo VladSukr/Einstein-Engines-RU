@@ -2,6 +2,8 @@ using System.IO;
 using System.Linq;
 using System.Numerics;
 using Content.Client.Administration.UI;
+using Content.Client.Guidebook;
+using Content.Client.AWS.Skills;
 using Content.Client.Humanoid;
 using Content.Client.Message;
 using Content.Client.Players.PlayTimeTracking;
@@ -13,6 +15,7 @@ using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Shared._EE.Contractors.Prototypes;
 using Content.Shared._White.CCVar;
 using Content.Shared._White.Humanoid.Prototypes;
+using Content.Shared.AWS.Skills;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Clothing.Loadouts.Prototypes;
@@ -144,6 +147,9 @@ namespace Content.Client.Lobby.UI
         [ValidatePrototypeId<LocalizedDatasetPrototype>]
         private const string MimeNames = "MimeNames";
         // WD EDIT END
+        //SS14RU
+        private SkillPointController? _skillPointController;
+        //SS14RU
 
         public HumanoidProfileEditor(
             IClientPreferencesManager preferencesManager,
@@ -626,6 +632,14 @@ namespace Content.Client.Lobby.UI
 
             #endregion Markings
 
+            #region SS14RU-SKILLS
+
+            // TabContainer.SetTabTitle(5, Loc.GetString("Навыки")); SS14RU
+
+            // RefreshSkills();
+
+            #endregion SS14RU-SKILLS
+
             RefreshFlavorText();
 
             #endregion Left
@@ -1071,141 +1085,239 @@ namespace Content.Client.Lobby.UI
             }
         }
 
+        // SS14RU
+        // public void UpdateLeftSkillPoints(uint left)
+        // {
+        //     LeftSkillPoints.Text = Loc.GetString("skills-leftskillpoints", ("leftSkillPoints", left));
+        // }
+        // public void RefreshSkills()
+        // {
+        //     _skillPointController = new(30, [], null, null);
+        //     _skillPointController.OnRecalculateSkill += (protoId) =>
+        //     {
+        //         UpdateLeftSkillPoints(_skillPointController.CurrentPoints);
+        //     };
+
+        //     SkillsList.DisposeAllChildren();
+        //     var firstCategory = true;
+
+        //     var skillSystem = _entManager.System<SkillSystem>();
+        //     var skills = skillSystem.GetSkills();
+
+        //     skills.Sort((x, y) => string.Compare(x.ID, y.ID, StringComparison.Ordinal));
+
+        //     var skillGroups = skills.GroupBy(skill => skill.Category)
+        //         .ToDictionary(group => group.Key, group => group.ToList());
+
+        //     foreach (var kvp in skillGroups)
+        //     {
+        //         var categoryId = kvp.Key;
+        //         var categorySkills = kvp.Value;
+
+        //         var categoryName = Loc.GetString($"skills-category-{categoryId}");
+
+        //         var categoryPanel = new BoxContainer
+        //         {
+        //             Orientation = LayoutOrientation.Vertical,
+        //             Name = categoryId,
+        //             ToolTip = Loc.GetString("skill-category-tooltip", ("categoryName", categoryName))
+        //         };
+
+        //         if (firstCategory)
+        //             firstCategory = false;
+        //         else
+        //             categoryPanel.AddChild(new Control
+        //             {
+        //                 MinSize = new Vector2(0, 23),
+        //             });
+
+        //         categoryPanel.AddChild(new Label
+        //         {
+        //             Text = categoryName,
+        //             Margin = new Thickness(5f, 0, 0, 0)
+        //         });
+
+        //         SkillsList.AddChild(categoryPanel);
+
+        //         foreach (var skill in categorySkills)
+        //         {
+        //             var skillContainer = new BoxContainer()
+        //             {
+        //                 Orientation = LayoutOrientation.Horizontal,
+        //             };
+
+        //             var skillLabel = new Label
+        //             {
+        //                 Text = Loc.GetString($"skills-skillname-{skill.ID}"),
+        //                 Margin = new Thickness(5f, 3f, 0f, 3f)
+        //             };
+
+        //             skillContainer.AddChild(skillLabel);
+
+        //             foreach (SkillLevel level in Enum.GetValues(typeof(SkillLevel)))
+        //             {
+        //                 if (!_skillPointController.CanHaveSkillLevel(skill.ID, level))
+        //                     continue;
+
+        //                 var levelButton = new Button
+        //                 {
+        //                     Text = Loc.GetString($"skills-level-{level}"),
+        //                     Margin = new Thickness(5f, 3f, 3f, 3f),
+        //                 };
+
+        //                 levelButton.OnPressed += args =>
+        //                 {
+        //                     _skillPointController.ProcessSkill(skill.ID, level);
+        //                 };
+
+        //                 skillContainer.AddChild(levelButton);
+        //             }
+
+        //             categoryPanel.AddChild(skillContainer);
+        //         }
+        //     }
+
+        //     UpdateLeftSkillPoints(_skillPointController.CurrentPoints);
+
+        // }
+        // SS14RU
+        /// Refreshes all job selectors
+
         /// <summary>
         /// Refreshes all job selectors.
         /// </summary>
-        public void RefreshJobs()
-        {
-            JobList.DisposeAllChildren();
-            _jobCategories.Clear();
-            _jobPriorities.Clear();
+        // public void RefreshJobs()
+        // {
+        //     JobList.DisposeAllChildren();
+        //     _jobCategories.Clear();
+        //     _jobPriorities.Clear();
 
-            // Get all displayed departments
-            var departments = new List<DepartmentPrototype>();
-            foreach (var department in _prototypeManager.EnumeratePrototypes<DepartmentPrototype>())
-            {
-                if (department.EditorHidden)
-                    continue;
+        //     // Get all displayed departments
+        //     var departments = new List<DepartmentPrototype>();
+        //     foreach (var department in _prototypeManager.EnumeratePrototypes<DepartmentPrototype>())
+        //     {
+        //         if (department.EditorHidden)
+        //             continue;
 
-                departments.Add(department);
-            }
+        //         departments.Add(department);
+        //     }
 
-            departments.Sort(DepartmentUIComparer.Instance);
+        //     departments.Sort(DepartmentUIComparer.Instance);
 
-            var items = new[]
-            {
-                ("humanoid-profile-editor-job-priority-never-button", (int) JobPriority.Never),
-                ("humanoid-profile-editor-job-priority-low-button", (int) JobPriority.Low),
-                ("humanoid-profile-editor-job-priority-medium-button", (int) JobPriority.Medium),
-                ("humanoid-profile-editor-job-priority-high-button", (int) JobPriority.High),
-            };
+        //     var items = new[]
+        //     {
+        //         ("humanoid-profile-editor-job-priority-never-button", (int) JobPriority.Never),
+        //         ("humanoid-profile-editor-job-priority-low-button", (int) JobPriority.Low),
+        //         ("humanoid-profile-editor-job-priority-medium-button", (int) JobPriority.Medium),
+        //         ("humanoid-profile-editor-job-priority-high-button", (int) JobPriority.High),
+        //     };
 
-            var firstCategory = true;
-            foreach (var department in departments)
-            {
-                var departmentName = Loc.GetString($"department-{department.ID}");
+        //     var firstCategory = true;
+        //     foreach (var department in departments)
+        //     {
+        //         var departmentName = Loc.GetString($"department-{department.ID}");
 
-                if (!_jobCategories.TryGetValue(department.ID, out var category))
-                {
-                    category = new AlternatingBGContainer
-                    {
-                        Orientation = LayoutOrientation.Vertical,
-                        Name = department.ID,
-                        ToolTip = Loc.GetString("humanoid-profile-editor-jobs-amount-in-department-tooltip",
-                            ("departmentName", departmentName)),
-                        Margin = new(0, firstCategory ? 0 : 20, 0, 0),
-                        Children =
-                        {
-                            new Label
-                            {
-                                Text = Loc.GetString("humanoid-profile-editor-department-jobs-label",
-                                    ("departmentName", departmentName)),
-                                StyleClasses = { StyleBase.StyleClassLabelHeading, },
-                                Margin = new(5f, 0, 0, 0),
-                            },
-                        },
-                    };
+        //         if (!_jobCategories.TryGetValue(department.ID, out var category))
+        //         {
+        //             category = new AlternatingBGContainer
+        //             {
+        //                 Orientation = LayoutOrientation.Vertical,
+        //                 Name = department.ID,
+        //                 ToolTip = Loc.GetString("humanoid-profile-editor-jobs-amount-in-department-tooltip",
+        //                     ("departmentName", departmentName)),
+        //                 Margin = new(0, firstCategory ? 0 : 20, 0, 0),
+        //                 Children =
+        //                 {
+        //                     new Label
+        //                     {
+        //                         Text = Loc.GetString("humanoid-profile-editor-department-jobs-label",
+        //                             ("departmentName", departmentName)),
+        //                         StyleClasses = { StyleBase.StyleClassLabelHeading, },
+        //                         Margin = new(5f, 0, 0, 0),
+        //                     },
+        //                 },
+        //             };
 
-                    firstCategory = false;
-                    _jobCategories[department.ID] = category;
-                    JobList.AddChild(category);
-                }
+        //             firstCategory = false;
+        //             _jobCategories[department.ID] = category;
+        //             JobList.AddChild(category);
+        //         }
 
-                var jobs = department.Roles.Select(jobId => _prototypeManager.Index(jobId))
-                    .Where(job => job.SetPreference)
-                    .ToArray();
+        //         var jobs = department.Roles.Select(jobId => _prototypeManager.Index(jobId))
+        //             .Where(job => job.SetPreference)
+        //             .ToArray();
 
-                Array.Sort(jobs, JobUIComparer.Instance);
+        //         Array.Sort(jobs, JobUIComparer.Instance);
 
-                foreach (var job in jobs)
-                {
-                    var jobContainer = new BoxContainer { Orientation = LayoutOrientation.Horizontal, HorizontalExpand = true, };
-                    var selector = new RequirementsSelector { Margin = new(3f, 3f, 3f, 0f), HorizontalExpand = true, };
-                    selector.OnOpenGuidebook += OnOpenGuidebook;
+        //         foreach (var job in jobs)
+        //         {
+        //             var jobContainer = new BoxContainer { Orientation = LayoutOrientation.Horizontal, HorizontalExpand = true, };
+        //             var selector = new RequirementsSelector { Margin = new(3f, 3f, 3f, 0f), HorizontalExpand = true, };
+        //             selector.OnOpenGuidebook += OnOpenGuidebook;
 
-                    var icon = new TextureRect
-                    {
-                        TextureScale = new(2, 2),
-                        VerticalAlignment = VAlignment.Center
-                    };
-                    var jobIcon = _prototypeManager.Index(job.Icon);
-                    icon.Texture = jobIcon.Icon.Frame0();
-                    selector.Setup(items, job.LocalizedName, 200, job.LocalizedDescription, icon, job.Guides);
+        //             var icon = new TextureRect
+        //             {
+        //                 TextureScale = new(2, 2),
+        //                 VerticalAlignment = VAlignment.Center
+        //             };
+        //             var jobIcon = _prototypeManager.Index(job.Icon);
+        //             icon.Texture = jobIcon.Icon.Frame0();
+        //             selector.Setup(items, job.LocalizedName, 200, job.LocalizedDescription, icon, job.Guides);
 
-                    if (!_requirements.CheckJobWhitelist(job, out var reason))
-                        selector.LockRequirements(reason);
-                    else if (!_characterRequirementsSystem.CheckRequirementsValid(
-                        _roleSystem.GetJobRequirement(job) ?? new(),
-                        job,
-                        Profile ?? HumanoidCharacterProfile.DefaultWithSpecies(),
-                        _requirements.GetRawPlayTimeTrackers(),
-                        _requirements.IsWhitelisted(),
-                        job,
-                        _entManager,
-                        _prototypeManager,
-                        _cfgManager,
-                        out var reasons))
-                        selector.LockRequirements(_characterRequirementsSystem.GetRequirementsText(reasons));
-                    else
-                        selector.UnlockRequirements();
+        //             if (!_requirements.CheckJobWhitelist(job, out var reason))
+        //                 selector.LockRequirements(reason);
+        //             else if (!_characterRequirementsSystem.CheckRequirementsValid(
+        //                 _roleSystem.GetJobRequirement(job) ?? new(),
+        //                 job,
+        //                 Profile ?? HumanoidCharacterProfile.DefaultWithSpecies(),
+        //                 _requirements.GetRawPlayTimeTrackers(),
+        //                 _requirements.IsWhitelisted(),
+        //                 job,
+        //                 _entManager,
+        //                 _prototypeManager,
+        //                 _cfgManager,
+        //                 out var reasons))
+        //                 selector.LockRequirements(_characterRequirementsSystem.GetRequirementsText(reasons));
+        //             else
+        //                 selector.UnlockRequirements();
 
-                    selector.OnSelected += selectedPrio =>
-                    {
-                        var selectedJobPrio = (JobPriority) selectedPrio;
-                        Profile = Profile?.WithJobPriority(job.ID, selectedJobPrio);
+        //             selector.OnSelected += selectedPrio =>
+        //             {
+        //                 var selectedJobPrio = (JobPriority) selectedPrio;
+        //                 Profile = Profile?.WithJobPriority(job.ID, selectedJobPrio);
 
-                        foreach (var (jobId, other) in _jobPriorities)
-                        {
-                            // Sync other selectors with the same job in case of multiple department jobs
-                            if (jobId == job.ID)
-                            {
-                                other.Select(selectedPrio);
-                                continue;
-                            }
+        //                 foreach (var (jobId, other) in _jobPriorities)
+        //                 {
+        //                     // Sync other selectors with the same job in case of multiple department jobs
+        //                     if (jobId == job.ID)
+        //                     {
+        //                         other.Select(selectedPrio);
+        //                         continue;
+        //                     }
 
-                            if (selectedJobPrio != JobPriority.High || (JobPriority) other.Selected != JobPriority.High)
-                                continue;
+        //                     if (selectedJobPrio != JobPriority.High || (JobPriority) other.Selected != JobPriority.High)
+        //                         continue;
 
-                            // Lower any other high priorities to medium.
-                            other.Select((int)JobPriority.Medium);
-                            Profile = Profile?.WithJobPriority(jobId, JobPriority.Medium);
-                        }
+        //                     // Lower any other high priorities to medium.
+        //                     other.Select((int)JobPriority.Medium);
+        //                     Profile = Profile?.WithJobPriority(jobId, JobPriority.Medium);
+        //                 }
 
-                        // TODO: Only reload on high change (either to or from).
-                        ReloadPreview();
+        //                 // TODO: Only reload on high change (either to or from).
+        //                 ReloadPreview();
 
-                        UpdateJobPriorities();
-                        SetDirty();
-                    };
+        //                 UpdateJobPriorities();
+        //                 SetDirty();
+        //             };
 
-                    _jobPriorities.Add((job.ID, selector));
-                    jobContainer.AddChild(selector);
-                    category.AddChild(jobContainer);
-                }
-            }
+        //             _jobPriorities.Add((job.ID, selector));
+        //             jobContainer.AddChild(selector);
+        //             category.AddChild(jobContainer);
+        //         }
+        //     }
 
-            UpdateJobPriorities();
-        }
+        //     UpdateJobPriorities();
+        // }
 
         private void OnFlavorTextChange(string content)
         {
