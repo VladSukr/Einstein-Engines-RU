@@ -1139,13 +1139,15 @@ namespace Content.Client.Lobby.UI
         //     var protoId = _historicalUiStorage!.HistoryByButtonId[buttonId];
         //     var proto = _prototypeManager.Index(protoId);
         //     _historicalUiStorage!.SelectedHistories[(HistoryType)proto.HistoryType] = protoId;
+        //     _historicalUiStorage!.OptionButtonsByType[(HistoryType)proto.HistoryType].SelectId(buttonId);
         // }
         // private void RefreshHistoricalDescriptions()
         // {
         //     foreach (var (key, value) in _historicalUiStorage!.SelectedHistories)
         //     {
         //         var proto = _prototypeManager.Index(value);
-        //         _historicalUiStorage.DescriptionFieldForTypes[key].TextRope = new Rope.Leaf(proto.Description);
+        //         var description = Loc.GetString(proto.Description);
+        //         _historicalUiStorage.DescriptionFieldForTypes[key].TextRope = new Rope.Leaf(description);
         //     }
         // }
         // public void RefreshHistorical()
@@ -1173,8 +1175,8 @@ namespace Content.Client.Lobby.UI
 
         //             var infoDescContainer = new BoxContainer() { Align = AlignMode.Center, Orientation = LayoutOrientation.Horizontal };
 
-        //             infoDescContainer.AddChild(new Label() { Text = key.ToString(), HorizontalAlignment = HAlignment.Left });
-        //             infoDescContainer.AddChild(new Control() { HorizontalExpand = true });
+                    // infoDescContainer.AddChild(new Label() { Text = Loc.GetString($"historical-names-{key.ToString()}"), HorizontalAlignment = HAlignment.Left });
+                    // infoDescContainer.AddChild(new Control() { HorizontalExpand = true });
 
         //             optionButton = new OptionButton() { HorizontalAlignment = HAlignment.Right };
         //             optionButton.OnItemSelected += (args) =>
@@ -1187,14 +1189,14 @@ namespace Content.Client.Lobby.UI
 
         //             typeContainer.AddChild(infoDescContainer);
 
-        //             var scrollContainer = new ScrollContainer
-        //             {
-        //                 HorizontalExpand = true,
-        //                 VerticalExpand = true,
-        //                 HScrollEnabled = false,
-        //                 VScrollEnabled = true,
-        //                 MinSize = new Vector2(0, 60)
-        //             };
+                    // var scrollContainer = new ScrollContainer
+                    // {
+                    //     HorizontalExpand = true,
+                    //     VerticalExpand = true,
+                    //     HScrollEnabled = false,
+                    //     VScrollEnabled = true,
+                    //     MinSize = new Vector2(0, 120)
+                    // };
 
         //             var descriptionField = new TextEdit
         //             {
@@ -1212,19 +1214,20 @@ namespace Content.Client.Lobby.UI
         //             HistoricalContainer.AddChild(typeContainer);
         //         }
 
-        //         foreach (var protoId in value)
-        //         {
-        //             optionButton?.AddItem(protoId, lastButtonId++);
-        //             historyByButtonId.Add(protoId);
-        //         }
-        //     }
-        //     _historicalUiStorage = new(
-        //         historyByButtonId,
-        //         selectedHistories,
-        //         descriptionFieldForTypes,
-        //         optionButtonsByType,
-        //         histories
-        //         );
+            //     foreach (var protoId in value)
+            //     {
+            //         var proto = _prototypeManager.Index(protoId);
+            //         optionButton?.AddItem(Loc.GetString(proto.Name), lastButtonId++);
+            //         historyByButtonId.Add(protoId);
+            //     }
+            // }
+            // _historicalUiStorage = new(
+            //     historyByButtonId,
+            //     selectedHistories,
+            //     descriptionFieldForTypes,
+            //     optionButtonsByType,
+            //     histories
+            //     );
 
         //     RefreshHistoricalDescriptions();
         //     HistoricalCheckSelectedHistories();
