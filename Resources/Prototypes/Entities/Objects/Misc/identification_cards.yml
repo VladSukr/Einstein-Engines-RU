@@ -45,6 +45,13 @@
     - state: assistant # WWDP
   - type: PresetIdCard
     job: Passenger
+  - type: EconomyAccountHolder #SS14RU
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: PassengerIDCard
@@ -53,6 +60,13 @@
   components:
   - type: PresetIdCard
     job: TechnicalAssistant
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
   - type: Sprite
     layers:
     - state: default
@@ -69,6 +83,13 @@
   components:
   - type: PresetIdCard
     job: MedicalIntern
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
   - type: Sprite
     layers:
     - state: default
@@ -85,6 +106,13 @@
   components:
   - type: PresetIdCard
     job: ResearchAssistant
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
   - type: Sprite
     layers:
     - state: default
@@ -101,6 +129,13 @@
   components:
   - type: PresetIdCard
     job: SecurityCadet
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
   - type: Sprite
     layers:
     - state: default
@@ -117,6 +152,13 @@
   components:
   - type: PresetIdCard
     job: ServiceWorker
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
   - type: Sprite
     layers:
     - state: default
@@ -143,6 +185,13 @@
     heldPrefix: gold
   - type: PresetIdCard
     job: Captain
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
   - type: Tag
     tags:
     - DoorBumpOpener
@@ -167,6 +216,13 @@
     - state: securityofficer
   - type: PresetIdCard
     job: SecurityOfficer
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -183,6 +239,13 @@
     - state: warden
   - type: PresetIdCard
     job: Warden
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -199,6 +262,13 @@
     - state: stationengineer
   - type: PresetIdCard
     job: StationEngineer
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -215,6 +285,13 @@
     - state: medicaldoctor
   - type: PresetIdCard
     job: MedicalDoctor
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -231,6 +308,13 @@
     - state: paramedic
   - type: PresetIdCard
     job: Paramedic
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -247,6 +331,13 @@
     - state: chemist
   - type: PresetIdCard
     job: Chemist
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -263,6 +354,13 @@
     - state: cargotechnician
   - type: PresetIdCard
     job: CargoTechnician
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -279,6 +377,13 @@
     - state: shaftminer
   - type: PresetIdCard
     job: SalvageSpecialist
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -297,6 +402,13 @@
     heldPrefix: silver
   - type: PresetIdCard
     job: Quartermaster
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -313,6 +425,13 @@
     - state: scientist
   - type: PresetIdCard
     job: Scientist
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -329,6 +448,13 @@
     - state: scientist
   - type: PresetIdCard
     job: Roboticist
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -345,6 +471,13 @@
     - state: clown
   - type: PresetIdCard
     job: Clown
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -360,6 +493,13 @@
     - state: mime
   - type: PresetIdCard
     job: Mime
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -376,6 +516,13 @@
     - state: chaplain
     - type: PresetIdCard
       job: Chaplain
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -392,6 +539,13 @@
     - state: janitor
   - type: PresetIdCard
     job: Janitor
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -408,6 +562,13 @@
     - state: bartender
   - type: PresetIdCard
     job: Bartender
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: BartenderIDCard
@@ -416,6 +577,13 @@
   components:
   - type: PresetIdCard
     job: Bartender
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
     name: Pun Pun
   - type: Tag #  Ignore Chameleon tags
     tags:
@@ -436,6 +604,13 @@
     - state: cook
   - type: PresetIdCard
     job: Chef
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -452,6 +627,13 @@
     - state: botanist
   - type: PresetIdCard
     job: Botanist
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -468,6 +650,13 @@
     - state: curator
   - type: PresetIdCard
     job: Librarian
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -484,6 +673,13 @@
     - state: lawyer
   - type: PresetIdCard
     job: Lawyer
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -500,6 +696,13 @@
     - state: subdepartment
       color: "#CB0000"
     - state: lawyer
+  - type: EconomyAccountHolder
+      accountIdByProto: Nanotrasen
+      moneyHolderEntId: ThalerHolder
+      accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 
 - type: entity
@@ -517,6 +720,13 @@
     - state: subdepartment
       color: "#CB0000"
     - state: lawyer
+  - type: EconomyAccountHolder
+      accountIdByProto: Nanotrasen
+      moneyHolderEntId: ThalerHolder
+      accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -533,6 +743,13 @@
     - state: subdepartment
       color: "#CB0000"
     - state: lawyer
+  - type: EconomyAccountHolder
+      accountIdByProto: Nanotrasen
+      moneyHolderEntId: ThalerHolder
+      accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -551,6 +768,13 @@
     heldPrefix: silver
   - type: PresetIdCard
     job: HeadOfPersonnel
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -569,6 +793,13 @@
     heldPrefix: silver
   - type: PresetIdCard
     job: ChiefEngineer
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -587,6 +818,13 @@
     heldPrefix: silver
   - type: PresetIdCard
     job: ChiefMedicalOfficer
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -605,6 +843,13 @@
     heldPrefix: silver
   - type: PresetIdCard
     job: ResearchDirector
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -623,6 +868,13 @@
     heldPrefix: silver
   - type: PresetIdCard
     job: HeadOfSecurity
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -669,6 +921,13 @@
     job: CentralCommandOfficial
   - type: NanoChatCard
     listNumber: false
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -685,6 +944,13 @@
     - state: captain
   - type: PresetIdCard
     job: ERTLeader
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
   - type: Item
     heldPrefix: gold
   - type: NanoChatCard
@@ -705,6 +971,13 @@
     - state: chaplain
   - type: PresetIdCard
     job: ERTChaplain
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
   - type: Item
     heldPrefix: blue
   - type: NanoChatCard
@@ -727,6 +1000,13 @@
     job: ERTEngineer
   - type: NanoChatCard
     listNumber: false
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -745,6 +1025,13 @@
     job: ERTJanitor
   - type: NanoChatCard
     listNumber: false
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -763,6 +1050,13 @@
     job: ERTMedical
   - type: NanoChatCard
     listNumber: false
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -781,6 +1075,42 @@
     job: ERTSecurity
   - type: NanoChatCard
     listNumber: false
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
+
+- type: entity
+  parent: IDCardStandard
+  id: CentcomIDCardSyndie
+  name: command officer ID card
+  suffix: Fake
+  components:
+  - type: Sprite
+    layers:
+    - state: centcom
+    - state: departmenthead
+      color: "#1B67A5"
+    - state: subdepartment
+      color: "#1B67A5"
+    - state: cc
+  - type: Item
+    heldPrefix: blue
+  - type: PresetIdCard
+    job: CentralCommandOfficial
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
+  - type: Access
+    tags:
+    - Maintenance
 
 - type: entity
   parent: IDCardStandard
@@ -797,6 +1127,13 @@
     - state: musician
   - type: PresetIdCard
     job: Musician
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: CentcomIDCard
@@ -817,6 +1154,13 @@
     job: DeathSquad
   - type: NanoChatCard
     listNumber: false
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   name: passenger ID card
@@ -826,6 +1170,13 @@
   components:
   - type: PresetIdCard
     job: Passenger
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
   - type: Access
     tags:
     - Maintenance
@@ -889,6 +1240,13 @@
     - state: atmospherictechnician
   - type: PresetIdCard
     job: AtmosphericTechnician
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -949,6 +1307,13 @@
     - state: psychologist
   - type: PresetIdCard
     job: Psychologist
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -965,6 +1330,13 @@
     - state: headofpersonnel
   - type: PresetIdCard
     job: Reporter
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -981,6 +1353,13 @@
     - state: boxer
   - type: PresetIdCard
     job: Boxer
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -997,6 +1376,13 @@
     - state: zookeeper
   - type: PresetIdCard
     job: Zookeeper
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -1013,6 +1399,13 @@
     - state: detective
   - type: PresetIdCard
     job: Detective
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: CentcomIDCard
@@ -1034,6 +1427,13 @@
     job: CBURN
   - type: NanoChatCard
     listNumber: false
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -1071,6 +1471,13 @@
     - state: senior
   - type: PresetIdCard
     job: SeniorEngineer
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: ResearchIDCard
@@ -1087,6 +1494,13 @@
     - state: senior
   - type: PresetIdCard
     job: SeniorResearcher
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: MedicalIDCard
@@ -1103,6 +1517,13 @@
     - state: senior
   - type: PresetIdCard
     job: SeniorPhysician
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: SecurityIDCard
@@ -1119,6 +1540,13 @@
     - state: senior
   - type: PresetIdCard
     job: SeniorOfficer
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 - type: entity
   parent: IDCardStandard
@@ -1165,3 +1593,10 @@
     - NuclearOperative
     - SyndicateAgent
     - Wizard
+  - type: EconomyAccountHolder
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal

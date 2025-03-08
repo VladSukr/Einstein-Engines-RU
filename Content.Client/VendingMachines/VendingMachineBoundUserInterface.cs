@@ -4,6 +4,7 @@ using Content.Shared.VendingMachines;
 using Robust.Client.UserInterface;
 using Robust.Shared.Input;
 using System.Linq;
+using Content.Shared.Emag.Components;
 
 namespace Content.Client.VendingMachines
 {
@@ -15,8 +16,14 @@ namespace Content.Client.VendingMachines
         [ViewVariables]
         private List<VendingMachineInventoryEntry> _cachedInventory = new();
 
+        [ViewVariables]
+        private List<int> _cachedFilteredIndex = new();
+
+        private VendingMachineSystem _vendingMachineSystem;
+
         public VendingMachineBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
         {
+            _vendingMachineSystem = EntMan.System<VendingMachineSystem>();
         }
 
         protected override void Open()
@@ -54,7 +61,10 @@ namespace Content.Client.VendingMachines
             if (selectedItem == null)
                 return;
 
-            SendMessage(new VendingMachineEjectMessage(selectedItem.Type, selectedItem.ID));
+            //SS14-RU
+            // SendMessage(new VendingMachineEjectMessage(selectedItem.Type, selectedItem.ID));
+            SendMessage(new VendingMachineSelectMessage(selectedItem.Type, selectedItem.ID));
+            //SS14-RU
         }
 
         protected override void Dispose(bool disposing)
@@ -69,6 +79,25 @@ namespace Content.Client.VendingMachines
             _menu.OnItemSelected -= OnItemSelected;
             _menu.OnClose -= Close;
             _menu.Dispose();
+        }
+
+        //SS14-RU
+        private VendingMachineInventoryEntry? GetEntry(EntityUid uid, VendingMachineComponent component)
+        {
+            string selectedId = component.SelectedItemId!;
+            if (component.SelectedItemInventoryType == InventoryType.Emagged && EntMan.HasComponent<EmaggedComponent>(uid))
+                return component.EmaggedInventory.GetValueOrDefault(selectedId);
+
+            if (component.SelectedItemInventoryType == InventoryType.Contraband && component.Contraband)
+                return component.ContrabandInventory.GetValueOrDefault(selectedId);
+
+            return component.Inventory.GetValueOrDefault(selectedId);
+        }
+        //SS14-RU
+
+        private void OnSearchChanged(string? filter)
+        {
+            _menu?.Populate(_cachedInventory, out _cachedFilteredIndex, filter);
         }
     }
 }

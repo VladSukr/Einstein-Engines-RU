@@ -119,6 +119,17 @@ namespace Content.Client.VendingMachines.UI
                 }
 
                 var itemName = Identity.Name(dummy, _entityManager);
+                //SS14-RU
+                var adjustText = "";
+                if (entry.Price > 0)
+                {
+                    adjustText = $" [{entry.Price}]";
+                }
+                itemName = $"{itemName} [{entry.Amount}]{adjustText}";
+                //SS14-RU
+
+                if (itemName.Length > longestEntry.Length)
+                    longestEntry = itemName;
 
                 const string labelCompName = "Label";
                 if (prototype.Components.TryGetValue(labelCompName, out var labelCompData)
