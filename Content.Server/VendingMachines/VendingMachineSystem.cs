@@ -56,7 +56,7 @@ namespace Content.Server.VendingMachines
             SubscribeLocalEvent<VendingMachineComponent, PowerChangedEvent>(OnPowerChanged);
             SubscribeLocalEvent<VendingMachineComponent, BreakageEventArgs>(OnBreak);
             SubscribeLocalEvent<VendingMachineComponent, GotEmaggedEvent>(OnEmagged);
-            SubscribeLocalEvent<VendingMachineComponent, DamageChangedEvent>(OnDamageChanged);
+            SubscribeLocalEvent<VendingMachineComponent, DamageChangedEvent>(OnDamage);
             SubscribeLocalEvent<VendingMachineComponent, PriceCalculationEvent>(OnVendingPrice);
 
             SubscribeLocalEvent<VendingMachineComponent, ActivatableUIOpenAttemptEvent>(OnActivatableUIOpenAttempt);
@@ -162,15 +162,8 @@ namespace Content.Server.VendingMachines
             args.Handled = component.EmaggedInventory.Count > 0;
         }
 
-        private void OnDamageChanged(EntityUid uid, VendingMachineComponent component, DamageChangedEvent args)
+        private void OnDamage(EntityUid uid, VendingMachineComponent component, DamageChangedEvent args)
         {
-            if (!args.DamageIncreased && component.Broken)
-            {
-                component.Broken = false;
-                TryUpdateVisualState(uid, component);
-                return;
-            }
-
             if (component.Broken || component.DispenseOnHitCoolingDown ||
                 component.DispenseOnHitChance == null || args.DamageDelta == null)
                 return;
@@ -407,19 +400,7 @@ namespace Content.Server.VendingMachines
                 return;
             }
 
-            // Default spawn coordinates
-            var spawnCoordinates = Transform(uid).Coordinates;
-
-            //Make sure the wallvends spawn outside of the wall.
-
-            if (TryComp<WallMountComponent>(uid, out var wallMountComponent))
-            {
-
-                var offset = wallMountComponent.Direction.ToWorldVec() * WallVendEjectDistanceFromWall;
-                spawnCoordinates = spawnCoordinates.Offset(offset);
-            }
-
-            var ent = Spawn(vendComponent.NextItemToEject, spawnCoordinates);
+            var ent = Spawn(vendComponent.NextItemToEject, Transform(uid).Coordinates);
 
             if (vendComponent.ThrowNextItem)
             {
