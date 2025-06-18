@@ -1,0 +1,45 @@
+- type: entity
+  parent: BaseComputer
+  id: ComputerInsurance
+  name: Консоль страхового управления
+  description: Компьютер, используемый для просмотра и редактирования страховых записей
+  components:
+  - type: StationAiWhitelist
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: comm
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+  - type: AccessReader
+    access: [[ "Command", "Security" ]]
+  - type: ActivatableUI
+    key: enum.EconomyInsuranceMenuUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.EconomyInsuranceMenuUiKey.Key:
+        type: EconomyLogConsoleBoundUserInterface
+  - type: Computer
+    board: ComputerLogsCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#3c5eb5"
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+
+- type: entity
+  parent: [ BaseComputerCircuitboard ]
+  id: ComputerInsuranceCircuitboard
+  name: Плата консоли страхового управления
+  description: Печатная плата для консоли страхового управления, используемая для встраивания в корпус машины для просмотра и редактирования страховых записей
+  components:
+    - type: Sprite
+      state: cpu_command
+    - type: ComputerBoard
+      prototype: ComputerInsurance
