@@ -2,14 +2,11 @@ using Content.Shared.AWS.Economy.Bank;
 
 namespace Content.Client.AWS.Economy.Bank.UI;
 
-public sealed class EconomyTerminalBoundUserInterface : BoundUserInterface
+public sealed class EconomyTerminalBoundUserInterface(EntityUid owner, Enum uiKey)
+    : BoundUserInterface(owner, uiKey)
 {
     [ViewVariables]
     private EconomyTerminalMenu? _menu;
-
-    public EconomyTerminalBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
-    {
-    }
 
     public void OnPayPressed(ulong amount, string reason)
     {

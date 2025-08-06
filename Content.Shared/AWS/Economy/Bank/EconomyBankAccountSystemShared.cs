@@ -66,10 +66,17 @@ namespace Content.Shared.AWS.Economy.Bank
         /// </summary>
         /// <returns>True if the fetching was successful, false otherwise.</returns>
         [PublicAPI]
-        public bool TryGetAccount(string accountID, out Entity<EconomyBankAccountComponent> account)
+        public bool TryGetAccount(string accountID, [NotNullWhen(true)] out Entity<EconomyBankAccountComponent>? account)
         {
             var accounts = GetAccounts(EconomyBankAccountMask.All);
-            return accounts.TryGetValue(accountID, out account);
+            if (accounts.TryGetValue(accountID, out var foundAccount))
+            {
+                account = foundAccount;
+                return true;
+            }
+
+            account = null;
+            return false;
         }
 
         /// <summary>
@@ -122,7 +129,7 @@ namespace Content.Shared.AWS.Economy.Bank
             if (!TryGetAccount(entity.Comp.AccountID, out var accountEntity))
                 return;
 
-            var account = accountEntity.Comp;
+            var account = accountEntity.Value.Comp;
             args.PushMarkup(Loc.GetString("bankaccount-component-on-examine-detailed-message",
                 ("id", account.AccountID)));
             args.PushMarkup(Loc.GetString("moneyholder-component-on-examine-detailed-message",
@@ -180,29 +187,37 @@ namespace Content.Shared.AWS.Economy.Bank
         [PublicAPI]
         public void UpdateATMUserInterface(Entity<EconomyBankATMComponent> entity, string? error = null)
         {
-            var card = GetATMInsertedAccount(entity.Comp);
-            EconomyBankAccountComponent? bankAccount = null;
-            if (card is not null && TryGetAccount(card.AccountID, out var account))
-                bankAccount = account;
+            if (!TryGetATMInsertedAccount(entity, out var accountHolder))
+                return;
+
+            TryGetAccount(accountHolder.Value.Comp.AccountID, out var account);
 
             _userInterfaceSystem.SetUiState(entity.Owner, EconomyBankATMUiKey.Key, new EconomyBankATMUserInterfaceState()
             {
-                BankAccount = bankAccount is null ? null :
-                new() {
-                    Balance = bankAccount.Balance,
-                    AccountId = bankAccount.AccountID,
-                    AccountName = bankAccount.AccountName,
-                    Blocked = bankAccount.Blocked,
+                BankAccount = account is null ? null :
+                new()
+                {
+                    Balance = account.Value.Comp.Balance,
+                    AccountId = account.Value.Comp.AccountID,
+                    AccountName = account.Value.Comp.AccountName,
+                    Blocked = account.Value.Comp.Blocked,
                 },
                 Error = error,
             });
         }
 
         [PublicAPI]
-        public EconomyAccountHolderComponent? GetATMInsertedAccount(EconomyBankATMComponent atm)
+        public bool TryGetATMInsertedAccount(EconomyBankATMComponent atm, [NotNullWhen(true)] out Entity<EconomyAccountHolderComponent>? ent)
         {
-            TryComp(atm.CardSlot.Item, out EconomyAccountHolderComponent? bankAccount);
-            return bankAccount;
+            ent = null;
+
+            if (TryComp(atm.CardSlot.Item, out EconomyAccountHolderComponent? bankAccount))
+            {
+                ent = (atm.CardSlot.Item.Value, bankAccount);
+                return true;
+            }
+
+            return false;
         }
 
         [PublicAPI]
@@ -236,8 +251,8 @@ namespace Content.Shared.AWS.Economy.Bank
             EconomyBankAccountComponent? account = null;
             if (TryComp<EconomyAccountHolderComponent>(ent.Comp.TargetCardSlot.Item, out var holder))
             {
-                TryGetAccount(holder.AccountID, out var accountEnt);
-                account = accountEnt.Comp;
+                if (TryGetAccount(holder.AccountID, out var accountEnt))
+                    account = accountEnt.Value.Comp;
             }
 
             UpdateManagementConsoleUserInterface(ent, account);
@@ -250,8 +265,8 @@ namespace Content.Shared.AWS.Economy.Bank
             EconomyBankAccountComponent? account = null;
             if (args.Container.ID == ent.Comp.CardSlot.ID && TryComp<EconomyAccountHolderComponent>(ent.Comp.TargetCardSlot.Item, out var holder))
             {
-                TryGetAccount(holder.AccountID, out var accountEnt);
-                account = accountEnt.Comp;
+                if (TryGetAccount(holder.AccountID, out var accountEnt))
+                    account = accountEnt.Value.Comp;
             }
 
             UpdateManagementConsoleUserInterface(ent, account);
@@ -372,7 +387,7 @@ namespace Content.Shared.AWS.Economy.Bank
         {
             if (TryComp<EconomyAccountHolderComponent>(entity, out var accountHolder)
                 && TryGetAccount(accountHolder.AccountID, out var account))
-                return account.Comp.Balance;
+                return account.Value.Comp.Balance;
 
             if (TryComp<EconomyMoneyHolderComponent>(entity, out var moneyHolder))
                 return moneyHolder.Balance;

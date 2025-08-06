@@ -123,13 +123,11 @@ namespace Content.Client.VendingMachines.UI
                 var adjustText = "";
                 if (entry.Price > 0)
                 {
-                    adjustText = $" [{entry.Price}]";
+                    adjustText = $" [{Loc.GetString("economybanksystem-vending-cost-label", ("amount", entry.Price),
+                        ("currencyName", "Th"))}]";
                 }
-                itemName = $"{itemName} [{entry.Amount}]{adjustText}";
-                //SS14-RU
 
-                if (itemName.Length > longestEntry.Length)
-                    longestEntry = itemName;
+                vendingItem.Text = $"{itemName} [{entry.Amount}]{adjustText}";
 
                 const string labelCompName = "Label";
                 if (prototype.Components.TryGetValue(labelCompName, out var labelCompData)
@@ -139,6 +137,9 @@ namespace Content.Client.VendingMachines.UI
                     if (!string.IsNullOrEmpty(itemLabel))
                         itemName += $" ({Loc.GetString(itemLabel)})";
                 }
+                
+                if (vendingItem.Text.Length > longestEntry.Length)
+                    longestEntry = vendingItem.Text;
 
                 var itemText = $"{itemName} [{entry.Amount}]";
 
@@ -155,7 +156,7 @@ namespace Content.Client.VendingMachines.UI
 
         private void SetSizeAfterUpdate(int longestEntryLength, int contentCount)
         {
-            SetSize = new Vector2(Math.Clamp((longestEntryLength + 2) * 12, 250, 400),
+            SetSize = new Vector2(Math.Clamp((longestEntryLength) * 12, 250, 500),
                 Math.Clamp(contentCount * 50, 150, 350));
         }
     }

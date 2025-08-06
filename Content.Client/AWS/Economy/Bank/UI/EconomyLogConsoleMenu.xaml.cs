@@ -42,7 +42,7 @@ public sealed partial class EconomyLogConsoleMenu : FancyWindow
 
         if (account.Logs.Count == 0)
         {
-            LogDetails.AddItem("No logs detected");
+            LogDetails.AddItem(Loc.GetString("economy-Terminal-NoLogsDetected"));
             return;
         }
         for (int i = account.Logs.Count - 1; i != -1; i--)

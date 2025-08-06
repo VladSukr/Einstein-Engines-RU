@@ -5,7 +5,7 @@ using Robust.Shared.GameStates;
 namespace Content.Shared.AWS.Economy.Bank
 {
     [RegisterComponent, NetworkedComponent, AutoGenerateComponentState(true)]
-    public sealed partial class EconomyMoneyHolderComponent : Component, IEconomyMoneyHolder
+    public sealed partial class EconomyMoneyHolderComponent : Component
     {
         [ViewVariables(VVAccess.ReadWrite), DataField(required: true)]
         public ProtoId<CurrencyPrototype> AllowCurrency;

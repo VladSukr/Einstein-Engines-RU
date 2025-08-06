@@ -5,6 +5,7 @@ economyBankTerminal-component-on-examine-reason = Оплата за: {$reason}
 economyBankTerminal-component-vending-reason = Покупка {$itemName}
 economyBankTerminal-component-vending-error-no-account = Привязанный счёт не найден
 economyBankTerminal-component-vending-error = Произошла ошибка при выдаче, деньги возвращены
+
 ent-BaseTerminal = терминал
     .desc = Ты теперь богатый, наверное.
 ent-ServiceTerminal = терминал сервисного отдела
@@ -14,6 +15,7 @@ ent-MedicalTerminal = терминал медицинского отдела
 ent-CargoTerminal = терминал отдела снабжения
 ent-CCTerminal = терминал центрального командования
 ent-EngineeringTerminal = терминал инженерного отдела
+economy-Terminal-NoLogsDetected = Записи не обнаружены
 economy-Terminal-SetButton-button = Установить
 economy-Terminal-Reason = Причина
 economy-Terminal-Amount = Сумма

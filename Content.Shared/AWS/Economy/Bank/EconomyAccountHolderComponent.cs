@@ -7,6 +7,7 @@ namespace Content.Shared.AWS.Economy.Bank;
 public sealed partial class EconomyAccountHolderComponent : Component
 {
     public const string NoValueID = "NO VALUE";
+    public const string UnexpectedUserName = "UNEXPECTED USER";
 
     [ViewVariables(VVAccess.ReadWrite), DataField(required: true)]
     public ProtoId<EconomyAccountIdPrototype> AccountIdByProto = "Nanotrasen";
@@ -19,14 +20,14 @@ public sealed partial class EconomyAccountHolderComponent : Component
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
     [AutoNetworkedField]
-    public string AccountID = "NO VALUE";
+    public string AccountID = NoValueID;
 
     /// <summary>
     /// Set this up in <see cref="EconomyBankAccountSetup"></cref> to define the name, which this card will be using.
     /// </summary>
     [ViewVariables(VVAccess.ReadWrite)]
     [AutoNetworkedField]
-    public string AccountName = "UNEXPECTED USER";
+    public string AccountName = UnexpectedUserName;
 
     /// <summary>
     /// Use this in prototypes for defining the account, which this card will be using (the account will be initialized on spawn).

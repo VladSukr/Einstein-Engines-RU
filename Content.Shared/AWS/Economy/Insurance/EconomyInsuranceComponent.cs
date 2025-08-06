@@ -6,12 +6,16 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.AWS.Economy.Insurance;
 
-[RegisterComponent, NetworkedComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class EconomyInsuranceComponent : Component
 {
+    // ONLY FOR CLIENT
     [ViewVariables(VVAccess.ReadWrite)]
-    public TimeSpan NextIconCheck { get; set; }
+    public EconomyInsuranceIconPrototype Icon { get; set; }
 
-    [ViewVariables(VVAccess.ReadWrite)]
-    public EconomyInsuranceIconPrototype Icon;
+    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
+    public ProtoId<EconomyInsuranceIconPrototype> IconPrototype { get; set; }
+
+    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
+    public int InsuranceInfoId { get; set; } = default!;
 }

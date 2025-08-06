@@ -5,5 +5,6 @@ economybanksystem-log-send-from = Пополнение на {$amount} {$currency
 economybanksystem-log-reason-bonus = Причина: выплата премии.
 economybanksystem-log-reason-payday = Причина: выплата зарплаты.
 economybanksystem-log-vending-buying = Покупка {$itemName}.
+economybanksystem-log-terminal-error = ERROR.
 economybanksystem-console-accounts-title = Список счетов
 economybanksystem-console-logs-title = Список операций

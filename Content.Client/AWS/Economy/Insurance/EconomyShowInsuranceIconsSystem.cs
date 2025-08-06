@@ -12,6 +12,11 @@ using System.Diagnostics.CodeAnalysis;
 using Content.Shared.IdentityManagement.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Store;
+using Content.Shared.Mobs.Components;
+using Content.Shared.Inventory;
+using Content.Shared.Access.Components;
+using Content.Shared.PDA;
+using Content.Shared.Access.Systems;
 
 namespace Content.Client.AWS.Economy.Insurance;
 
@@ -20,6 +25,7 @@ public sealed class EconomyShowInsuranceIconsSystem : EquipmentHudSystem<Economy
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IClientGameTiming _timing = default!;
     [Dependency] private readonly EconomyInsuranceSystem _insurance = default!;
+    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
 
     private readonly TimeSpan _checkTimeRelay = TimeSpan.FromSeconds(3);
     private readonly ProtoId<EconomyInsuranceIconPrototype> _defaultIcon = "NonStatus";
@@ -28,47 +34,65 @@ public sealed class EconomyShowInsuranceIconsSystem : EquipmentHudSystem<Economy
     {
         base.Initialize();
 
-        SubscribeLocalEvent<EconomyInsuranceComponent, GetStatusIconsEvent>(OnGetStatusIconsEvent);
+        SubscribeLocalEvent<MobStateComponent, GetStatusIconsEvent>(OnGetStatusIconsEvent, after: new[] { typeof(ShowJobIconsSystem) });
     }
 
-    private void OnGetStatusIconsEvent(EntityUid uid, EconomyInsuranceComponent component, ref GetStatusIconsEvent ev)
+    private void OnGetStatusIconsEvent(Entity<MobStateComponent> ent, ref GetStatusIconsEvent ev)
     {
         if (!IsActive)
             return;
 
-        if (!TryGetInsuranceIcon(uid, component, out var icon))
-            icon = _prototype.Index(_defaultIcon);
+        var comp = FindAnyCardWithComponent(ent);
 
-        ev.StatusIcons.Add(icon);
+        if (comp is not null && TryGetInsuranceIcon(comp, out var icon))
+            ev.StatusIcons.Add(icon);
     }
 
-    private bool TryGetInsuranceIcon(EntityUid uid, EconomyInsuranceComponent component, [NotNullWhen(true)] out EconomyInsuranceIconPrototype? icon)
+    private EconomyInsuranceComponent? FindAnyCardWithComponent(EntityUid ent)
     {
+        if (_accessReader.FindAccessItemsInventory(ent, out var items))
+        {
+            foreach (var item in items)
+            {
+                if (TryComp<EconomyInsuranceComponent>(item, out var comp))
+                    return comp;
+
+                if (TryComp<PdaComponent>(item, out var pda)
+                    && pda.ContainedId is not null
+                    && TryComp(pda.ContainedId, out comp))
+                    return comp;
+            }
+        }
+
+        return null;
+    }
+
+    private bool TryGetInsuranceIcon(EconomyInsuranceComponent comp, [NotNullWhen(true)] out EconomyInsuranceIconPrototype? icon)
+    {
+        //icon = null;
+
+        //var curTime = _timing.CurTime;
+        //if (comp.NextIconCheck >= curTime)
+        //{
+        //    icon = comp.Icon;
+        //    return true;
+        //}
+
+        ////prevent memory leak
+        //comp.Icon = null!;
+
         icon = null;
 
-        var curTime = _timing.CurTime;
-        if (component.NextIconCheck >= curTime)
+        if (_prototype.TryIndex(comp.IconPrototype, out var indexedIcon))
         {
-            icon = component.Icon;
+            comp.Icon = indexedIcon;
+
+            icon = indexedIcon;
+
             return true;
         }
 
-        //Prevent to dissable memory leak
-        component.Icon = null!;
-        var charName = Identity.Name(uid, EntityManager);
-
-        if (_insurance.TryGetInsuranceRecord(charName, out var info))
-            if (_prototype.TryIndex(info.InsuranceProto, out var prototype))
-                if (_prototype.TryIndex(prototype.Icon, out var indexedIcon))
-                {
-                    component.Icon = indexedIcon;
-                    component.NextIconCheck = curTime + _checkTimeRelay;
-
-                    icon = indexedIcon;
-
-                    return true;
-                }
-
+        icon = comp.Icon;
         return false;
     }
 }

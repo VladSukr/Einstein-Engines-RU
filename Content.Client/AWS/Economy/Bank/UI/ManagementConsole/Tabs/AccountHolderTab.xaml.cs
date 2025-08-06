@@ -120,8 +120,8 @@ public sealed partial class AccountHolderTab : Control
         var economySystem = _entityManager.System<EconomyBankAccountSystemShared>();
         if (accountHolder is not null && economySystem.TryGetAccount(accountHolder.AccountID, out var accountEnt))
         {
-            _currentAccount = accountEnt.Comp;
-            FillAccount(accountEnt.Comp);
+            _currentAccount = accountEnt.Value.Comp;
+            FillAccount(accountEnt.Value.Comp);
             UpdateButtons(Priveleged);
             return;
         }
@@ -229,7 +229,7 @@ public sealed partial class AccountHolderTab : Control
         _currentAccount = null;
         var economySystem = _entityManager.System<EconomyBankAccountSystemShared>();
         if (economySystem.TryGetAccount(accountID, out var foundAccount))
-            _currentAccount = foundAccount.Comp;
+            _currentAccount = foundAccount.Value.Comp;
         UpdateButtons(Priveleged);
     }
 }

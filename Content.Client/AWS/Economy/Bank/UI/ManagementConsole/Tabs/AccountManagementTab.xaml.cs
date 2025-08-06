@@ -135,7 +135,7 @@ public sealed partial class AccountManagementTab : Control
 
         var economySystem = _entityManager.System<EconomyBankAccountSystemShared>();
         if (economySystem.TryGetAccount(accountID, out var foundAccount))
-            _currentAccount = foundAccount.Comp;
+            _currentAccount = foundAccount.Value.Comp;
         UpdateButtons(Priveleged);
     }
 

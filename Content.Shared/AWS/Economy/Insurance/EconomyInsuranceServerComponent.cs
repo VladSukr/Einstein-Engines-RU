@@ -3,10 +3,9 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.AWS.Economy.Insurance;
 
-[RegisterComponent, AutoGenerateComponentState]
+[RegisterComponent]
 public sealed partial class EconomyInsuranceServerComponent : Component
 {
     [ViewVariables(VVAccess.ReadWrite)]
-    [AutoNetworkedField]
-    public List<EconomyInsuranceInfo> InsuranceInfo { get; set; } = new();
+    public Dictionary<int, EconomyInsuranceInfo> InsuranceInfo { get; set; } = new();
 }
