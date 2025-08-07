@@ -26,13 +26,20 @@ using Content.Shared.Roles;
 using Content.Shared.AWS.Economy.Bank;
 using System.Security.Principal;
 using Robust.Shared;
+using Content.Server.GameTicking;
+using System.Threading;
+using Content.Shared.Mind.Components;
+using Content.Shared.Mind;
+using Content.Shared.Roles.Jobs;
+using Robust.Shared.Toolshed.TypeParsers;
+using System;
 
 namespace Content.Server.AWS.Economy.Bank
 {
     public sealed class EconomyBankAccountSystem : EconomyBankAccountSystemShared
     {
         [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        [Dependency] private readonly IRobustRandom _robustRandom = default!;
+        [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
         [Dependency] private readonly VendingMachineSystem _vendingMachine = default!;
         [Dependency] private readonly INetManager _netManager = default!;
@@ -43,6 +50,9 @@ namespace Content.Server.AWS.Economy.Bank
         [Dependency] private readonly PvsOverrideSystem _pvsOverrideSystem = default!;
         [Dependency] private readonly MetaDataSystem _metaDataSystem = default!;
         [Dependency] private readonly AccessReaderSystem _accessReaderSystem = default!;
+
+        private const int SalaryDelay = 40 * 60 * 1000; // 40 minutes in milliseconds
+        private CancellationTokenSource _timerCancelToken = new();
 
         public override void Initialize()
         {
@@ -60,6 +70,9 @@ namespace Content.Server.AWS.Economy.Bank
             SubscribeLocalEvent<EconomyManagementConsoleComponent, EconomyManagementConsoleChangeHolderIDMessage>(OnManagementConsoleChangeHolderIDMessage);
             SubscribeLocalEvent<EconomyManagementConsoleComponent, EconomyManagementConsoleInitAccountOnHolderMessage>(OnManagementConsoleInitAccountOnHolderMessage);
             SubscribeLocalEvent<EconomyManagementConsoleComponent, EconomyManagementConsolePayBonusMessage>(OnManagementConsolePayBonusMessage);
+
+            SubscribeLocalEvent<RoundStartedEvent>(OnStartRound);
+            SubscribeLocalEvent<RoundEndedEvent>(OnEndRound);
         }
 
         #region Account management
@@ -136,7 +149,7 @@ namespace Content.Server.AWS.Economy.Bank
             {
                 jobName = job;
                 salary = jobEntry.Value.Sallary;
-                balance = (ulong)(jobEntry.Value.StartMoney * _robustRandom.NextDouble(0.5, 1.5));
+                balance = (ulong)(jobEntry.Value.StartMoney * _random.NextDouble(0.5, 1.5));
             }
 
             var station = _stationSystem.GetOwningStation(entity);
@@ -547,8 +560,8 @@ namespace Content.Server.AWS.Economy.Bank
 
                 for (int num = 0; num < numbersPerStrik; num++)
                 {
-                    formedStrik += _robustRandom.Next(0, 10);
-                }
+                    formedStrik += _random.Next(0, 10);
+                }   
 
                 res = res.Length == 0 ? formedStrik : res + descriptor + formedStrik;
             }
@@ -606,13 +619,13 @@ namespace Content.Server.AWS.Economy.Bank
             if (component.EmagDropMoneyHolderRandomCount == 0)
                 return;
 
-            var moneyHolderCount = _robustRandom.Next(1, component.EmagDropMoneyHolderRandomCount + 1);
+            var moneyHolderCount = _random.Next(1, component.EmagDropMoneyHolderRandomCount + 1);
             var mapPos = _transformSystem.GetMapCoordinates(uid);
 
             for (int i = 0; i < moneyHolderCount; i++)
             {
                 var droppedEnt = DropMoneyHolder(component.MoneyHolderEntId,
-                    listMoney[_robustRandom.Next(0, listMoneyCount)], mapPos);
+                    listMoney[_random.Next(0, listMoneyCount)], mapPos);
                 droppedEnt.Comp.Emagged = true;
             }
 
@@ -833,6 +846,112 @@ namespace Content.Server.AWS.Economy.Bank
             }
 
             UpdateManagementConsoleUserInterface(ent, null);
+        }
+
+        [PublicAPI]
+        public ulong PaySalaries(ProtoId<EconomySallariesPrototype> salaryProto,
+            EconomyPayDayRuleType type = EconomyPayDayRuleType.Adding)
+        {
+            if (!_prototypeManager.TryIndex(salaryProto, out var sallariesProto))
+                return 0;
+
+            if (!TryGetAccount(sallariesProto.PayerAccountId, out var payerAccount))
+                return 0;
+
+            Dictionary<string, ProtoId<JobPrototype>> manifest = new();
+            var accounts = GetAccounts();
+            var enumerator = AllEntityQuery<MindContainerComponent>();
+            ulong payedSum = 0;
+
+            while (enumerator.MoveNext(out var ent, out var mindContainerComponent))
+            {
+                if (TryComp<MindComponent>(mindContainerComponent.Mind, out var mindComponent)
+                    && TryComp<JobRoleComponent>(mindContainerComponent.Mind, out var jobComponent)
+                    && mindComponent.CharacterName is not null
+                    && jobComponent.Prototype is not null)
+                {
+                    manifest.Add(mindComponent.CharacterName, jobComponent.Prototype.Value);
+                }
+            }
+            List<Entity<EconomyBankAccountComponent>> blockedAccounts = new();
+
+            foreach (var (_, accountEntity) in accounts)
+            {
+                var account = accountEntity.Comp;
+
+                if (account.Blocked || !account.CanReachPayDay)
+                    continue;
+
+                if (account.Blocked)
+                    continue;
+
+                if (!manifest.TryGetValue(account.AccountName, out var job))
+                    continue;
+
+                EconomySallariesJobEntry? entry = null;
+
+                foreach (var item in sallariesProto.Jobs)
+                {
+                    if (item.Key.Id == job.Id)
+                        entry = item.Value;
+                }
+
+                if (entry is null)
+                    continue;
+
+                ulong sallary = ((ulong) sallariesProto.Coef.Next(_random)) / 100 * entry.Value.Sallary;
+                string? err;
+                var reason = Loc.GetString("economybanksystem-log-reason-payday");
+
+                switch (type)
+                {
+                    case EconomyPayDayRuleType.Adding:
+                        if (TrySendMoney(payerAccount.Value.Comp.AccountID, account.AccountID, sallary, reason, out err))
+                            payedSum += sallary;
+                        break;
+                    case EconomyPayDayRuleType.Decrementing:
+                        if (!TrySendMoney(account.AccountID, payerAccount.Value.Comp.AccountID, sallary, reason, out err))
+                        {
+                            if (TrySetAccountParameter(account.AccountID, EconomyBankAccountParam.Blocked, true))
+                                blockedAccounts.Add(accountEntity);
+                            break;
+                        }
+
+                        payedSum += sallary;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            return payedSum;
+
+            //notify that we blocked, or we cant proccess any payment
+        }
+
+        private void OnStartRound(ref RoundStartedEvent args)
+        {
+            _timerCancelToken.TryReset();
+
+            var action = delegate ()
+            {
+                if (_prototypeManager.TryGetInstances<EconomySallariesPrototype>(out var prototypes))
+                    foreach (var (index, proto) in prototypes)
+                    {
+                        Log.Debug($"Start processing with paying salaries for {index}");
+
+                        var payed = PaySalaries(proto, EconomyPayDayRuleType.Adding);
+
+                        Log.Debug($"Payed sum is {payed}");
+                    }
+            };
+
+            Robust.Shared.Timing.Timer.SpawnRepeating(SalaryDelay, action, _timerCancelToken.Token);
+        }
+
+        private void OnEndRound(ref RoundEndedEvent args)
+        {
+            _timerCancelToken.Cancel();
         }
     }
 }

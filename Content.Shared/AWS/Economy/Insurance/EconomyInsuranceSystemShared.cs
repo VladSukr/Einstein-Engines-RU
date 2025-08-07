@@ -55,9 +55,8 @@ public abstract class EconomyInsuranceSystemShared : EntitySystem
         => UpdateTerminalUserInterface(ent);
 
     [PublicAPI]
-    public void UpdateTerminalUserInterface(Entity<EconomyInsuranceTerminalComponent> entity, string? error = null)
+    public void UpdateTerminalUserInterface(Entity<EconomyInsuranceTerminalComponent> entity, int? defaultTerminalSelect = null)
     {
-
         if (_netManager.IsServer)
         {
             if (TryGetTerminalInsertedInsurance(entity, out var insuranceEnt))

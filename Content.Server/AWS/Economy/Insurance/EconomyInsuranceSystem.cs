@@ -18,6 +18,7 @@ using Robust.Shared.GameObjects;
 using Content.Shared.Roles;
 using Robust.Server.GameObjects;
 using Content.Server.Database;
+using Content.Server.GameTicking;
 
 namespace Content.Server.AWS.Economy.Insurance;
 
@@ -92,6 +93,7 @@ public sealed class EconomyInsuranceSystem : EconomyInsuranceSystemShared
             fetchedInfo.PayerAccountId = receivedInsuranceInfo.PayerAccountId;
         }
 
+        UpdateIconOnCardsById(fetchedInfo.Id);
         UpdateTerminalUserInterface(entity);
     }
 
@@ -253,11 +255,11 @@ public sealed class EconomyInsuranceSystem : EconomyInsuranceSystemShared
                 UpdateIcon((comp.Owner, comp));
     }
 
-    [PublicAPI]
-    public void UpdateInsuranceInfo(int insuranceInfoId, EconomyInsuranceInfo newInsuranceInfo)
-    {
+    //[PublicAPI]
+    //public void UpdateInsuranceInfo(int insuranceInfoId, EconomyInsuranceInfo newInsuranceInfo)
+    //{
 
-    }
+    //} // maybe in future
 
     private int GetNextId(EconomyInsuranceServerComponent component)
     {

@@ -1,3 +1,4 @@
+using Content.Shared.Destructible.Thresholds;
 using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Dictionary;
@@ -12,6 +13,24 @@ namespace Content.Shared.AWS.Economy.Bank
 
         [ViewVariables(VVAccess.ReadWrite), DataField]
         public Dictionary<ProtoId<JobPrototype>, EconomySallariesJobEntry> Jobs = new();
+
+        [ViewVariables(VVAccess.ReadWrite), DataField(required: true)]
+        public string PayerAccountId { get; set; } = string.Empty;
+
+        [ViewVariables(VVAccess.ReadWrite), DataField(required: true)]
+        public string ProccessOnlyPrefixedAccounts { get; set; } = string.Empty;
+
+        [ViewVariables(VVAccess.ReadWrite), DataField]
+        public MinMax Coef;
+
+        [ViewVariables(VVAccess.ReadWrite), DataField]
+        public List<ProtoId<JobPrototype>> IncludedJobs = new();
+
+        [ViewVariables(VVAccess.ReadWrite), DataField]
+        public List<ProtoId<DepartmentPrototype>> IncludedDepartments = new();
+
+        [ViewVariables(VVAccess.ReadWrite), DataField]
+        public Enum IncludeFlag = EconomyPayDayRuleOnlyPayFor.OnlyIncludeJobs;
     }
 
     [DataDefinition, Serializable]

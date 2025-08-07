@@ -7,7 +7,8 @@ using Content.Shared.Destructible.Thresholds;
 namespace Content.Shared.AWS.Economy.Bank
 {
     [RegisterComponent]
-    public sealed partial class EconomyPayDayRuleComponent : Component
+    [Obsolete]
+    public sealed partial class EconomyPayDayRuleComponent : Component // very deprecated
     {
         [ViewVariables(VVAccess.ReadWrite), DataField(required: true)]
         public string PayerAccountId;
