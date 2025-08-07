@@ -33,6 +33,7 @@ using Content.Shared.Mind;
 using Content.Shared.Roles.Jobs;
 using Robust.Shared.Toolshed.TypeParsers;
 using System;
+using System.Collections.ObjectModel;
 
 namespace Content.Server.AWS.Economy.Bank
 {
@@ -191,6 +192,9 @@ namespace Content.Server.AWS.Economy.Bank
         public bool TrySetAccountParameter(string accountID, EconomyBankAccountParam param, object value)
         {
             if (!TryGetAccount(accountID, out var entity))
+                return false;
+
+            if (accountID == "NT-CentCom")
                 return false;
 
             var account = entity.Value.Comp;
@@ -849,57 +853,50 @@ namespace Content.Server.AWS.Economy.Bank
         }
 
         [PublicAPI]
-        public ulong PaySalaries(ProtoId<EconomySallariesPrototype> salaryProto,
+        private EconomySallaryInfo? PaySalaries(ProtoId<EconomySallariesPrototype> salaryProto,
             EconomyPayDayRuleType type = EconomyPayDayRuleType.Adding)
         {
             if (!_prototypeManager.TryIndex(salaryProto, out var sallariesProto))
-                return 0;
+                return null;
 
             if (!TryGetAccount(sallariesProto.PayerAccountId, out var payerAccount))
-                return 0;
+                return null;
 
-            Dictionary<string, ProtoId<JobPrototype>> manifest = new();
             var accounts = GetAccounts();
-            var enumerator = AllEntityQuery<MindContainerComponent>();
+            var enumerator = AllEntityQuery<EconomyBankAccountComponent>();
+
+            ulong decremedSum = 0;
             ulong payedSum = 0;
 
-            while (enumerator.MoveNext(out var ent, out var mindContainerComponent))
-            {
-                if (TryComp<MindComponent>(mindContainerComponent.Mind, out var mindComponent)
-                    && TryComp<JobRoleComponent>(mindContainerComponent.Mind, out var jobComponent)
-                    && mindComponent.CharacterName is not null
-                    && jobComponent.Prototype is not null)
-                {
-                    manifest.Add(mindComponent.CharacterName, jobComponent.Prototype.Value);
-                }
-            }
-            List<Entity<EconomyBankAccountComponent>> blockedAccounts = new();
+            List<EconomyBankAccountComponent> affectedAccounts = new();
+            List<EconomyBankAccountComponent> unableProccess = new();
+            List<EconomyBankAccountComponent> blockedAccounts = new();
 
             foreach (var (_, accountEntity) in accounts)
             {
                 var account = accountEntity.Comp;
 
                 if (account.Blocked || !account.CanReachPayDay)
+                {
+                    unableProccess.Add(account);
                     continue;
-
-                if (account.Blocked)
-                    continue;
-
-                if (!manifest.TryGetValue(account.AccountName, out var job))
-                    continue;
+                }
 
                 EconomySallariesJobEntry? entry = null;
 
                 foreach (var item in sallariesProto.Jobs)
                 {
-                    if (item.Key.Id == job.Id)
+                    if (item.Key.Id == accountEntity.Comp.JobName)
                         entry = item.Value;
                 }
 
                 if (entry is null)
+                {
+                    unableProccess.Add(account);
                     continue;
+                }
 
-                ulong sallary = ((ulong) sallariesProto.Coef.Next(_random)) / 100 * entry.Value.Sallary;
+                ulong sallary = (ulong) sallariesProto.Coef.Next(_random) * entry.Value.Sallary / 100;
                 string? err;
                 var reason = Loc.GetString("economybanksystem-log-reason-payday");
 
@@ -907,29 +904,34 @@ namespace Content.Server.AWS.Economy.Bank
                 {
                     case EconomyPayDayRuleType.Adding:
                         if (TrySendMoney(payerAccount.Value.Comp.AccountID, account.AccountID, sallary, reason, out err))
+                        {
+                            affectedAccounts.Add(account);
                             payedSum += sallary;
+                        }
                         break;
                     case EconomyPayDayRuleType.Decrementing:
                         if (!TrySendMoney(account.AccountID, payerAccount.Value.Comp.AccountID, sallary, reason, out err))
                         {
                             if (TrySetAccountParameter(account.AccountID, EconomyBankAccountParam.Blocked, true))
                                 blockedAccounts.Add(accountEntity);
+
+                            unableProccess.Add(account);
                             break;
                         }
 
-                        payedSum += sallary;
+                        decremedSum += sallary;
                         break;
                     default:
                         break;
                 }
             }
 
-            return payedSum;
+            return new(payedSum, decremedSum, affectedAccounts, unableProccess, blockedAccounts);
 
             //notify that we blocked, or we cant proccess any payment
         }
 
-        private void OnStartRound(ref RoundStartedEvent args)
+        private void OnStartRound(RoundStartedEvent args)
         {
             _timerCancelToken.TryReset();
 
@@ -940,18 +942,34 @@ namespace Content.Server.AWS.Economy.Bank
                     {
                         Log.Debug($"Start processing with paying salaries for {index}");
 
-                        var payed = PaySalaries(proto, EconomyPayDayRuleType.Adding);
+                        var sallaryInfo = PaySalaries(proto, EconomyPayDayRuleType.Adding);
+                        if (sallaryInfo is not null)
+                            Log.Debug(
+                                $"\nAddedSum sum is: {sallaryInfo.AddedSum}\n" +
+                                $"DecremedSum is: {sallaryInfo.DecremedSum}\n" +
+                                $"AffectedAccounts: {string.Join(',', sallaryInfo.AffectedAccounts.Select(x => x.AccountID))}\n" +
+                                $"UnableProccess: {string.Join(',', sallaryInfo.UnableProccess.Select(x => x.AccountID))}\n" +
+                                $"WereBlockedInProccess: {string.Join(',', sallaryInfo.WereBlockedInProccess.Select(x => x.AccountID))}\n");
+                        else
+                            Log.Debug("Unable to proccess sallaries, nothing were added");
 
-                        Log.Debug($"Payed sum is {payed}");
+                        RaiseLocalEvent<EconomySallaryPostEvent>(new());
                     }
-            };
+            }; // should be rewrote
 
-            Robust.Shared.Timing.Timer.SpawnRepeating(SalaryDelay, action, _timerCancelToken.Token);
+            Robust.Shared.Timing.Timer.SpawnRepeating(1500, action, _timerCancelToken.Token);
         }
 
-        private void OnEndRound(ref RoundEndedEvent args)
+        private void OnEndRound(RoundEndedEvent args)
         {
             _timerCancelToken.Cancel();
         }
+
+        private record EconomySallaryInfo(
+            ulong AddedSum,
+            ulong DecremedSum,
+            List<EconomyBankAccountComponent> AffectedAccounts,
+            List<EconomyBankAccountComponent> UnableProccess,
+            List<EconomyBankAccountComponent> WereBlockedInProccess);
     }
 }

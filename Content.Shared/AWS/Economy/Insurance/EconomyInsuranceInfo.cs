@@ -9,6 +9,7 @@ public sealed partial class EconomyInsuranceInfo(int id, ProtoId<EconomyInsuranc
     // you should change this through ingame terminals or API in EconomyInsuranceSystem
     [DataField(readOnly: true)] public int Id { get; set; } = id;
     [DataField] public ProtoId<EconomyInsurancePrototype> InsuranceProto { get; set; } = insuranceProto;
+    [DataField] public ProtoId<EconomyInsurancePrototype> DefaultFreeInsuranceProto { get; set; }
     [DataField] public string InsurerName { get; set; } = insurerName;
     [DataField] public string PayerAccountId { get; set; } = payerAccountId;
     [DataField] public string DNA { get; set; } = dna;

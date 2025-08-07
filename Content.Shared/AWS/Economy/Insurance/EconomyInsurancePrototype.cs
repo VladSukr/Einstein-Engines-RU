@@ -10,7 +10,7 @@ public sealed partial class EconomyInsurancePrototype : IPrototype
     public string ID { get; private set; } = default!;
 
     [DataField(required: true)]
-    public string Name { get; private set; } = default!;
+    public string Name { get; private set; } = string.Empty;
 
     [DataField(required: true)]
     public string Description { get; set; } = string.Empty;

@@ -1,0 +1,4 @@
+- type: insuranceDefault
+  id: NanoTrasenDefault
+  presets:
+    Captain: Platinum

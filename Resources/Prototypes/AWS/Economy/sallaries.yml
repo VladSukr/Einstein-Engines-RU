@@ -1,5 +1,10 @@
 - type: economySallaries
   id: NanotrasenDefaultSallaries
+  payerAccountId: "NT-CentCom"
+  proccessOnlyPrefixedAccounts: "NT-"
+  coef: # default 100
+      min: 70
+      max: 140
   jobs:
     # cargo
     CargoTechnician:

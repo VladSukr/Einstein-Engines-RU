@@ -19,6 +19,7 @@ using Content.Shared.Roles;
 using Robust.Server.GameObjects;
 using Content.Server.Database;
 using Content.Server.GameTicking;
+using Content.Server.AWS.Economy.Bank;
 
 namespace Content.Server.AWS.Economy.Insurance;
 
@@ -28,6 +29,7 @@ public sealed class EconomyInsuranceSystem : EconomyInsuranceSystemShared
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
+    [Dependency] private readonly EconomyBankAccountSystem _economy = default!;
 
     public override void Initialize()
     {
@@ -38,6 +40,39 @@ public sealed class EconomyInsuranceSystem : EconomyInsuranceSystemShared
 
         SubscribeLocalEvent<EconomyInsuranceTerminalComponent, EconomyInsuranceTerminalUpdateEvent>(OnTerminalUpdate);
         SubscribeLocalEvent<EconomyInsuranceTerminalComponent, EconomyInsuranceEditMessage>(OnEditMessage);
+
+        SubscribeLocalEvent<EconomySallaryPostEvent>(OnSallaryPost);
+    }
+
+    private void OnSallaryPost(EconomySallaryPostEvent args)
+    {
+        if (!TryGetServer(out var server))
+            return;
+
+        const string ntmedicalId = "NT-Medical"; // hardcode
+        const string ntccId = "NT-CentCom";
+
+        foreach (var (id, insuranceInfo) in server.Comp.InsuranceInfo)
+        {
+            if (_prototype.TryIndex(insuranceInfo.InsuranceProto, out var prototype) && prototype.Cost != 0)
+            {
+                var payerAccountId = insuranceInfo.DefaultFreeInsuranceProto == insuranceInfo.InsuranceProto ?
+                    ntccId : insuranceInfo.PayerAccountId;
+
+                if (_economy.TryGetAccount(payerAccountId, out var account)
+                    && account.Value.Comp.Balance <= (ulong) prototype.Cost)
+                {
+                    insuranceInfo.InsuranceProto = "NonStatus";
+                    UpdateIconOnCardsById(insuranceInfo.Id);
+
+                    continue;
+                }
+
+                _economy.TrySendMoney(payerAccountId, ntmedicalId, (ulong) prototype.Cost,
+                    Loc.GetString("economy-insurance-postsallary-payforinsurance", ("name", insuranceInfo.InsurerName)),
+                    out _);
+            }
+        }
     }
 
     private void OnTerminalUpdate(Entity<EconomyInsuranceTerminalComponent> entity, ref EconomyInsuranceTerminalUpdateEvent args)
@@ -131,6 +166,8 @@ public sealed class EconomyInsuranceSystem : EconomyInsuranceSystemShared
             return;
         }
 
+        economyInsuranceInfo.DefaultFreeInsuranceProto = preparedData.DefaultFreePrototype;
+
         var cardUid = preparedData.CardUid;
 
         var insuranceComponent = EnsureComp<EconomyInsuranceComponent>(cardUid);
@@ -161,9 +198,19 @@ public sealed class EconomyInsuranceSystem : EconomyInsuranceSystemShared
         if (!TryComp<EconomyAccountHolderComponent>(cardUid, out var accountHolderComponent))
             return null;
 
-        var insurance = GetMatchedInsurance(profile, job.Value);
+        var insurance = MatchDefaultInsuranceProto(job.Value);
 
-        return new(cardUid.Value, insurance, cardComponent.FullName, accountHolderComponent.AccountID, dnaComponent.DNA);
+        return new(cardUid.Value, insurance, insurance, cardComponent.FullName, accountHolderComponent.AccountID, dnaComponent.DNA);
+    }
+
+    private ProtoId<EconomyInsurancePrototype> MatchDefaultInsuranceProto(ProtoId<JobPrototype> job)
+    {
+        var proto = _prototype.Index<EconomyInsuranceDefaultPrototype>("NanoTrasenDefault");
+
+        if (proto.Presets.TryGetValue(job, out var entry))
+            return entry;
+
+        return "NonStatus";
     }
 
     private ProtoId<EconomyInsurancePrototype> GetMatchedInsurance(HumanoidCharacterProfile profile, ProtoId<JobPrototype> job)
@@ -288,6 +335,7 @@ public sealed class EconomyInsuranceSystem : EconomyInsuranceSystemShared
     private record PreparedInsurerData(
         EntityUid CardUid,
         ProtoId<EconomyInsurancePrototype> InsurancePrototype,
+        ProtoId<EconomyInsurancePrototype> DefaultFreePrototype,
         string InsurerName,
         string InsurerAccountId,
         string InsurerDna);
