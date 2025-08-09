@@ -2,9 +2,6 @@ using System.IO;
 using System.Linq;
 using System.Numerics;
 using Content.Client.Administration.UI;
-using Content.Client.Guidebook;
-using Content.Client.AWS.Historical;
-using Content.Client.AWS.Skills;
 using Content.Client.Humanoid;
 using Content.Client.Message;
 using Content.Client.Players.PlayTimeTracking;
@@ -16,8 +13,6 @@ using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Shared._EE.Contractors.Prototypes;
 using Content.Shared._White.CCVar;
 using Content.Shared._White.Humanoid.Prototypes;
-using Content.Shared.AWS.Historical;
-using Content.Shared.AWS.Skills;
 using Content.Shared.CCVar;
 using Content.Shared.Clothing.Components;
 using Content.Shared.Clothing.Loadouts.Prototypes;
@@ -149,10 +144,6 @@ namespace Content.Client.Lobby.UI
         [ValidatePrototypeId<LocalizedDatasetPrototype>]
         private const string MimeNames = "MimeNames";
         // WD EDIT END
-        //SS14RU
-        private HistoricalUiStorage? _historicalUiStorage;
-        private SkillPointController? _skillPointController;
-        //SS14RU
 
         public HumanoidProfileEditor(
             IClientPreferencesManager preferencesManager,
@@ -226,7 +217,7 @@ namespace Content.Client.Lobby.UI
             SexButton.OnItemSelected += args =>
             {
                 SexButton.SelectId(args.Id);
-                SetSex((Sex)args.Id);
+                SetSex((Sex) args.Id);
             };
 
             #endregion Sex
@@ -263,10 +254,10 @@ namespace Content.Client.Lobby.UI
 
             #region Gender
 
-            PronounsButton.AddItem(Loc.GetString("humanoid-profile-editor-pronouns-male-text"), (int)Gender.Male);
-            PronounsButton.AddItem(Loc.GetString("humanoid-profile-editor-pronouns-female-text"), (int)Gender.Female);
-            PronounsButton.AddItem(Loc.GetString("humanoid-profile-editor-pronouns-epicene-text"), (int)Gender.Epicene);
-            PronounsButton.AddItem(Loc.GetString("humanoid-profile-editor-pronouns-neuter-text"), (int)Gender.Neuter);
+            PronounsButton.AddItem(Loc.GetString("humanoid-profile-editor-pronouns-male-text"), (int) Gender.Male);
+            PronounsButton.AddItem(Loc.GetString("humanoid-profile-editor-pronouns-female-text"), (int) Gender.Female);
+            PronounsButton.AddItem(Loc.GetString("humanoid-profile-editor-pronouns-epicene-text"), (int) Gender.Epicene);
+            PronounsButton.AddItem(Loc.GetString("humanoid-profile-editor-pronouns-neuter-text"), (int) Gender.Neuter);
 
             PronounsButton.OnItemSelected += args =>
             {
@@ -476,7 +467,7 @@ namespace Content.Client.Lobby.UI
                 ReloadProfilePreview();
             };
 
-            HairStylePicker.OnSlotAdd += delegate ()
+            HairStylePicker.OnSlotAdd += delegate()
             {
                 if (Profile is null)
                     return;
@@ -497,7 +488,7 @@ namespace Content.Client.Lobby.UI
                 ReloadProfilePreview();
             };
 
-            FacialHairPicker.OnSlotAdd += delegate ()
+            FacialHairPicker.OnSlotAdd += delegate()
             {
                 if (Profile is null)
                     return;
@@ -528,7 +519,7 @@ namespace Content.Client.Lobby.UI
             SpawnPriorityButton.OnItemSelected += args =>
             {
                 SpawnPriorityButton.SelectId(args.Id);
-                SetSpawnPriority((SpawnPriorityPreference)args.Id);
+                SetSpawnPriority((SpawnPriorityPreference) args.Id);
             };
 
             #endregion SpawnPriority
@@ -634,22 +625,6 @@ namespace Content.Client.Lobby.UI
             Markings.OnMarkingRankChange += OnMarkingChange;
 
             #endregion Markings
-
-            #region SS14RU-SKILLS
-
-            //CTabContainer.SetTabTitle(6, Loc.GetString("Навыки"));
-            SkillsTab.Orphan();
-            CTabContainer.AddTab(SkillsTab, Loc.GetString("Навыки"));
-
-            // RefreshSkills();
-
-            //CTabContainer.SetTabTitle(7, Loc.GetString("История"));
-            HistoricalTab.Orphan();
-            CTabContainer.AddTab(HistoricalTab, Loc.GetString("История"));
-
-            RefreshHistorical();
-
-            #endregion SS14RU-SKILLS
 
             RefreshFlavorText();
 
@@ -994,7 +969,7 @@ namespace Content.Client.Lobby.UI
         public void ResetToDefault()
         {
             SetProfile(
-                (HumanoidCharacterProfile?)_preferencesManager.Preferences?.SelectedCharacter,
+                (HumanoidCharacterProfile?) _preferencesManager.Preferences?.SelectedCharacter,
                 _preferencesManager.Preferences?.SelectedCharacterIndex);
         }
 
@@ -1096,417 +1071,141 @@ namespace Content.Client.Lobby.UI
             }
         }
 
-        // SS14RU
-        // public void UpdateLeftSkillPoints(uint left)
-        // {
-        //     LeftSkillPoints.Text = Loc.GetString("skills-leftskillpoints", ("leftSkillPoints", left));
-        // }
-        // public void RefreshSkills()
-        // {
-        //     _skillPointController = new(30, [], null, null);
-        //     _skillPointController.OnRecalculateSkill += (protoId) =>
-        //     {
-        //         UpdateLeftSkillPoints(_skillPointController.CurrentPoints);
-        //     };
-        // private void HistoricalCheckSelectedHistories()
-        // {
-        //     var historicalSystem = _entManager.System<HistoricalSystem>();
-        //     var defaultHistories = historicalSystem.GetDefaultHistories();
-        //     foreach (var historyType in Enum.GetValues(typeof(HistoryType)))
-        //     {
-        //         if (!_historicalUiStorage!.SelectedHistories.TryGetValue((HistoryType)historyType, out var protoId))
-        //         {
-        //             int? id = null;
-        //             for (int i = 0; i < _historicalUiStorage!.HistoryByButtonId.Count; i++)
-        //             {
-        //                 var searchingProto = _prototypeManager.Index(_historicalUiStorage!.HistoryByButtonId[i]);
-        //                 if ((HistoryType)searchingProto.HistoryType == (HistoryType)historyType)
-        //                 {
-        //                     id = i;
-        //                     break;
-        //                 }
-        //             }
-
-        //             if (id is not null)
-        //             {
-        //                 _historicalUiStorage!.SelectedHistories[(HistoryType)historyType] = defaultHistories[(HistoryType)historyType];
-        //                 var optionButton = _historicalUiStorage!.OptionButtonsByType[(HistoryType)historyType];
-        //                 optionButton.SelectId(id.Value);
-        //             }
-        //         }
-        //     }
-
-        //     RefreshHistoricalDescriptions();
-        // }
-        // private void HistoricalSelectHistoryByButtonId(int buttonId)
-        // {
-        //     var protoId = _historicalUiStorage!.HistoryByButtonId[buttonId];
-        //     var proto = _prototypeManager.Index(protoId);
-        //     _historicalUiStorage!.SelectedHistories[(HistoryType)proto.HistoryType] = protoId;
-        //     _historicalUiStorage!.OptionButtonsByType[(HistoryType)proto.HistoryType].SelectId(buttonId);
-        // }
-        // private void RefreshHistoricalDescriptions()
-        // {
-        //     foreach (var (key, value) in _historicalUiStorage!.SelectedHistories)
-        //     {
-        //         var proto = _prototypeManager.Index(value);
-        //         var description = Loc.GetString(proto.Description);
-        //         _historicalUiStorage.DescriptionFieldForTypes[key].TextRope = new Rope.Leaf(description);
-        //     }
-        // }
-        // public void RefreshHistorical()
-        // {
-        //     HistoricalContainer.DisposeAllChildren();
-
-        //     var historyByButtonId = new List<ProtoId<HistoryPrototype>>();
-        //     var selectedHistories = new Dictionary<HistoryType, ProtoId<HistoryPrototype>>();
-        //     var optionButtonsByType = new Dictionary<HistoryType, OptionButton>();
-        //     var descriptionFieldForTypes = new Dictionary<HistoryType, TextEdit>();
-        //     var typeContainers = new Dictionary<HistoryType, BoxContainer>();
-        //     var historicalSystem = _entManager.System<HistoricalSystem>();
-        //     var histories = historicalSystem.GetHistories();
-
-        //     OptionButton? optionButton = null;
-
-        //     int lastButtonId = 0;
-
-        //     foreach (var (key, value) in histories)
-        //     {
-        //         if (!typeContainers.TryGetValue(key, out var typeContainer))
-        //         {
-        //             typeContainer = new BoxContainer() { Orientation = LayoutOrientation.Vertical };
-        //             typeContainers[key] = typeContainer;
-
-        //             var infoDescContainer = new BoxContainer() { Align = AlignMode.Center, Orientation = LayoutOrientation.Horizontal };
-
-                    // infoDescContainer.AddChild(new Label() { Text = Loc.GetString($"historical-names-{key.ToString()}"), HorizontalAlignment = HAlignment.Left });
-                    // infoDescContainer.AddChild(new Control() { HorizontalExpand = true });
-
-        //             optionButton = new OptionButton() { HorizontalAlignment = HAlignment.Right };
-        //             optionButton.OnItemSelected += (args) =>
-        //             {
-        //                 HistoricalSelectHistoryByButtonId(args.Id);
-        //                 RefreshHistoricalDescriptions();
-        //             };
-        //             optionButtonsByType[key] = optionButton;
-        //             infoDescContainer.AddChild(optionButton);
-
-        //             typeContainer.AddChild(infoDescContainer);
-
-                    // var scrollContainer = new ScrollContainer
-                    // {
-                    //     HorizontalExpand = true,
-                    //     VerticalExpand = true,
-                    //     HScrollEnabled = false,
-                    //     VScrollEnabled = true,
-                    //     MinSize = new Vector2(0, 120)
-                    // };
-
-        //             var descriptionField = new TextEdit
-        //             {
-        //                 Editable = false,
-        //                 HorizontalExpand = true,
-        //                 TextRope = new Rope.Leaf(string.Empty),
-        //                 HorizontalAlignment = HAlignment.Stretch,
-        //             };
-
-        //             descriptionFieldForTypes[key] = descriptionField;
-
-        //             scrollContainer.AddChild(descriptionField);
-        //             typeContainer.AddChild(scrollContainer);
-
-        //             HistoricalContainer.AddChild(typeContainer);
-        //         }
-
-            //     foreach (var protoId in value)
-            //     {
-            //         var proto = _prototypeManager.Index(protoId);
-            //         optionButton?.AddItem(Loc.GetString(proto.Name), lastButtonId++);
-            //         historyByButtonId.Add(protoId);
-            //     }
-            // }
-            // _historicalUiStorage = new(
-            //     historyByButtonId,
-            //     selectedHistories,
-            //     descriptionFieldForTypes,
-            //     optionButtonsByType,
-            //     histories
-            //     );
-
-        //     RefreshHistoricalDescriptions();
-        //     HistoricalCheckSelectedHistories();
-        // }
-
-        // private void UpdateLeftSkillPoints(int left)
-        // {
-        //     LeftSkillPoints.Text = Loc.GetString("skills-leftskillpoints", ("leftSkillPoints", left));
-        // }
-        // private void RecalculateSkill(ProtoId<SkillPrototype> protoId, SkillLevel level)
-        // {
-        //     foreach (var child in SkillsList.Children)
-        //         foreach (var cont in child.Children)
-        //             foreach (var btn in cont.Children)
-        //             {
-        //                 var data = btn.GetValue(SkillControlMeta.SkillMetaProperty);
-        //                 if (data is not null)
-        //                 {
-        //                     if (data.SkillId == protoId)
-        //                     {
-        //                         if (data.Level <= level)
-        //                         {
-        //                             ((Button)btn).Pressed = true;
-        //                             continue;
-        //                         }
-        //                         if (data.Level >= level)
-        //                         {
-        //                             ((Button)btn).Pressed = false;
-        //                             continue;
-        //                         }
-        //                     }
-        //                 }
-        //             }
-        // }
-        // public void RefreshSkills()
-        // {
-        //     _skillPointController = new(15, [], null, null);
-        //     _skillPointController.OnRecalculateSkill += (protoId, level) =>
-        //     {
-        //         UpdateLeftSkillPoints(_skillPointController.CurrentPoints);
-        //         RecalculateSkill(protoId, level);
-        //     };
-
-        //     SkillsList.DisposeAllChildren();
-        //     var firstCategory = true;
-
-        //     var skillSystem = _entManager.System<SkillSystem>();
-        //     var skills = skillSystem.GetSkills();
-
-        //     skills.Sort((x, y) => string.Compare(x.ID, y.ID, StringComparison.Ordinal));
-
-        //     var skillGroups = skills.GroupBy(skill => skill.Category)
-        //         .ToDictionary(group => group.Key, group => group.ToList());
-
-        //     foreach (var kvp in skillGroups)
-        //     {
-        //         var categoryId = kvp.Key;
-        //         var categorySkills = kvp.Value;
-
-        //         var categoryName = Loc.GetString($"skills-category-{categoryId}");
-            // foreach (var (categoryId, categorySkills) in skillGroups)
-            // {
-            //     var categoryName = Loc.GetString($"skills-category-{categoryId}");
-
-        //         var categoryPanel = new BoxContainer
-        //         {
-        //             Orientation = LayoutOrientation.Vertical,
-        //             Name = categoryId,
-        //             ToolTip = Loc.GetString("skill-category-tooltip", ("categoryName", categoryName))
-        //         };
-
-        //         if (firstCategory)
-        //             firstCategory = false;
-        //         else
-        //             categoryPanel.AddChild(new Control
-        //             {
-        //                 MinSize = new Vector2(0, 23),
-        //             });
-
-        //         categoryPanel.AddChild(new Label
-        //         {
-        //             Text = categoryName,
-        //             Margin = new Thickness(5f, 0, 0, 0)
-        //         });
-
-        //         SkillsList.AddChild(categoryPanel);
-
-        //         foreach (var skill in categorySkills)
-        //         {
-        //             var skillContainer = new BoxContainer()
-        //             {
-        //                 Orientation = LayoutOrientation.Horizontal,
-        //             };
-
-        //             var skillLabel = new Label
-        //             {
-        //                 Text = Loc.GetString($"skills-skillname-{skill.ID}"),
-        //                 Margin = new Thickness(5f, 3f, 0f, 3f)
-        //             };
-
-        //             skillContainer.AddChild(skillLabel);
-
-        //             foreach (SkillLevel level in Enum.GetValues(typeof(SkillLevel)))
-        //             {
-        //                 if (!_skillPointController.CanHaveSkillLevel(skill.ID, level))
-        //                     continue;
-
-        //                 var levelButton = new Button
-        //                 {
-        //                     Text = Loc.GetString($"skills-level-{level}"),
-        //                     Margin = new Thickness(5f, 3f, 3f, 3f),
-        //                 };
-
-        //                 levelButton.OnPressed += args =>
-        //                 {
-        //                     _skillPointController.ProcessSkill(skill.ID, level);
-        //                 };
-                        // if (level == SkillLevel.NonSkilled)
-                        //     levelButton.Pressed = true;
-
-                        // levelButton.SetValue(SkillControlMeta.SkillMetaProperty, new SkillControlMeta(skill.ID, level));
-
-                        // levelButton.OnPressed += args =>
-                        // {
-                        //     _skillPointController.ProcessSkill(skill.ID, level);
-                        // };
-
-        //                 skillContainer.AddChild(levelButton);
-        //             }
-
-        //             categoryPanel.AddChild(skillContainer);
-        //         }
-        //     }
-
-        //     UpdateLeftSkillPoints(_skillPointController.CurrentPoints);
-
-        // }
-        // SS14RU
-        /// Refreshes all job selectors
-
         /// <summary>
         /// Refreshes all job selectors.
         /// </summary>
-        // public void RefreshJobs()
-        // {
-        //     JobList.DisposeAllChildren();
-        //     _jobCategories.Clear();
-        //     _jobPriorities.Clear();
+        public void RefreshJobs()
+        {
+            JobList.DisposeAllChildren();
+            _jobCategories.Clear();
+            _jobPriorities.Clear();
 
-        //     // Get all displayed departments
-        //     var departments = new List<DepartmentPrototype>();
-        //     foreach (var department in _prototypeManager.EnumeratePrototypes<DepartmentPrototype>())
-        //     {
-        //         if (department.EditorHidden)
-        //             continue;
+            // Get all displayed departments
+            var departments = new List<DepartmentPrototype>();
+            foreach (var department in _prototypeManager.EnumeratePrototypes<DepartmentPrototype>())
+            {
+                if (department.EditorHidden)
+                    continue;
 
-        //         departments.Add(department);
-        //     }
+                departments.Add(department);
+            }
 
-        //     departments.Sort(DepartmentUIComparer.Instance);
+            departments.Sort(DepartmentUIComparer.Instance);
 
-        //     var items = new[]
-        //     {
-        //         ("humanoid-profile-editor-job-priority-never-button", (int) JobPriority.Never),
-        //         ("humanoid-profile-editor-job-priority-low-button", (int) JobPriority.Low),
-        //         ("humanoid-profile-editor-job-priority-medium-button", (int) JobPriority.Medium),
-        //         ("humanoid-profile-editor-job-priority-high-button", (int) JobPriority.High),
-        //     };
+            var items = new[]
+            {
+                ("humanoid-profile-editor-job-priority-never-button", (int) JobPriority.Never),
+                ("humanoid-profile-editor-job-priority-low-button", (int) JobPriority.Low),
+                ("humanoid-profile-editor-job-priority-medium-button", (int) JobPriority.Medium),
+                ("humanoid-profile-editor-job-priority-high-button", (int) JobPriority.High),
+            };
 
-        //     var firstCategory = true;
-        //     foreach (var department in departments)
-        //     {
-        //         var departmentName = Loc.GetString($"department-{department.ID}");
+            var firstCategory = true;
+            foreach (var department in departments)
+            {
+                var departmentName = Loc.GetString($"department-{department.ID}");
 
-        //         if (!_jobCategories.TryGetValue(department.ID, out var category))
-        //         {
-        //             category = new AlternatingBGContainer
-        //             {
-        //                 Orientation = LayoutOrientation.Vertical,
-        //                 Name = department.ID,
-        //                 ToolTip = Loc.GetString("humanoid-profile-editor-jobs-amount-in-department-tooltip",
-        //                     ("departmentName", departmentName)),
-        //                 Margin = new(0, firstCategory ? 0 : 20, 0, 0),
-        //                 Children =
-        //                 {
-        //                     new Label
-        //                     {
-        //                         Text = Loc.GetString("humanoid-profile-editor-department-jobs-label",
-        //                             ("departmentName", departmentName)),
-        //                         StyleClasses = { StyleBase.StyleClassLabelHeading, },
-        //                         Margin = new(5f, 0, 0, 0),
-        //                     },
-        //                 },
-        //             };
+                if (!_jobCategories.TryGetValue(department.ID, out var category))
+                {
+                    category = new AlternatingBGContainer
+                    {
+                        Orientation = LayoutOrientation.Vertical,
+                        Name = department.ID,
+                        ToolTip = Loc.GetString("humanoid-profile-editor-jobs-amount-in-department-tooltip",
+                            ("departmentName", departmentName)),
+                        Margin = new(0, firstCategory ? 0 : 20, 0, 0),
+                        Children =
+                        {
+                            new Label
+                            {
+                                Text = Loc.GetString("humanoid-profile-editor-department-jobs-label",
+                                    ("departmentName", departmentName)),
+                                StyleClasses = { StyleBase.StyleClassLabelHeading, },
+                                Margin = new(5f, 0, 0, 0),
+                            },
+                        },
+                    };
 
-        //             firstCategory = false;
-        //             _jobCategories[department.ID] = category;
-        //             JobList.AddChild(category);
-        //         }
+                    firstCategory = false;
+                    _jobCategories[department.ID] = category;
+                    JobList.AddChild(category);
+                }
 
-        //         var jobs = department.Roles.Select(jobId => _prototypeManager.Index(jobId))
-        //             .Where(job => job.SetPreference)
-        //             .ToArray();
+                var jobs = department.Roles.Select(jobId => _prototypeManager.Index(jobId))
+                    .Where(job => job.SetPreference)
+                    .ToArray();
 
-        //         Array.Sort(jobs, JobUIComparer.Instance);
+                Array.Sort(jobs, JobUIComparer.Instance);
 
-        //         foreach (var job in jobs)
-        //         {
-        //             var jobContainer = new BoxContainer { Orientation = LayoutOrientation.Horizontal, HorizontalExpand = true, };
-        //             var selector = new RequirementsSelector { Margin = new(3f, 3f, 3f, 0f), HorizontalExpand = true, };
-        //             selector.OnOpenGuidebook += OnOpenGuidebook;
+                foreach (var job in jobs)
+                {
+                    var jobContainer = new BoxContainer { Orientation = LayoutOrientation.Horizontal, HorizontalExpand = true, };
+                    var selector = new RequirementsSelector { Margin = new(3f, 3f, 3f, 0f), HorizontalExpand = true, };
+                    selector.OnOpenGuidebook += OnOpenGuidebook;
 
-        //             var icon = new TextureRect
-        //             {
-        //                 TextureScale = new(2, 2),
-        //                 VerticalAlignment = VAlignment.Center
-        //             };
-        //             var jobIcon = _prototypeManager.Index(job.Icon);
-        //             icon.Texture = jobIcon.Icon.Frame0();
-        //             selector.Setup(items, job.LocalizedName, 200, job.LocalizedDescription, icon, job.Guides);
+                    var icon = new TextureRect
+                    {
+                        TextureScale = new(2, 2),
+                        VerticalAlignment = VAlignment.Center
+                    };
+                    var jobIcon = _prototypeManager.Index(job.Icon);
+                    icon.Texture = jobIcon.Icon.Frame0();
+                    selector.Setup(items, job.LocalizedName, 200, job.LocalizedDescription, icon, job.Guides);
 
-        //             if (!_requirements.CheckJobWhitelist(job, out var reason))
-        //                 selector.LockRequirements(reason);
-        //             else if (!_characterRequirementsSystem.CheckRequirementsValid(
-        //                 _roleSystem.GetJobRequirement(job) ?? new(),
-        //                 job,
-        //                 Profile ?? HumanoidCharacterProfile.DefaultWithSpecies(),
-        //                 _requirements.GetRawPlayTimeTrackers(),
-        //                 _requirements.IsWhitelisted(),
-        //                 job,
-        //                 _entManager,
-        //                 _prototypeManager,
-        //                 _cfgManager,
-        //                 out var reasons))
-        //                 selector.LockRequirements(_characterRequirementsSystem.GetRequirementsText(reasons));
-        //             else
-        //                 selector.UnlockRequirements();
+                    if (!_requirements.CheckJobWhitelist(job, out var reason))
+                        selector.LockRequirements(reason);
+                    else if (!_characterRequirementsSystem.CheckRequirementsValid(
+                        _roleSystem.GetJobRequirement(job) ?? new(),
+                        job,
+                        Profile ?? HumanoidCharacterProfile.DefaultWithSpecies(),
+                        _requirements.GetRawPlayTimeTrackers(),
+                        _requirements.IsWhitelisted(),
+                        job,
+                        _entManager,
+                        _prototypeManager,
+                        _cfgManager,
+                        out var reasons))
+                        selector.LockRequirements(_characterRequirementsSystem.GetRequirementsText(reasons));
+                    else
+                        selector.UnlockRequirements();
 
-        //             selector.OnSelected += selectedPrio =>
-        //             {
-        //                 var selectedJobPrio = (JobPriority) selectedPrio;
-        //                 Profile = Profile?.WithJobPriority(job.ID, selectedJobPrio);
+                    selector.OnSelected += selectedPrio =>
+                    {
+                        var selectedJobPrio = (JobPriority) selectedPrio;
+                        Profile = Profile?.WithJobPriority(job.ID, selectedJobPrio);
 
-        //                 foreach (var (jobId, other) in _jobPriorities)
-        //                 {
-        //                     // Sync other selectors with the same job in case of multiple department jobs
-        //                     if (jobId == job.ID)
-        //                     {
-        //                         other.Select(selectedPrio);
-        //                         continue;
-        //                     }
+                        foreach (var (jobId, other) in _jobPriorities)
+                        {
+                            // Sync other selectors with the same job in case of multiple department jobs
+                            if (jobId == job.ID)
+                            {
+                                other.Select(selectedPrio);
+                                continue;
+                            }
 
-        //                     if (selectedJobPrio != JobPriority.High || (JobPriority) other.Selected != JobPriority.High)
-        //                         continue;
+                            if (selectedJobPrio != JobPriority.High || (JobPriority) other.Selected != JobPriority.High)
+                                continue;
 
-        //                     // Lower any other high priorities to medium.
-        //                     other.Select((int)JobPriority.Medium);
-        //                     Profile = Profile?.WithJobPriority(jobId, JobPriority.Medium);
-        //                 }
+                            // Lower any other high priorities to medium.
+                            other.Select((int)JobPriority.Medium);
+                            Profile = Profile?.WithJobPriority(jobId, JobPriority.Medium);
+                        }
 
-        //                 // TODO: Only reload on high change (either to or from).
-        //                 ReloadPreview();
+                        // TODO: Only reload on high change (either to or from).
+                        ReloadPreview();
 
-        //                 UpdateJobPriorities();
-        //                 SetDirty();
-        //             };
+                        UpdateJobPriorities();
+                        SetDirty();
+                    };
 
-        //             _jobPriorities.Add((job.ID, selector));
-        //             jobContainer.AddChild(selector);
-        //             category.AddChild(jobContainer);
-        //         }
-        //     }
+                    _jobPriorities.Add((job.ID, selector));
+                    jobContainer.AddChild(selector);
+                    category.AddChild(jobContainer);
+                }
+            }
 
-        //     UpdateJobPriorities();
-        // }
+            UpdateJobPriorities();
+        }
 
         private void OnFlavorTextChange(string content)
         {
@@ -1537,65 +1236,65 @@ namespace Content.Client.Lobby.UI
             switch (species.SkinColoration)
             {
                 case HumanoidSkinColor.HumanToned:
+                {
+                    if (!Skin.Visible)
                     {
-                        if (!Skin.Visible)
-                        {
-                            Skin.Visible = true;
-                            RgbSkinColorContainer.Visible = false;
-                        }
-
-                        var color = SkinColor.HumanSkinTone((int) Skin.Value);
-
-                        Markings.CurrentSkinColor = color;
-                        Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));//
-                        break;
+                        Skin.Visible = true;
+                        RgbSkinColorContainer.Visible = false;
                     }
+
+                    var color = SkinColor.HumanSkinTone((int) Skin.Value);
+
+                    Markings.CurrentSkinColor = color;
+                    Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));//
+                    break;
+                }
                 case HumanoidSkinColor.Hues:
+                {
+                    if (!RgbSkinColorContainer.Visible)
                     {
-                        if (!RgbSkinColorContainer.Visible)
-                        {
-                            Skin.Visible = false;
-                            RgbSkinColorContainer.Visible = true;
-                        }
-
-                        Markings.CurrentSkinColor = _rgbSkinColorSelector.Color;
-                        Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(_rgbSkinColorSelector.Color));
-                        break;
+                        Skin.Visible = false;
+                        RgbSkinColorContainer.Visible = true;
                     }
+
+                    Markings.CurrentSkinColor = _rgbSkinColorSelector.Color;
+                    Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(_rgbSkinColorSelector.Color));
+                    break;
+                }
                 case HumanoidSkinColor.TintedHues:
-                case HumanoidSkinColor.TintedHuesSkin: // DeltaV - Tone blending
+                case HumanoidSkinColor.TintedHuesSkin:
+                {
+                    if (!RgbSkinColorContainer.Visible)
                     {
-                        if (!RgbSkinColorContainer.Visible)
-                        {
-                            Skin.Visible = false;
-                            RgbSkinColorContainer.Visible = true;
-                        }
-
-                        var color = skin switch // DeltaV - Tone blending
-                        {
-                            HumanoidSkinColor.TintedHues => SkinColor.TintedHues(_rgbSkinColorSelector.Color),
-                            HumanoidSkinColor.TintedHuesSkin => SkinColor.TintedHuesSkin(_rgbSkinColorSelector.Color, skinColor),
-                            _ => Color.White
-                        };
-
-                        Markings.CurrentSkinColor = color;
-                        Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
-                        break;
+                        Skin.Visible = false;
+                        RgbSkinColorContainer.Visible = true;
                     }
+
+                    var color = species.SkinColoration switch
+                    {
+                        HumanoidSkinColor.TintedHues => SkinColor.TintedHues(_rgbSkinColorSelector.Color),
+                        HumanoidSkinColor.TintedHuesSkin => SkinColor.TintedHuesSkin(_rgbSkinColorSelector.Color, species.DefaultSkinTone),
+                        _ => Color.White
+                    };
+
+                    Markings.CurrentSkinColor = color;
+                    Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
+                    break;
+                }
                 case HumanoidSkinColor.VoxFeathers:
+                {
+                    if (!RgbSkinColorContainer.Visible)
                     {
-                        if (!RgbSkinColorContainer.Visible)
-                        {
-                            Skin.Visible = false;
-                            RgbSkinColorContainer.Visible = true;
-                        }
-
-                        var color = SkinColor.ClosestVoxColor(_rgbSkinColorSelector.Color);
-
-                        Markings.CurrentSkinColor = color;
-                        Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
-                        break;
+                        Skin.Visible = false;
+                        RgbSkinColorContainer.Visible = true;
                     }
+
+                    var color = SkinColor.ClosestVoxColor(_rgbSkinColorSelector.Color);
+
+                    Markings.CurrentSkinColor = color;
+                    Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
+                    break;
+                }
                 case HumanoidSkinColor.AnimalFur: // Einstein Engines - Tajaran
                 {
                     if (!RgbSkinColorContainer.Visible)
@@ -1606,10 +1305,10 @@ namespace Content.Client.Lobby.UI
 
                     var color = SkinColor.ClosestAnimalFurColor(_rgbSkinColorSelector.Color);
 
-                        Markings.CurrentSkinColor = color;
-                        Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
-                        break;
-                    }
+                    Markings.CurrentSkinColor = color;
+                    Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
+                    break;
+                }
             }
 
             SetDirty();
@@ -1883,7 +1582,7 @@ namespace Content.Client.Lobby.UI
             foreach (var (jobId, prioritySelector) in _jobPriorities)
             {
                 var priority = Profile?.JobPriorities.GetValueOrDefault(jobId, JobPriority.Never) ?? JobPriority.Never;
-                prioritySelector.Select((int)priority);
+                prioritySelector.Select((int) priority);
             }
         }
 
@@ -1910,9 +1609,9 @@ namespace Content.Client.Lobby.UI
                 SexButton.AddItem(Loc.GetString($"humanoid-profile-editor-sex-{sex.ToString().ToLower()}-text"), (int) sex);
 
             if (sexes.Contains(Profile.Sex))
-                SexButton.SelectId((int)Profile.Sex);
+                SexButton.SelectId((int) Profile.Sex);
             else
-                SexButton.SelectId((int)sexes[0]);
+                SexButton.SelectId((int) sexes[0]);
         }
 
         private void UpdateSkinColor()
@@ -1925,52 +1624,52 @@ namespace Content.Client.Lobby.UI
             switch (skin)
             {
                 case HumanoidSkinColor.HumanToned:
+                {
+                    if (!Skin.Visible)
                     {
-                        if (!Skin.Visible)
-                        {
-                            Skin.Visible = true;
-                            RgbSkinColorContainer.Visible = false;
-                        }
-
-                        Skin.Value = SkinColor.HumanSkinToneFromColor(Profile.Appearance.SkinColor);
-                        break;
+                        Skin.Visible = true;
+                        RgbSkinColorContainer.Visible = false;
                     }
+
+                    Skin.Value = SkinColor.HumanSkinToneFromColor(Profile.Appearance.SkinColor);
+                    break;
+                }
                 case HumanoidSkinColor.Hues:
+                {
+                    if (!RgbSkinColorContainer.Visible)
                     {
-                        if (!RgbSkinColorContainer.Visible)
-                        {
-                            Skin.Visible = false;
-                            RgbSkinColorContainer.Visible = true;
-                        }
-
-                        // Set the RGB values to the direct values otherwise
-                        _rgbSkinColorSelector.Color = Profile.Appearance.SkinColor;
-                        break;
+                        Skin.Visible = false;
+                        RgbSkinColorContainer.Visible = true;
                     }
+
+                    // Set the RGB values to the direct values otherwise
+                    _rgbSkinColorSelector.Color = Profile.Appearance.SkinColor;
+                    break;
+                }
                 case HumanoidSkinColor.TintedHues:
+                {
+                    if (!RgbSkinColorContainer.Visible)
                     {
-                        if (!RgbSkinColorContainer.Visible)
-                        {
-                            Skin.Visible = false;
-                            RgbSkinColorContainer.Visible = true;
-                        }
-
-                        // Set the RGB values to the direct values otherwise
-                        _rgbSkinColorSelector.Color = Profile.Appearance.SkinColor;
-                        break;
+                        Skin.Visible = false;
+                        RgbSkinColorContainer.Visible = true;
                     }
+
+                    // Set the RGB values to the direct values otherwise
+                    _rgbSkinColorSelector.Color = Profile.Appearance.SkinColor;
+                    break;
+                }
                 case HumanoidSkinColor.VoxFeathers:
+                {
+                    if (!RgbSkinColorContainer.Visible)
                     {
-                        if (!RgbSkinColorContainer.Visible)
-                        {
-                            Skin.Visible = false;
-                            RgbSkinColorContainer.Visible = true;
-                        }
-
-                        _rgbSkinColorSelector.Color = SkinColor.ClosestVoxColor(Profile.Appearance.SkinColor);
-
-                        break;
+                        Skin.Visible = false;
+                        RgbSkinColorContainer.Visible = true;
                     }
+
+                    _rgbSkinColorSelector.Color = SkinColor.ClosestVoxColor(Profile.Appearance.SkinColor);
+
+                    break;
+                }
                 case HumanoidSkinColor.AnimalFur: // Einstein Engines - Tajaran
                 {
                     if (!RgbSkinColorContainer.Visible)
@@ -1981,8 +1680,8 @@ namespace Content.Client.Lobby.UI
 
                     _rgbSkinColorSelector.Color = SkinColor.ClosestAnimalFurColor(Profile.Appearance.SkinColor);
 
-                        break;
-                    }
+                    break;
+                }
             }
         }
 
@@ -2014,7 +1713,7 @@ namespace Content.Client.Lobby.UI
             if (Profile == null)
                 return;
 
-            PronounsButton.SelectId((int)Profile.Gender);
+            PronounsButton.SelectId((int) Profile.Gender);
         }
 
         private void UpdateDisplayPronounsControls()
@@ -2098,7 +1797,7 @@ namespace Content.Client.Lobby.UI
             if (Profile == null)
                 return;
 
-            SpawnPriorityButton.SelectId((int)Profile.SpawnPriority);
+            SpawnPriorityButton.SelectId((int) Profile.SpawnPriority);
         }
 
                 private void UpdateHeightWidthSliders()
@@ -2253,7 +1952,7 @@ namespace Content.Client.Lobby.UI
 
             // Facial hair color
             Color? facialHairColor = null;
-            if (Profile.Appearance.FacialHairStyleId != HairStyles.DefaultFacialHairStyle &&
+            if ( Profile.Appearance.FacialHairStyleId != HairStyles.DefaultFacialHairStyle &&
                 _markingManager.Markings.TryGetValue(Profile.Appearance.FacialHairStyleId, out var facialHairProto))
             {
                 if (_markingManager.CanBeApplied(Profile.Species, Profile.Sex, facialHairProto, _prototypeManager))
@@ -2894,7 +2593,7 @@ namespace Content.Client.Lobby.UI
                     loadout, highJob ?? new JobPrototype(),
                     Profile ?? HumanoidCharacterProfile.DefaultWithSpecies(), ref _dummyLoadouts,
                     _entManager, _prototypeManager, _cfgManager, _characterRequirementsSystem, _requirements)
-                { Preference = new(loadout.ID) };
+                    { Preference = new(loadout.ID) };
                 UpdateSelector(selector, usable);
                 AddSelector(selector);
 
@@ -2910,7 +2609,6 @@ namespace Content.Client.Lobby.UI
 
             UpdateLoadoutPreferences();
             return;
-
 
 
             void UpdateSelector(LoadoutPreferenceSelector selector, bool usable)

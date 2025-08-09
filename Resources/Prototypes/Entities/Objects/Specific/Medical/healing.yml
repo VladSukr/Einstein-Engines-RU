@@ -305,9 +305,9 @@
     healingEndSound:
       path: "/Audio/Items/Medical/brutepack_end.ogg"
   - type: RequiredSkill
-      container:
-        skills:
-          medicine: enum.SkillLevel.NonSkilled
+    container:
+      skills:
+        medicine: enum.SkillLevel.NonSkilled
 
 - type: entity
   name: roll of gauze

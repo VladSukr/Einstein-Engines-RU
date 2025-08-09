@@ -97,7 +97,7 @@ namespace Content.Client.VendingMachines
 
         private void OnSearchChanged(string? filter)
         {
-            _menu?.Populate(_cachedInventory, out _cachedFilteredIndex, filter);
+            _menu?.Populate(_cachedInventory);
         }
     }
 }

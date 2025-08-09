@@ -698,12 +698,12 @@
       color: "#CB0000"
     - state: lawyer
   - type: EconomyAccountHolder
-      accountIdByProto: Nanotrasen
-      moneyHolderEntId: ThalerHolder
-      accountSetup:
-        allowedCurrency: Thaler
-        accountTags:
-          - Personal
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
+      allowedCurrency: Thaler
+      accountTags:
+        - Personal
 
 
 - type: entity
@@ -722,9 +722,9 @@
       color: "#CB0000"
     - state: lawyer
   - type: EconomyAccountHolder
-      accountIdByProto: Nanotrasen
-      moneyHolderEntId: ThalerHolder
-      accountSetup:
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
       allowedCurrency: Thaler
       accountTags:
         - Personal
@@ -745,9 +745,9 @@
       color: "#CB0000"
     - state: lawyer
   - type: EconomyAccountHolder
-      accountIdByProto: Nanotrasen
-      moneyHolderEntId: ThalerHolder
-      accountSetup:
+    accountIdByProto: Nanotrasen
+    moneyHolderEntId: ThalerHolder
+    accountSetup:
       allowedCurrency: Thaler
       accountTags:
         - Personal

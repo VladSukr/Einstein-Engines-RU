@@ -47,8 +47,6 @@ namespace Content.Server.VendingMachines
 
         private const float WallVendEjectDistanceFromWall = 1f;
 
-        private const float WallVendEjectDistanceFromWall = 1f;
-
         public override void Initialize()
         {
             base.Initialize();
@@ -63,7 +61,7 @@ namespace Content.Server.VendingMachines
 
             Subs.BuiEvents<VendingMachineComponent>(VendingMachineUiKey.Key, subs =>
             {
-                subs.Event<VendingMachineEjectMessage>(OnInventoryEjectMessage);
+                // subs.Event<VendingMachineEjectMessage>(OnInventoryEjectMessage);
                 // SS14RU
                 subs.Event<VendingMachineSelectMessage>(OnSelectMessage);
                 // SS14RU
@@ -94,10 +92,14 @@ namespace Content.Server.VendingMachines
             }
         }
 
-        private void OnComponentMapInit(EntityUid uid, VendingMachineComponent component, MapInitEvent args)
+        protected override void OnMapInit(EntityUid uid, VendingMachineComponent component, MapInitEvent args)
         {
-            _action.AddAction(uid, ref component.ActionEntity, component.Action, uid);
-            Dirty(uid, component);
+            base.OnMapInit(uid, component, args);
+
+            if (HasComp<ApcPowerReceiverComponent>(uid))
+            {
+                TryUpdateVisualState(uid, component);
+            }
         }
 
         private void OnVendingPrice(EntityUid uid, VendingMachineComponent component, ref PriceCalculationEvent args)
@@ -116,16 +118,6 @@ namespace Content.Server.VendingMachines
             }
 
             args.Price += price;
-        }
-
-        protected override void OnMapInit(EntityUid uid, VendingMachineComponent component, MapInitEvent args)
-        {
-            base.OnMapInit(uid, component, args);
-
-            if (HasComp<ApcPowerReceiverComponent>(uid))
-            {
-                TryUpdateVisualState(uid, component);
-            }
         }
 
         private void OnActivatableUIOpenAttempt(EntityUid uid, VendingMachineComponent component, ActivatableUIOpenAttemptEvent args)

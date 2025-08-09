@@ -127,8 +127,6 @@ namespace Content.Client.VendingMachines.UI
                         ("currencyName", "Th"))}]";
                 }
 
-                vendingItem.Text = $"{itemName} [{entry.Amount}]{adjustText}";
-
                 const string labelCompName = "Label";
                 if (prototype.Components.TryGetValue(labelCompName, out var labelCompData)
                     && labelCompData.Component is LabelComponent labelComponent)
@@ -137,11 +135,8 @@ namespace Content.Client.VendingMachines.UI
                     if (!string.IsNullOrEmpty(itemLabel))
                         itemName += $" ({Loc.GetString(itemLabel)})";
                 }
-                
-                if (vendingItem.Text.Length > longestEntry.Length)
-                    longestEntry = vendingItem.Text;
 
-                var itemText = $"{itemName} [{entry.Amount}]";
+                var itemText = $"{itemName} [{entry.Amount}]{adjustText}";
 
                 if (itemText.Length > longestEntry.Length)
                     longestEntry = itemText;
