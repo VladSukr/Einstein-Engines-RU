@@ -957,7 +957,7 @@ namespace Content.Server.AWS.Economy.Bank
                     }
             }; // should be rewrote
 
-            Robust.Shared.Timing.Timer.SpawnRepeating(1500, action, _timerCancelToken.Token);
+            Robust.Shared.Timing.Timer.SpawnRepeating(SalaryDelay, action, _timerCancelToken.Token);
         }
 
         private void OnEndRound(RoundEndedEvent args)
