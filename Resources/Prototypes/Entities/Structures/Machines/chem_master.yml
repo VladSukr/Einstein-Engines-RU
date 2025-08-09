@@ -100,3 +100,7 @@
     energy: 1.4
     radius: 3.25
   - type: LitOnPowered ##WD EDIT  END
+  - type: RequiredSkill
+    container:
+      skills:
+        chemistry: enum.SkillLevel.Trained

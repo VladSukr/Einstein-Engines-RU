@@ -28,6 +28,10 @@
     - HighRiskItem
   - type: StealTarget
     stealGroup: Hypospray
+  - type: RequiredSkill
+    container:
+      skills:
+        medicine: enum.SkillLevel.Basic
 
 - type: entity
   name: gorlex hypospray
@@ -52,6 +56,10 @@
     onlyAffectsMobs: false
   - type: UseDelay
     delay: 0.5
+  - type: RequiredSkill
+    container:
+      skills:
+        medicine: enum.SkillLevel.Basic
 
 - type: entity
   name: borghypo
@@ -160,6 +168,10 @@
           Quantity: 3
   - type: Tag
     tags: []
+  - type: RequiredSkill
+    container:
+      skills:
+        medicine: enum.SkillLevel.NonSkilled
 
 - type: entity
   name: poison auto-injector
@@ -530,6 +542,10 @@
     price: 75
   - type: EmitSoundOnUse
     handle: false # don't want the sound to stop the self-inject from triggering
+  - type: RequiredSkill
+    container:
+      skills:
+        medicine: enum.SkillLevel.Basic
 
 - type: entity
   parent: [ BaseItem, BaseSyndicateContraband ]

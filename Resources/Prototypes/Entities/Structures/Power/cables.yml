@@ -52,7 +52,10 @@
     cost: 2
     delay: 0
     fx: EffectRCDConstruct0
-
+  - type: RequiredSkill
+    container:
+      skills:
+        electricity: enum.SkillLevel.Basic
 - type: entity
   parent: CableBase
   id: CableHV

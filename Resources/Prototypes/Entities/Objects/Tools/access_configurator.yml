@@ -173,3 +173,7 @@
     denialSound:
       path: /Audio/Machines/custom_deny.ogg
     doAfter: 0.5
+  - type: RequiredSkill
+    container:
+      skills:
+        electricity: enum.SkillLevel.Basic

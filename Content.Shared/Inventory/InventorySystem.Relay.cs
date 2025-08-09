@@ -25,6 +25,9 @@ using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Overlays.Switchable;
 using Content.Shared.Stunnable;
 using Content.Shared.Movement.Events;
+//SS14RU
+using Content.Shared.AWS.Economy.Insurance;
+
 
 namespace Content.Shared.Inventory;
 
@@ -78,6 +81,9 @@ public partial class InventorySystem
         SubscribeLocalEvent<InventoryComponent, RefreshEquipmentHudEvent<ThermalVisionComponent>>(RelayInventoryEvent);
 
         SubscribeLocalEvent<InventoryComponent, GetVerbsEvent<EquipmentVerb>>(OnGetEquipmentVerbs);
+
+        //SS14RU
+        SubscribeLocalEvent<InventoryComponent, RefreshEquipmentHudEvent<EconomyShowInsuranceIconsComponent>>(RelayInventoryEvent);
     }
 
     protected void RefRelayInventoryEvent<T>(EntityUid uid, InventoryComponent component, ref T args) where T : IInventoryRelayEvent

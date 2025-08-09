@@ -56,7 +56,11 @@
     energy: 1
     radius: 1.6
   - type: LitOnPowered ##WD EDIT END
-
+  - type: RequiredSkill
+    container:
+      skills:
+        chemistry: enum.SkillLevel.Trained
+        
 - type: entity
   id: ChemDispenserEmpty
   name: chemical dispenser

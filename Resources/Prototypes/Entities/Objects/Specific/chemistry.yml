@@ -422,6 +422,10 @@
   - type: Tag
     tags:
     - Syringe
+  - type: RequiredSkill
+    container:
+      skills:
+        medicine: enum.SkillLevel.Basic
 
 - type: entity
   parent: BaseSyringe
@@ -435,6 +439,10 @@
     - Syringe
     - Trash
     - SyringeGunAmmo
+  - type: RequiredSkill
+    container:
+      skills:
+        medicine: enum.SkillLevel.Basic
 
 - type: entity
   parent: BaseSyringe
@@ -442,6 +450,10 @@
   components:
   - type: Injector
     toggleState: Inject
+  - type: RequiredSkill
+    container:
+      skills:
+        medicine: enum.SkillLevel.Basic
 
 - type: entity
   id: SyringeBluespace
@@ -561,6 +573,10 @@
   - type: Tag
     tags:
     - Pill
+  - type: RequiredSkill
+    container:
+      skills:
+        chemistry: enum.SkillLevel.Basic
 
 - type: entity
   name: pill canister

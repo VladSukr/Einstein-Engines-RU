@@ -1,0 +1,1 @@
+economybanksystem-vending-cost-label = {$amount} {$currencyName}

@@ -119,6 +119,13 @@ namespace Content.Client.VendingMachines.UI
                 }
 
                 var itemName = Identity.Name(dummy, _entityManager);
+                //SS14-RU
+                var adjustText = "";
+                if (entry.Price > 0)
+                {
+                    adjustText = $" [{Loc.GetString("economybanksystem-vending-cost-label", ("amount", entry.Price),
+                        ("currencyName", "Th"))}]";
+                }
 
                 const string labelCompName = "Label";
                 if (prototype.Components.TryGetValue(labelCompName, out var labelCompData)
@@ -129,7 +136,7 @@ namespace Content.Client.VendingMachines.UI
                         itemName += $" ({Loc.GetString(itemLabel)})";
                 }
 
-                var itemText = $"{itemName} [{entry.Amount}]";
+                var itemText = $"{itemName} [{entry.Amount}]{adjustText}";
 
                 if (itemText.Length > longestEntry.Length)
                     longestEntry = itemText;
@@ -144,7 +151,7 @@ namespace Content.Client.VendingMachines.UI
 
         private void SetSizeAfterUpdate(int longestEntryLength, int contentCount)
         {
-            SetSize = new Vector2(Math.Clamp((longestEntryLength + 2) * 12, 250, 400),
+            SetSize = new Vector2(Math.Clamp((longestEntryLength) * 12, 250, 500),
                 Math.Clamp(contentCount * 50, 150, 350));
         }
     }

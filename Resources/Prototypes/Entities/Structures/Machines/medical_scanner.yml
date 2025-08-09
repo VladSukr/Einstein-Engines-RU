@@ -91,3 +91,7 @@
         layer:
         - MidImpassable # can move through when climbing/prone
         - BulletImpassable
+  - type: RequiredSkill
+    container:
+      skills:
+        medicine: enum.SkillLevel.Trained

@@ -91,6 +91,10 @@
         - ItemMask
         restitution: 0.3
         friction: 0.2
+  - type: RequiredSkill
+    container:
+      skills:
+        electricity: enum.SkillLevel.Basic
 
 - type: entity
   name: screwdriver
@@ -181,6 +185,10 @@
         - ItemMask
         restitution: 0.3
         friction: 0.2
+  - type: RequiredSkill
+    container:
+      skills:
+        electricity: enum.SkillLevel.Basic
 
 - type: entity
   name: wrench
@@ -250,7 +258,10 @@
         - ItemMask
         restitution: 0.3
         friction: 0.2
-
+  - type: RequiredSkill
+    container:
+      skills:
+        electricity: enum.SkillLevel.NonSkilled
 - type: entity
   name: multitool
   parent: BaseItem
@@ -325,6 +336,10 @@
         - ItemMask
         restitution: 0.3
         friction: 0.2
+  - type: RequiredSkill
+    container:
+      skills:
+        electricity: enum.SkillLevel.Trained
 
 - type: entity
   name: network configurator
@@ -387,6 +402,10 @@
         - ItemMask
         restitution: 0.3
         friction: 0.2
+  - type: RequiredSkill
+    container:
+      skills:
+        electricity: enum.SkillLevel.Trained
 
 #Power tools
 #Later on these should switch probably switch damage when changing the tool behavior.
@@ -474,7 +493,10 @@
         - ItemMask
         restitution: 0.3
         friction: 0.2
-
+  - type: RequiredSkill
+    container:
+      skills:
+        electricity: enum.SkillLevel.Basic
 - type: entity
   id: RCD
   parent: [ BaseItem, BaseEngineeringContraband ]
@@ -545,7 +567,12 @@
         - ItemMask
         restitution: 0.3
         friction: 0.2
-
+  - type: RequiredSkill
+    container:
+      skills:
+        electricity: enum.SkillLevel.Basic
+        construction: enum.SkillLevel.Basic
+        
 - type: entity
   id: RPD
   parent: RCD
@@ -776,7 +803,10 @@
         state: omnitool-pulsing
       changeSound:
         path: /Audio/Items/change_drill.ogg
-
+  - type: RequiredSkill
+    container:
+      skills:
+        electricity: enum.SkillLevel.Trained
 #Other
 - type: entity
   name: shovel

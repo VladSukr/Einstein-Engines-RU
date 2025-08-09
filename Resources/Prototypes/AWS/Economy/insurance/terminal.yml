@@ -1,0 +1,51 @@
+- type: entity
+  parent: BaseComputer
+  id: ComputerInsurance
+  name: Терминал страхового управления
+  description: Компьютер, используемый для просмотра и редактирования страховых записей
+  components:
+  - type: StationAiWhitelist
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: comm
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+  - type: AccessReader
+    access: [[ "Captain", "ChiefMedicalOfficer" ]]
+  - type: ActivatableUI
+    key: enum.EconomyInsuranceTerminalUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.EconomyInsuranceTerminalUiKey.Key:
+        type: EconomyInsuranceTerminalBoundUserInterface
+  - type: Computer
+    board: ComputerLogsCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#3c5eb5"
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: EconomyInsuranceTerminal
+    cardSlot:
+      priority: 0
+      whitelist:
+        components:
+        - IdCard
+
+- type: entity
+  parent: [ BaseComputerCircuitboard ]
+  id: ComputerInsuranceCircuitboard
+  name: Плата терминала страхового управления
+  description: Печатная плата для терминала страхового управления, используемая для встраивания в корпус машины для просмотра и редактирования страховых записей
+  components:
+    - type: Sprite
+      state: cpu_command
+    - type: ComputerBoard
+      prototype: ComputerInsurance

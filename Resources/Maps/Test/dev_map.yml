@@ -390,6 +390,8 @@ entities:
     - type: Broadphase
     - type: OccluderTree
     - type: LoadedMap
+    # SS14RU
+    - type: EconomyInsuranceServer
 - proto: AirAlarm
   entities:
   - uid: 800

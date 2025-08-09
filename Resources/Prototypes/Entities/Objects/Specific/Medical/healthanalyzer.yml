@@ -43,6 +43,10 @@
     damage:
       types:
         Blunt: 5
+  - type: RequiredSkill
+    container:
+      skills:
+        medicine: enum.SkillLevel.Basic
 
 - type: entity
   id: HandheldHealthAnalyzer
@@ -53,6 +57,11 @@
     drawRate: 1.2 #Calculated for 5 minutes on a small cell
   - type: ToggleCellDraw
   - type: ActivatableUIRequiresPowerCell
+  - type: RequiredSkill
+    container:
+      skills:
+        medicine: enum.SkillLevel.Basic
+
 
 - type: entity
   id: HandheldHealthAnalyzerEmpty

@@ -77,6 +77,10 @@
         - ItemMask
         restitution: 0.3
         friction: 0.2
+  - type: RequiredSkill
+    container:
+      skills:
+        electricity: enum.SkillLevel.Basic
 
 - type: entity
   name: syndicate jaws of life
