@@ -171,6 +171,9 @@ entities:
       bodyType: Dynamic
     - type: Fixtures
       fixtures: {}
+    # SS14RU
+    - type: EconomyInsuranceServer
+    # SS14RU
     - type: BecomesStation
       id: centcomm
     - type: Gravity
