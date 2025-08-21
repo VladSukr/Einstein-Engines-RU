@@ -79,7 +79,7 @@
     - map: ["computerLayerKeys"]
       state: generic_keys
   - type: AccessReader
-    access: [[ "Captain", "HeadOfPersonnel" ]]
+    access: [["Captain"], ["HeadOfPersonnel"]]
   - type: ActivatableUI
     key: enum.EconomyManagementConsoleUiKey.Key
   - type: UserInterface
