@@ -108,7 +108,7 @@ public sealed partial class BonusTab : Control
         var tags = new List<BankAccountTag>() { BankAccountTag.Personal };
         _cachedAccounts = bankAccountSystem.GetAccounts(EconomyBankAccountMask.ByTags, tags).Values.ToList();
 
-        var payerTags = new List<BankAccountTag>() { BankAccountTag.Station };
+        var payerTags = new List<BankAccountTag>() { BankAccountTag.Station, BankAccountTag.Department };
         var payers = bankAccountSystem.GetAccounts(EconomyBankAccountMask.ByTags, payerTags).Values;
         PayerAccountOptionButton.Clear();
         _payerAccounts.Clear();
