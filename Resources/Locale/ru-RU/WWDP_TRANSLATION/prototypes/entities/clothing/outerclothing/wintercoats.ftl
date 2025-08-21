@@ -50,7 +50,7 @@ ent-ClothingOuterWinterHoP = зимнее пальто главы персона
     .desc = { ent-ClothingOuterWinterCoat.desc }
     .suffix = { "" }
 
-ent-ClothingOuterWinterHoS = зимнее пальто главы службы безопасности
+ent-ClothingOuterWinterHoS = зимнее пальто главы Департамента Шерифа
     .desc = { ent-ClothingOuterWinterCoat.desc }
     .suffix = { "" }
 
@@ -94,7 +94,7 @@ ent-ClothingOuterWinterSci = зимнее пальто учёного
     .desc = { ent-ClothingOuterWinterCoat.desc }
     .suffix = { "" }
 
-ent-ClothingOuterWinterSec = зимнее пальто службы безопасности
+ent-ClothingOuterWinterSec = зимнее пальто Департамента Шерифа
     .desc = { ent-ClothingOuterWinterCoat.desc }
     .suffix = { "" }
 
@@ -102,8 +102,8 @@ ent-ClothingOuterWinterViro = зимнее пальто вирусолога
     .desc = { ent-ClothingOuterWinterCoat.desc }
     .suffix = { "" }
 
-ent-ClothingOuterWinterWarden = зимнее бронепальто смотрителя
-    .desc = Прочное, утилитарное зимнее пальто, предназначенное для защиты смотрителя от любых угроз, связанных с бригом, и переохлаждением.
+ent-ClothingOuterWinterWarden = зимнее бронепальто бейлифа
+    .desc = Прочное, утилитарное зимнее пальто, предназначенное для защиты бейлифа от любых угроз, связанных с бригом, и переохлаждением.
     .suffix = { "" }
 
 ent-ClothingOuterWinterMusician = зимнее пальто музыканта

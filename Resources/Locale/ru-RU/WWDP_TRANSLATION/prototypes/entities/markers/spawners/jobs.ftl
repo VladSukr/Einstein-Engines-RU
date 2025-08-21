@@ -34,7 +34,7 @@ ent-SpawnPointMedicalIntern = интерн
     .desc = { ent-SpawnPointAssistant.desc }
     .suffix = { "" }
 
-ent-SpawnPointSecurityCadet = кадет СБ
+ent-SpawnPointSecurityCadet = кадет
     .desc = { ent-SpawnPointAssistant.desc }
     .suffix = { "" }
 
@@ -122,19 +122,19 @@ ent-SpawnPointScientist = учёный
     .desc = { ent-SpawnPointJobBase.desc }
     .suffix = { "" }
 
-ent-SpawnPointHeadOfSecurity = глава службы безопасности
+ent-SpawnPointHeadOfSecurity = глава Департамента Шерифа
     .desc = { ent-SpawnPointJobBase.desc }
     .suffix = { "" }
 
-ent-SpawnPointWarden = смотритель
+ent-SpawnPointWarden = бейлиф
     .desc = { ent-SpawnPointJobBase.desc }
     .suffix = { "" }
 
-ent-SpawnPointSecurityOfficer = офицер СБ
+ent-SpawnPointSecurityOfficer = офицер-патрульный
     .desc = { ent-SpawnPointJobBase.desc }
     .suffix = { "" }
 
-ent-SpawnPointDetective = детектив
+ent-SpawnPointDetective = следователь
     .desc = { ent-SpawnPointJobBase.desc }
     .suffix = { "" }
 

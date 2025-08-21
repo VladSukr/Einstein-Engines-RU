@@ -22,7 +22,7 @@ steal-target-ntr-weapon = оружие НТРа
 
 steal-target-nuclear-authentication-disk = диск ядерной авторизации
 
-steal-target-hos-personal-weapon = личное оружие главы службы безопасности
+steal-target-hos-personal-weapon = личное оружие главы Департамента Шерифа
 
 
 steal-target-figurines = фигурки (любые)
@@ -50,7 +50,7 @@ steal-target-lighter = detective's Flippo engraved lighter
 
 steal-target-ammo-techfab = печатная плата техфаба патронов
 
-steal-target-wardens-cap = фуражка смотрителя
+steal-target-wardens-cap = фуражка бейлифа
 
 steal-target-paramedic-hardsuit = пустотный скафандр парамедика
 

@@ -6,13 +6,13 @@ station-beacon-vault = Хранилище
 station-beacon-captain = Капитан
 station-beacon-hop = Глава Персонала
 
-station-beacon-security = Служба Безопасности
+station-beacon-security = Департамент Шерифа
 station-beacon-brig = Бриг
-station-beacon-warden = Смотритель
-station-beacon-hos = Глава Службы Безопасности
+station-beacon-warden = Бейлиф
+station-beacon-hos = Шериф
 station-beacon-armory = Оружейная
 station-beacon-perma-brig = Пермабриг
-station-beacon-detective = Детектив
+station-beacon-detective = Следователь
 station-beacon-courtroom = Суд
 station-beacon-law = Юристы
 station-beacon-security-checkpoint = КПП

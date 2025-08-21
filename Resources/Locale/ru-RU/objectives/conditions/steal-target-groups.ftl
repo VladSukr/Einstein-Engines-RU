@@ -11,7 +11,7 @@ steal-target-groups-jetpack-captain-filled = джетпак капитана
 steal-target-groups-captain-weapon = антикварный лазерный пистолет
 steal-target-groups-corporate-liaison-weapon = личное оружие НТРа
 steal-target-groups-nuke-disk = диск ядерной авторизации
-steal-target-groups-weapon-head-of-security-weapon = личное оружие главы службы безопасности
+steal-target-groups-weapon-head-of-security-weapon = личное оружие шерифа
 
 # Thief Collection
 # Thief Collection
@@ -28,9 +28,9 @@ steal-target-groups-lamps = ЛАМПЫ
 # Thief single item
 # Thief single item
 steal-target-groups-forensic-scanner = криминалистический сканер
-steal-target-groups-flippo-engraved-lighter = зажигалка детектива с гравировкой "Флиппо"
+steal-target-groups-flippo-engraved-lighter = зажигалка следователя с гравировкой "Флиппо"
 steal-target-groups-ammo-tech-fab-circuitboard = печатная плата техфаба патронов
-steal-target-groups-clothing-head-hat-warden = фуражка смотрителя
+steal-target-groups-clothing-head-hat-warden = фуражка бейлифа
 steal-target-groups-clothing-outer-hardsuit-void-paramed = пустотный скафандр парамедика
 steal-target-groups-medical-tech-fab-circuitboard = медицинский ТехФаб (машинная плата)
 steal-target-groups-clothing-headset-alt-medical = гарнитура главного врача

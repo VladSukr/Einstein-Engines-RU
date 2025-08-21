@@ -39,12 +39,12 @@ mapping-template-telecoms = Телекоммуникации
 mapping-template-solarpanels = Солнечные Батареи
 mapping-template-ame = Комната АМЕ
 mapping-template-paroom = Комната Ускорителя Частиц
-mapping-template-security = Служба Безопасности
-mapping-template-hosroom = Комната ХОСа
+mapping-template-security = Департамент Шерифа
+mapping-template-hosroom = Комната Шерифа
 mapping-template-brig = Бриг
-mapping-template-wardensoffice = Кабинет Смотрителя
+mapping-template-wardensoffice = Кабинет Бейлифа
 mapping-template-armory = Оружейная
 mapping-template-permabrig = Перма Бриг
-mapping-template-detectiveroom = Комната Детектива
+mapping-template-detectiveroom = Комната Следователя
 mapping-template-gunnery = Стрельбище
 

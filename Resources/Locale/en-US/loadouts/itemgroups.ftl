@@ -583,22 +583,22 @@ character-item-group-LoadoutDetectiveOuter = Detective Outerwear
 character-item-group-LoadoutDetectiveShoes = Detective Shoes
 character-item-group-LoadoutDetectiveUniforms = Detective Uniforms
 
-# Security - Head Of Security
-character-item-group-LoadoutHeadOfSecurityBackpacks = Head Of Security Backpacks
-character-item-group-LoadoutHeadOfSecurityBelt = Head Of Security Belt
-character-item-group-LoadoutHeadOfSecurityEars = Head Of Security Ears
-character-item-group-LoadoutHeadOfSecurityEquipment = Head Of Security Equipment
-character-item-group-LoadoutHeadOfSecurityWeapons = Head of Security's Antique Weapon Collection
-character-item-group-LoadoutHeadOfSecurityEyes = Head Of Security Eyewear
-character-item-group-LoadoutHeadOfSecurityGloves = Head Of Security Gloves
-character-item-group-LoadoutHeadOfSecurityHead = Head Of Security Headgear
-character-item-group-LoadoutHeadOfSecurityId = Head Of Security Id
-character-item-group-LoadoutHeadOfSecurityNeck = Head Of Security Neckwear
-character-item-group-LoadoutHeadOfSecurityMask = Head Of Security Masks
-character-item-group-LoadoutHeadOfSecurityOuter = Head Of Security Outerwear
-character-item-group-LoadoutHeadOfSecurityShoes = Head Of Security Shoes
-character-item-group-LoadoutHeadOfSecurityUniforms = Head Of Security Uniforms
-character-item-group-LoadoutHeadOfSecurityTrinkets = Head Of Security Trinkets
+# Security - Sheriff
+character-item-group-LoadoutHeadOfSecurityBackpacks = Sheriff Backpacks
+character-item-group-LoadoutHeadOfSecurityBelt = Sheriff Belt
+character-item-group-LoadoutHeadOfSecurityEars = Sheriff Ears
+character-item-group-LoadoutHeadOfSecurityEquipment = Sheriff Equipment
+character-item-group-LoadoutHeadOfSecurityWeapons = Sheriff's Antique Weapon Collection
+character-item-group-LoadoutHeadOfSecurityEyes = Sheriff Eyewear
+character-item-group-LoadoutHeadOfSecurityGloves = Sheriff Gloves
+character-item-group-LoadoutHeadOfSecurityHead = Sheriff Headgear
+character-item-group-LoadoutHeadOfSecurityId = Sheriff Id
+character-item-group-LoadoutHeadOfSecurityNeck = Sheriff Neckwear
+character-item-group-LoadoutHeadOfSecurityMask = Sheriff Masks
+character-item-group-LoadoutHeadOfSecurityOuter = Sheriff Outerwear
+character-item-group-LoadoutHeadOfSecurityShoes = Sheriff Shoes
+character-item-group-LoadoutHeadOfSecurityUniforms = Sheriff Uniforms
+character-item-group-LoadoutHeadOfSecurityTrinkets = Sheriff Trinkets
 
 # Security - Security Officer
 character-item-group-LoadoutSecurityOfficerBackpacks = Security Officer Backpacks
@@ -615,20 +615,20 @@ character-item-group-LoadoutSecurityOfficerOuter = Security Officer Outerwear
 character-item-group-LoadoutSecurityOfficerShoes = Security Officer Shoes
 character-item-group-LoadoutSecurityOfficerUniforms = Security Officer Uniforms
 
-# Security - Senior Officer
-character-item-group-LoadoutSeniorOfficerBackpacks = Senior Officer Backpacks
-character-item-group-LoadoutSeniorOfficerBelt = Senior Officer Belt
-character-item-group-LoadoutSeniorOfficerEars = Senior Officer Ears
-character-item-group-LoadoutSeniorOfficerEquipment = Senior Officer Equipment
-character-item-group-LoadoutSeniorOfficerEyes = Senior Officer Eyewear
-character-item-group-LoadoutSeniorOfficerGloves = Senior Officer Gloves
-character-item-group-LoadoutSeniorOfficerHead = Senior Officer Headgear
-character-item-group-LoadoutSeniorOfficerId = Senior Officer Id
-character-item-group-LoadoutSeniorOfficerNeck = Senior Officer Neckwear
-character-item-group-LoadoutSeniorOfficerMask = Senior Officer Masks
-character-item-group-LoadoutSeniorOfficerOuter = Senior Officer Outerwear
-character-item-group-LoadoutSeniorOfficerShoes = Senior Officer Shoes
-character-item-group-LoadoutSeniorOfficerUniforms = Senior Officer Uniforms
+# Security - Lieutenant
+character-item-group-LoadoutSeniorOfficerBackpacks = Lieutenant Backpacks
+character-item-group-LoadoutSeniorOfficerBelt = Lieutenant Belt
+character-item-group-LoadoutSeniorOfficerEars = Lieutenant Ears
+character-item-group-LoadoutSeniorOfficerEquipment = Lieutenant Equipment
+character-item-group-LoadoutSeniorOfficerEyes = Lieutenant Eyewear
+character-item-group-LoadoutSeniorOfficerGloves = Lieutenant Gloves
+character-item-group-LoadoutSeniorOfficerHead = Lieutenant Headgear
+character-item-group-LoadoutSeniorOfficerId = Lieutenant Id
+character-item-group-LoadoutSeniorOfficerNeck = Lieutenant Neckwear
+character-item-group-LoadoutSeniorOfficerMask = Lieutenant Masks
+character-item-group-LoadoutSeniorOfficerOuter = Lieutenant Outerwear
+character-item-group-LoadoutSeniorOfficerShoes = Lieutenant Shoes
+character-item-group-LoadoutSeniorOfficerUniforms = Lieutenant Uniforms
 
 # Security - Warden
 character-item-group-LoadoutWardenBackpacks = Warden Backpacks

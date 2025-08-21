@@ -75,7 +75,7 @@ holopad-command-cmo = Командование - ГВ
 holopad-command-qm = Командование - КМ
 holopad-command-ce = Командование - СИ
 holopad-command-rd = Командование - НР
-holopad-command-hos = Командование - ГСБ
+holopad-command-hos = Командование - Шериф
 
 # Science
 # Science
@@ -122,18 +122,18 @@ holopad-engineering-power = Инженерный - Питание
 
 # Security
 # Security
-holopad-security-front = СБ - Приёмная
-holopad-security-brig = СБ - Бриг
-holopad-security-warden = СБ - Смотритель
-holopad-security-interrogation = СБ - Допросная
-holopad-security-breakroom = СБ - Комната отдыха
-holopad-security-detective = СБ - Детектив
-holopad-security-perma = СБ - Перма
-holopad-security-courtroom = СБ - Зал суда
-holopad-security-lawyer = СБ - Адковат
-holopad-security-armory = СБ - Оружейная
-holopad-security-locker-room = СБ - Раздевалка
-holopad-security-brig-med = СБ - Бригмед
+holopad-security-front = ДШ - Приёмная
+holopad-security-brig = ДШ - Бриг
+holopad-security-warden = ДШ - Бейлиф
+holopad-security-interrogation = ДШ - Допросная
+holopad-security-breakroom = ДШ - Комната отдыха
+holopad-security-detective = ДШ - Следователь
+holopad-security-perma = ДШ - Перма
+holopad-security-courtroom = ДШ - Зал суда
+holopad-security-lawyer = ДШ - Адковат
+holopad-security-armory = ДШ - Оружейная
+holopad-security-locker-room = ДШ - Раздевалка
+holopad-security-brig-med = ДШ - Бригмед
 
 # Service
 # Service

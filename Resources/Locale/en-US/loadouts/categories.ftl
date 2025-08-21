@@ -69,9 +69,9 @@ loadout-category-JobsSecurityAUncategorized = All Security
 loadout-category-JobsSecurityCadet = Cadet
 loadout-category-JobsSecurityCorpsman = Corpsman
 loadout-category-JobsSecurityDetective = Detective
-loadout-category-JobsSecurityHeadOfSecurity = Head of Security
+loadout-category-JobsSecurityHeadOfSecurity = Sheriff
 loadout-category-JobsSecuritySecurityOfficer = Security Officer
-loadout-category-JobsSecuritySeniorOfficer = Senior Officer
+loadout-category-JobsSecuritySeniorOfficer = Lieutenant
 loadout-category-JobsSecurityWarden = Warden
 
 # Service

@@ -70,19 +70,19 @@ ent-LockerScientist = шкаф учёного
     .desc = { ent-LockerBase.desc }
     .suffix = { "" }
 
-ent-LockerHeadOfSecurity = шкаф главы службы безопасности
+ent-LockerHeadOfSecurity = шкаф главы Департамента Шерифа
     .desc = { ent-LockerBaseSecure.desc }
     .suffix = { "" }
 
-ent-LockerWarden = шкаф смотрителя
+ent-LockerWarden = шкаф бейлифа
     .desc = { ent-LockerBaseSecure.desc }
     .suffix = { "" }
 
-ent-LockerSecurity = шкаф офицера службы безопасности
+ent-LockerSecurity = шкаф офицера-патрульного
     .desc = { ent-LockerBaseSecure.desc }
     .suffix = { "" }
 
-ent-LockerDetective = шкаф детектива
+ent-LockerDetective = шкаф следователя
     .desc = Обычно пустой и холодный... как твоё сердце.
     .suffix = { "" }
 

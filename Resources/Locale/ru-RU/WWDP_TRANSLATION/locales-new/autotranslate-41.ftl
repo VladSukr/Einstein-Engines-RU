@@ -8,11 +8,11 @@ ent-AirlockExternalGlassAtmosphericsLocked = { ent-AirlockExternal }
 
 ent-AirlockDetectiveGlassLocked = { ent-Airlock }
    .desc = { ent-Airlock.desc }
-   .suffix = Стекл, Детектив, Закрыт
+   .suffix = Стекл, Следователь, Закрыт
 
 ent-AirlockMaintDetectiveLocked = { ent-Airlock }
    .desc = { ent-Airlock.desc }
-   .suffix = Тех, Детектив, Закрыт
+   .suffix = Тех, Следователь, Закрыт
 
 ent-AirlockExternalGlassShuttleArrivals = { ent-AirlockExternal }
    .desc = { ent-AirlockExternal.desc }
@@ -52,7 +52,7 @@ ent-WindoorSecureExternalLocked = { ent-WindoorSecure }
 
 ent-WindoorSecureSecurityLocked = { ent-WindoorSecure }
    .desc = { ent-WindoorSecure.desc }
-   .suffix = СБ, Закрыт
+   .suffix = ДШ, Закрыт
 
 ent-WindoorSecureScienceLocked = { ent-WindoorSecure }
    .desc = { ent-WindoorSecure.desc }

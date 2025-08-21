@@ -2,7 +2,7 @@ ent-ClothingOuterCoatBomber = куртка-бомбер
     .desc = Толстая, поношенная кожаная куртка-бомбер периода Второй мировой войны.
     .suffix = { "" }
 
-ent-ClothingOuterCoatDetective = тренч детектива
+ent-ClothingOuterCoatDetective = тренч следователя
     .desc = Прочный брезентовый плащ, разработка компании TX Fabrication Corp. Плащ устойчив к внешнему воздействию - идеально подходит для вашей следующей автодефенестрации!
     .suffix = { "" }
 
@@ -10,7 +10,7 @@ ent-ClothingOuterCoatGentle = аккуратное пальто
     .desc = Пальто для леди или джентльменов.
     .suffix = { "" }
 
-ent-ClothingOuterCoatHoSTrench = тренч главы службы безопасности
+ent-ClothingOuterCoatHoSTrench = тренч главы Департамента Шерифа
     .desc = Этот плащ был разработан специально для демонстрации власти.
     .suffix = { "" }
 
@@ -38,8 +38,8 @@ ent-ClothingOuterCoatPirate = одежда пирата
     .desc = Яррр.
     .suffix = { "" }
 
-ent-ClothingOuterCoatWarden = бронированная куртка смотрителя
-    .desc = Прочная, утилитарная куртка, предназначенная для защиты смотрителя от любых угроз, связанных с бригом.
+ent-ClothingOuterCoatWarden = бронированная куртка бейлифа
+    .desc = Прочная, утилитарная куртка, предназначенная для защиты бейлифа от любых угроз, связанных с бригом.
     .suffix = { "" }
 
 ent-ClothingOuterClownPriest = робы хонкоматери

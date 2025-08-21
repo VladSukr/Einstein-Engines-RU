@@ -10,12 +10,12 @@ ent-ClothingHeadHatBeretEngineering = инженерный берет
     .desc = Берет с эмблемой инженерного отдела. Для инженеров, которые предпочитают стиль безопасности.
     .suffix = { "" }
 
-ent-ClothingHeadHatBeretHoS = берет главы службы безопасности
+ent-ClothingHeadHatBeretHoS = берет главы Департамента Шерифа
     .desc = Черный берет с вышитой командирской эмблемой. Для офицеров, которые предпочитают стиль безопасности.
     .suffix = { "" }
 
-ent-ClothingHeadHatBeretWarden = берет смотрителя
-    .desc = Фирменный голубой берет с эмблемой смотрителя. Для офицеров, которые предпочитают стиль безопасности.
+ent-ClothingHeadHatBeretWarden = берет бейлифа
+    .desc = Фирменный голубой берет с эмблемой бейлифа. Для офицеров, которые предпочитают стиль безопасности.
     .suffix = { "" }
 
 ent-ClothingHeadHatBowlerHat = шляпа котелок
@@ -54,7 +54,7 @@ ent-ClothingHeadHatHopcap = фуражка главы персонала
     .desc = Большая, стильная капитанская фуражка.
     .suffix = { "" }
 
-ent-ClothingHeadHatHoshat = фуражка главы службы безопасности
+ent-ClothingHeadHatHoshat = фуражка главы Департамента Шерифа
     .desc = На станции новый шериф.
     .suffix = { "" }
 
@@ -114,7 +114,7 @@ ent-ClothingHeadHatVioletwizard = фиолетовая волшебная шля
     .desc = Странного вида фиолетовая шляпа, которая, несомненно, принадлежала настоящему магу.
     .suffix = { "" }
 
-ent-ClothingHeadHatWarden = фуражка смотрителя
+ent-ClothingHeadHatWarden = фуражка бейлифа
     .desc = Фуражка офицера полиции. Эта фуражка подчеркивает, что вы - ЗАКОН.
     .suffix = { "" }
 
