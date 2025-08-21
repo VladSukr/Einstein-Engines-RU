@@ -20,6 +20,7 @@ using Robust.Server.GameObjects;
 using Content.Server.Database;
 using Content.Server.GameTicking;
 using Content.Server.AWS.Economy.Bank;
+using Content.Server.Popups;
 
 namespace Content.Server.AWS.Economy.Insurance;
 
@@ -30,6 +31,7 @@ public sealed class EconomyInsuranceSystem : EconomyInsuranceSystemShared
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly InventorySystem _inventorySystem = default!;
     [Dependency] private readonly EconomyBankAccountSystem _economy = default!;
+    [Dependency] private readonly PopupSystem _popupSystem = default!;
 
     public override void Initialize()
     {
@@ -114,8 +116,13 @@ public sealed class EconomyInsuranceSystem : EconomyInsuranceSystemShared
         if (!TryGetInsuranceInfo(receivedInsuranceInfo.Id, out var fetchedInfo))
             return;
 
-        if (!_prototype.TryIndex(receivedInsuranceInfo.InsuranceProto, out _))
+        if (!_prototype.TryIndex(receivedInsuranceInfo.InsuranceProto, out var receivedInsuranceInfoProto))
             return;
+
+        if (receivedInsuranceInfoProto.CanBeBought)
+            receivedInsuranceInfo.InsuranceProto = fetchedInfo.InsuranceProto;
+
+        var currentInsuranceProtoId = fetchedInfo.InsuranceProto;
 
         if (CanOnlyEditInsuranceProto(entity, receivedInsuranceInfo.Id))
             fetchedInfo.InsuranceProto = receivedInsuranceInfo.InsuranceProto;
@@ -127,6 +134,15 @@ public sealed class EconomyInsuranceSystem : EconomyInsuranceSystemShared
             fetchedInfo.InsurerName = receivedInsuranceInfo.InsurerName;
             fetchedInfo.PayerAccountId = receivedInsuranceInfo.PayerAccountId;
         }
+
+        if (fetchedInfo.InsuranceProto != currentInsuranceProtoId)
+            if (!_economy.TrySendMoney(fetchedInfo.PayerAccountId, "NT-Med", (ulong) receivedInsuranceInfoProto.Cost,
+                "NT-Med",
+                out var error))
+            {
+                fetchedInfo.InsuranceProto = currentInsuranceProtoId;
+                _popupSystem.PopupEntity(error, entity);
+            }
 
         UpdateIconOnCardsById(fetchedInfo.Id);
         UpdateTerminalUserInterface(entity);
