@@ -32,7 +32,10 @@
   id: RCDLight
 
 - type: Tag
-  id: SyringeGunAmmo
+  id: XenomorphItem
 
 - type: Tag
-  id: XenomorphItem
+  id: FluxCore
+
+- type: Tag
+  id: FluxCoreSmall

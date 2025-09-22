@@ -262,6 +262,10 @@
     container:
       skills:
         electricity: enum.SkillLevel.NonSkilled
+  - type: GuideHelp
+    guides:
+    - Construction
+
 - type: entity
   name: multitool
   parent: BaseItem
@@ -340,6 +344,12 @@
     container:
       skills:
         electricity: enum.SkillLevel.Trained
+  - type: GuideHelp
+    guides:
+    - Networking
+    - WirePanels
+    - Airlocks
+    - InspectingPower
 
 - type: entity
   name: network configurator
@@ -390,7 +400,7 @@
     price: 56
   - type: GuideHelp
     guides:
-    - NetworkConfigurator
+    - Networking
   - type: Fixtures
     fixtures:
       fix1:

@@ -1,5 +1,7 @@
 using System.Linq;
 using System.Text.RegularExpressions;
+using Content.Shared._White.Bark;
+using Content.Shared._White.Bark.Systems;
 using Content.Shared._White.TTS;
 using Content.Shared.AWS.Economy.Insurance;
 using Content.Shared.CCVar;
@@ -32,6 +34,7 @@ public sealed partial class HumanoidCharacterProfile : ICharacterProfile
 
     public const int MaxNameLength = 64;
     public const int MaxDescLength = 1024;
+    public const int MaxCustomContentLength = 524288; // WD EDIT
 
     /// Job preferences for initial spawn
     [DataField]
@@ -99,6 +102,12 @@ public sealed partial class HumanoidCharacterProfile : ICharacterProfile
 
     [DataField]
     public string Voice { get; set; } = SharedHumanoidAppearanceSystem.DefaultVoice;
+
+    [DataField]
+    public string BarkVoice { get; set; } = SharedHumanoidAppearanceSystem.DefaultBarkVoice;
+
+    [DataField]
+    public BarkPercentageApplyData BarkSettings { get; set; } = BarkPercentageApplyData.Default;
     // WD EDIT END
 
     // SS14RU
@@ -166,6 +175,8 @@ public sealed partial class HumanoidCharacterProfile : ICharacterProfile
         int age,
         Sex sex,
         string voice, // WD EDIT
+        string barkVoice, // WD EDIT
+        BarkPercentageApplyData barkSettings, // WD EDIT
         string bodyType, // WD EDIT
         Gender gender,
         string? displayPronouns,
@@ -195,7 +206,9 @@ public sealed partial class HumanoidCharacterProfile : ICharacterProfile
         Age = age;
         Sex = sex;
         Voice = voice; // WD EDIT
+        BarkVoice = barkVoice; // WD EDIT
         BodyType = bodyType; // WD EDIT
+        BarkSettings = barkSettings.Clone(); // WD EDIT
         Gender = gender;
         DisplayPronouns = displayPronouns;
         StationAiName = stationAiName;
@@ -242,6 +255,8 @@ public sealed partial class HumanoidCharacterProfile : ICharacterProfile
             other.Age,
             other.Sex,
             other.Voice, // WD EDIT
+            other.BarkVoice, // WD EDIT
+            other.BarkSettings.Clone(), // WD EDIT
             other.BodyType, // WD EDIT
             other.Gender,
             other.DisplayPronouns,
@@ -346,12 +361,11 @@ public sealed partial class HumanoidCharacterProfile : ICharacterProfile
             .EnumeratePrototypes<TTSVoicePrototype>()
             .Where(o => CanHaveVoice(o, sex)).ToArray()
         ).ID;
-        // WD EDIT END
-
+         // WD EDIT END
 
         var name = GetName(species, gender);
 
-        return new HumanoidCharacterProfile()
+        var profile = new HumanoidCharacterProfile() // WD EDIT
         {
             Name = name,
             Sex = sex,
@@ -365,12 +379,30 @@ public sealed partial class HumanoidCharacterProfile : ICharacterProfile
             Employer = SharedHumanoidAppearanceSystem.DefaultEmployer,
             Lifepath = SharedHumanoidAppearanceSystem.DefaultLifepath,
         };
+
+        // WD EDIT START
+        var barkSystem = IoCManager.Resolve<IEntityManager>().System<SharedBarkSystem>();
+        var barkVoiceList = barkSystem.GetVoiceList(profile);
+
+        var barkVoice = SharedHumanoidAppearanceSystem.DefaultBarkVoice;
+        if (barkVoiceList.Any())
+        {
+            barkVoice = random.Pick(barkVoiceList).ID;
+        }
+
+        profile.BarkVoice = barkVoice;
+
+        return profile;
+        // WD EDIT END
     }
 
     public HumanoidCharacterProfile WithName(string name) => new(this) { Name = name };
     public HumanoidCharacterProfile WithFlavorText(string flavorText) => new(this) { FlavorText = flavorText };
     public HumanoidCharacterProfile WithVoice(string voice) => new(this) { Voice = voice }; // WD EDIT
     public HumanoidCharacterProfile WithBodyType(string bodyType) => new(this) { BodyType = bodyType }; // WD EDIT
+    public HumanoidCharacterProfile WithBarkVoice(string barkVoice, BarkPercentageApplyData setting) =>
+        new(this) { BarkVoice = barkVoice, BarkSettings = setting.Clone() }; // WD EDIT
+
     public HumanoidCharacterProfile WithAge(int age) => new(this) { Age = age };
     // EE - Contractors Change Start
     public HumanoidCharacterProfile WithNationality(string nationality) => new(this) { Nationality = nationality };
@@ -474,14 +506,25 @@ public sealed partial class HumanoidCharacterProfile : ICharacterProfile
         bool pref,
         string? customName = null,
         string? customDescription = null,
+        string? customContent = null, // WD EDIT
         string? customColor = null,
         bool? customHeirloom = null)
     {
+        // WD EDIT START
+        if (customContent is { Length: > MaxCustomContentLength, })
+        {
+            var truncated = customContent.AsSpan(0, MaxCustomContentLength);
+            while (truncated.Length > 0 && char.IsLowSurrogate(truncated[^1]))
+                truncated = truncated[..^1];
+            customContent = truncated.ToString();
+        }
+        // WD EDIT END
+
         var list = new HashSet<LoadoutPreference>(_loadoutPreferences);
 
         list.RemoveWhere(l => l.LoadoutName == loadoutId);
         if (pref)
-            list.Add(new(loadoutId, customName, customDescription, customColor, customHeirloom) { Selected = pref });
+            list.Add(new(loadoutId, customName, customDescription, customContent, customColor, customHeirloom) { Selected = pref }); // WD EDIT
 
         return new HumanoidCharacterProfile(this) { _loadoutPreferences = list };
     }
@@ -501,6 +544,7 @@ public sealed partial class HumanoidCharacterProfile : ICharacterProfile
             && Age == other.Age
             && Sex == other.Sex
             && Voice == other.Voice // WD EDIT
+            && BarkVoice == other.BarkVoice // WD EDIT
             && BodyType == other.BodyType // WD EDIT
             && Gender == other.Gender
             && Species == other.Species
@@ -692,6 +736,30 @@ public sealed partial class HumanoidCharacterProfile : ICharacterProfile
         prototypeManager.TryIndex<TTSVoicePrototype>(Voice, out var voice);
         if (voice is null || !CanHaveVoice(voice, Sex))
             Voice = SharedHumanoidAppearanceSystem.DefaultSexVoice[sex];
+
+        if(!CanHaveBark(prototypeManager, collection))
+            BarkVoice = SharedHumanoidAppearanceSystem.DefaultBarkVoice;
+
+        for (var i = 0; i < loadouts.Count; i++)
+        {
+          var loadout = loadouts[i];
+          if (loadout.CustomContent is not { Length: > MaxCustomContentLength, })
+              continue;
+          var truncated = loadout.CustomContent.AsSpan(0, MaxCustomContentLength);
+          while (truncated.Length > 0 && char.IsLowSurrogate(truncated[^1]))
+              truncated = truncated[..^1];
+
+          var truncatedLoadout = new LoadoutPreference(
+                  loadout.LoadoutName,
+                  loadout.CustomName,
+                  loadout.CustomDescription,
+                  truncated.ToString(),
+                  loadout.CustomColorTint,
+                  loadout.CustomHeirloom)
+              { Selected = loadout.Selected, };
+
+          loadouts[i] = truncatedLoadout;
+        }
         // WD EDIT END
     }
 
@@ -699,6 +767,46 @@ public sealed partial class HumanoidCharacterProfile : ICharacterProfile
     public static bool CanHaveVoice(TTSVoicePrototype voice, Sex sex)
     {
         return voice.RoundStart && sex == Sex.Unsexed || voice.Sex == sex || voice.Sex == Sex.Unsexed;
+    }
+
+    public bool CanHaveBark(
+        IPrototypeManager prototypeManager,IDependencyCollection collection,
+        ProtoId<BarkListPrototype>? id = null
+    )
+    {
+        var voice = BarkVoice;
+        if(
+            !prototypeManager.TryIndex<BarkListPrototype>(id ?? "default", out var barkList) ||
+            !barkList.VoiceList.TryGetValue(voice, out var voiceRequirements) ||
+            !prototypeManager.TryIndex<BarkVoicePrototype>(voice, out var voicePrototype))
+        {
+            return false;
+        }
+
+        var isValid = true;
+        var reason = "";
+
+        foreach (var requirement in voiceRequirements)
+        {
+            var passes = requirement.IsValid(
+                default!,
+                this,
+                new Dictionary<string, TimeSpan>(),
+                false,
+                voicePrototype,
+                collection.Resolve<IEntityManager>(),
+                prototypeManager,
+                collection.Resolve<IConfigurationManager>(),
+                out reason);
+
+            if (passes == !requirement.Inverted)
+                continue;
+
+            isValid = false;
+            break;
+        }
+
+        return isValid;
     }
     // WD EDIT END
 
@@ -740,6 +848,8 @@ public sealed partial class HumanoidCharacterProfile : ICharacterProfile
         hashCode.Add((int) Gender);
         hashCode.Add(Voice); // WD EDIT
         hashCode.Add(BodyType); // WD EDIT
+        hashCode.Add(BarkVoice); // WD EDIT
+        hashCode.Add(BarkSettings); // WD EDIT
         hashCode.Add(Appearance);
         hashCode.Add((int) SpawnPriority);
         hashCode.Add((int) PreferenceUnavailable);

@@ -47,8 +47,8 @@ tilemap:
   3: FloorSteelMini
   106: FloorSteelMono
   26: FloorSteelRed
-  14: FloorSterile
-  11: FloorSterileDark
+  14: FloorSterileWhite
+  11: FloorSterile
   112: FloorTechMaintSteel
   113: FloorMaintWhite
   116: FloorWhite
@@ -93907,7 +93907,7 @@ entities:
     - type: Transform
       pos: 3.4480453,-11.339827
       parent: 2
-- proto: DungeonMasterCircuitBoard
+- proto: GameMasterCircuitBoard
   entities:
   - uid: 23375
     components:

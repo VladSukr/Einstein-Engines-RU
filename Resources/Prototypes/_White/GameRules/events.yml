@@ -53,6 +53,8 @@
     earliestStart: 35
     reoccurrenceDelay: 50
   - type: VentSpawnRule
+  - type: AntagSpawner
+    prototype: MobXenomorphLarva
   - type: XenomorphsRule
   - type: AntagObjectives
     objectives:
@@ -69,6 +71,8 @@
         color: "#8c3986"
       mindRoles:
       - MindRoleXenomorph
+  - type: DynamicRuleCost # WD edit
+    cost: 24
 
 - type: entity
   parent: BaseGameRule
