@@ -13,14 +13,11 @@ using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using Robust.Shared.Random;
-using Robust.Server.GameStates;
-using Robust.Shared.GameObjects;
 using Content.Shared.Roles;
 using Robust.Server.GameObjects;
-using Content.Server.Database;
-using Content.Server.GameTicking;
 using Content.Server.AWS.Economy.Bank;
 using Content.Server.Popups;
+using Content.Shared.Forensics.Components;
 
 namespace Content.Server.AWS.Economy.Insurance;
 
