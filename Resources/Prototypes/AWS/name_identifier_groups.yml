@@ -1,42 +1,42 @@
 ﻿- type: nameIdentifierGroup
   id: Service
-  prefix: Ser
+  prefix: СРВ
   minValue: 0
   maxValue: 999
 
 - type: nameIdentifierGroup
   id: Security
-  prefix: Sec
+  prefix: ДШ
   minValue: 0
   maxValue: 999
 
 - type: nameIdentifierGroup
   id: Science
-  prefix: Sci
+  prefix: ИСЛ
   minValue: 0
   maxValue: 999
 
 - type: nameIdentifierGroup
   id: Medical
-  prefix: Med
+  prefix: МЕД
   minValue: 0
   maxValue: 999
 
 - type: nameIdentifierGroup
   id: Cargo
-  prefix: Car
+  prefix: СНБ
   minValue: 0
   maxValue: 999
 
 - type: nameIdentifierGroup
   id: CC
-  prefix: CC
+  prefix: ЦК
   minValue: 0
   maxValue: 999
 
 - type: nameIdentifierGroup
   id: Engineering
-  prefix: Engi
+  prefix: ИНЖ
   minValue: 0
   maxValue: 999
 
