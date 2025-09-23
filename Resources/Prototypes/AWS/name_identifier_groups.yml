@@ -1,0 +1,42 @@
+﻿- type: nameIdentifierGroup
+  id: Service
+  prefix: Ser
+  minValue: 0
+  maxValue: 999
+
+- type: nameIdentifierGroup
+  id: Security
+  prefix: Sec
+  minValue: 0
+  maxValue: 999
+
+- type: nameIdentifierGroup
+  id: Science
+  prefix: Sci
+  minValue: 0
+  maxValue: 999
+
+- type: nameIdentifierGroup
+  id: Medical
+  prefix: Med
+  minValue: 0
+  maxValue: 999
+
+- type: nameIdentifierGroup
+  id: Cargo
+  prefix: Car
+  minValue: 0
+  maxValue: 999
+
+- type: nameIdentifierGroup
+  id: CC
+  prefix: CC
+  minValue: 0
+  maxValue: 999
+
+- type: nameIdentifierGroup
+  id: Engineering
+  prefix: Engi
+  minValue: 0
+  maxValue: 999
+
