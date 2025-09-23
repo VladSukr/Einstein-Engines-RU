@@ -34,6 +34,7 @@ using Content.Shared.Roles.Jobs;
 using Robust.Shared.Toolshed.TypeParsers;
 using System;
 using System.Collections.ObjectModel;
+using Content.Shared.NameIdentifier;
 
 namespace Content.Server.AWS.Economy.Bank
 {
@@ -721,10 +722,19 @@ namespace Content.Server.AWS.Economy.Bank
                     _prototypeManager.TryIndex(itemName, out var proto);
 
                     if (proto is not null)
+                    {
+                        string localizedLog;
+
+                        if (TryComp<NameIdentifierComponent>(uid, out var nameIdentifierComponent))
+                            localizedLog = Loc.GetString("economybanksystem-log-vending-buying-entname",
+                                ("itemName", proto.Name), ("entName", nameIdentifierComponent.FullIdentifier));
+                        else
+                            localizedLog = Loc.GetString("economybanksystem-log-vending-buying",
+                            ("itemName", proto.Name));
+
                         TryAddLog(component.LinkedAccount,
-                           new EconomyBankAccountLogField(_gameTiming.CurTime,
-                           Loc.GetString("economybanksystem-log-vending-buying",
-                           ("itemName", proto.Name))));
+                                new EconomyBankAccountLogField(_gameTiming.CurTime, localizedLog));
+                    }
                 }
             }
 
