@@ -20,7 +20,7 @@
     group: Service
   - type: EconomyBankTerminal
     allowCurrency: Thaler
-    linkedAccount: NT-ServiceВ
+    linkedAccount: NT-Service
 
 - type: entity
   parent: VendingMachine
@@ -94,6 +94,19 @@
   - type: EconomyBankTerminal
     allowCurrency: Thaler
     linkedAccount: NT-Medical
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachine-NT-Command
+  name: ТоргоматNT-Command
+  abstract: true
+  components:
+  - type: NameIdentifier
+    group: Command
+  - type: EconomyBankTerminal
+    allowCurrency: Thaler
+    linkedAccount: NT-Command
+
 
 - type: vendingMachineInventoryPricing
   id: AllEntsPricing

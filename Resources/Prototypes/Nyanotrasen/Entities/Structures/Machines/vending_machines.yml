@@ -30,7 +30,7 @@
 #     color: "#4b93ad"
 
 - type: entity
-  parent: VendingMachine
+  parent: VendingMachine-NT-Service #AWS-edit
   id: VendingMachineBoxingDrobe
   name: Boxing Drobe
   description: Always short on stock.
@@ -51,7 +51,7 @@
     access: [["Boxer"]]
 
 - type: entity
-  parent: VendingMachine
+  parent: VendingMachine-NT-Service #AWS-edit
   id: VendingMachineRepDrobe
   name: RepDrobe
   description: A machine for all your reporting needs, as long as you need clothes.
@@ -75,7 +75,7 @@
     access: [["Reporter"]]
 
 - type: entity
-  parent: VendingMachine
+  parent: VendingMachine-NT-Service #AWS-edit
   id: VendingMachineMNKDrobe
   name: MNK Drobe
   description: Quality garments provided by MoNoKrome.

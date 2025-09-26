@@ -1,5 +1,5 @@
 - type: entity
-  parent: VendingMachine
+  parent: VendingMachine-NT-Service #AWS-edit
   id: VendingMachinePride
   name: Pride-O-Mat
   description: A vending machine containing crimes.
@@ -26,7 +26,7 @@
       map: ["enum.WiresVisualLayers.MaintenancePanel"]
 
 - type: entity
-  parent: VendingMachine
+  parent: VendingMachine-NT-Cargo #AWS-edit
   id: VendingMachineCourierDrobe
   name: CourierDrobe
   description: Neither solar flares nor meteors nor plasma fire nor void of space stays these couriers from the swift completion of their appointed rounds.
