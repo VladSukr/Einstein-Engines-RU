@@ -4,6 +4,8 @@
   name: ТоргоматNT-Engineering
   abstract: true
   components:
+  - type: NameIdentifier
+    group: Engineering
   - type: EconomyBankTerminal
     allowCurrency: Thaler
     linkedAccount: NT-Engineering
@@ -14,6 +16,8 @@
   name: ТоргоматNT-Service
   abstract: true
   components:
+  - type: NameIdentifier
+    group: Service
   - type: EconomyBankTerminal
     allowCurrency: Thaler
     linkedAccount: NT-Service
@@ -24,6 +28,8 @@
   name: ТоргоматNT-Security
   abstract: true
   components:
+  - type: NameIdentifier
+    group: Security
   - type: EconomyBankTerminal
     allowCurrency: Thaler
     linkedAccount: NT-Security
@@ -34,6 +40,8 @@
   name: ТоргоматNT-Medical
   abstract: true
   components:
+  - type: NameIdentifier
+    group: Medical
   - type: EconomyBankTerminal
     allowCurrency: Thaler
     linkedAccount: NT-Medical
@@ -44,6 +52,8 @@
   name: ТоргоматNT-Service
   abstract: true
   components:
+  - type: NameIdentifier
+    group: Science
   - type: EconomyBankTerminal
     allowCurrency: Thaler
     linkedAccount: NT-Science
@@ -54,6 +64,8 @@
   name: ТоргоматNT-Cargo
   abstract: true
   components:
+  - type: NameIdentifier
+    group: Cargo
   - type: EconomyBankTerminal
     allowCurrency: Thaler
     linkedAccount: NT-Cargo
@@ -64,6 +76,8 @@
   name: ТоргоматNT-Centcom
   abstract: true
   components:
+  - type: NameIdentifier
+    group: CC
   - type: EconomyBankTerminal
     allowCurrency: Thaler
     linkedAccount: NT-Centcom
@@ -75,9 +89,24 @@
   abstract: true
   description: "It's a wall-mounted medical equipment dispenser. Natural chemicals only!"
   components:
+  - type: NameIdentifier
+    group: Medical
   - type: EconomyBankTerminal
     allowCurrency: Thaler
     linkedAccount: NT-Medical
+
+- type: entity
+  parent: VendingMachine
+  id: VendingMachine-NT-Command
+  name: ТоргоматNT-Command
+  abstract: true
+  components:
+  - type: NameIdentifier
+    group: Command
+  - type: EconomyBankTerminal
+    allowCurrency: Thaler
+    linkedAccount: NT-Command
+
 
 - type: vendingMachineInventoryPricing
   id: AllEntsPricing

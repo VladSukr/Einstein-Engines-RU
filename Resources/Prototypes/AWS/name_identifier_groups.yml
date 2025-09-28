@@ -1,0 +1,48 @@
+﻿- type: nameIdentifierGroup
+  id: Service
+  prefix: СРВ
+  minValue: 0
+  maxValue: 999
+
+- type: nameIdentifierGroup
+  id: Security
+  prefix: ДШ
+  minValue: 0
+  maxValue: 999
+
+- type: nameIdentifierGroup
+  id: Science
+  prefix: ИСЛ
+  minValue: 0
+  maxValue: 999
+
+- type: nameIdentifierGroup
+  id: Medical
+  prefix: МЕД
+  minValue: 0
+  maxValue: 999
+
+- type: nameIdentifierGroup
+  id: Cargo
+  prefix: СНБ
+  minValue: 0
+  maxValue: 999
+
+- type: nameIdentifierGroup
+  id: CC
+  prefix: ЦК
+  minValue: 0
+  maxValue: 999
+
+- type: nameIdentifierGroup
+  id: Engineering
+  prefix: ИНЖ
+  minValue: 0
+  maxValue: 999
+
+- type: nameIdentifierGroup
+  id: Command
+  prefix: КМД
+  minValue: 0
+  maxValue: 999
+

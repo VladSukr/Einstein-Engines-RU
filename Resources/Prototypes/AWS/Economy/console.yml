@@ -49,6 +49,7 @@
   id: ComputerEconomyManagement
   name: Консоль управления счетами
   description: Компьютер, используемый для управления финансовыми счетами.
+  suffix: Economy
   components:
   - type: EconomyManagementConsole
     cardSlot:
@@ -102,6 +103,7 @@
   id: ComputerEconomyManagementCircuitboard
   name: Плата консоли управления счетами
   description: Печатная плата для консоли, используемой для управления финансовыми счетами.
+  suffix: Economy
   components:
     - type: Sprite
       state: cpu_command

@@ -1746,7 +1746,7 @@
     access: [["Hydroponics"]]
 
 - type: entity
-  parent: VendingMachine-NT-Service
+  parent: VendingMachine-NT-Command
   id: VendingMachineLawDrobe
   name: LawDrobe
   description: Objection! This wardrobe dispenses the rule of law... and lawyer clothing..
@@ -2072,7 +2072,7 @@
     access: [["Kitchen"]]
 
 - type: entity
-  parent: VendingMachine-NT-Service
+  parent: VendingMachine-NT-Security
   id: VendingMachineDetDrobe
   name: DetDrobe
   description: A machine for all your detective needs, as long as you need clothes.
@@ -2252,7 +2252,7 @@
     access: [["Medical"]]
 
 - type: entity
-  parent: VendingMachine-NT-Science
+  parent: VendingMachine-NT-Medical
   id: VendingMachineViroDrobe
   name: ViroDrobe
   description: An unsterilized machine for dispending virology related clothing.
@@ -2380,7 +2380,7 @@
     - state: dispensereng
 
 - type: entity
-  parent: VendingMachine-NT-Service
+  parent: VendingMachine-NT-Medical
   id: VendingMachineChemicals
   name: ChemVend
   description: Probably not the coffee machine.
