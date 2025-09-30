@@ -13,3 +13,4 @@ trait-category-TraitsSpeechUncategorized = Без категории
 trait-category-TraitsSpeechAccents = Акценты
 trait-category-TraitsSpeechLanguages = Языки
 trait-category-Visual = Визуальные
+trait-category-Language = Языки
