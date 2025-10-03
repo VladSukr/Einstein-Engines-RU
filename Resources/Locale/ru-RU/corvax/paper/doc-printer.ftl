@@ -13,7 +13,7 @@ doc-text-printer-report-station =
 
     Objective:
     Objective completion status:
-    Threat level code:
+    Threat level code:a
     Reason for establishing the code:
     Active threats:
     Crew casualties:

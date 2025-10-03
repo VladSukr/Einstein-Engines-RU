@@ -46,6 +46,6 @@ flavor-complex-syndicate-bomb = будто взорвёт твой мозг
 flavor-complex-kvass = как хлеб, брошенный в блендер
 flavor-complex-mothamphetamine = будто во рту жужжат крылья
 
-candy-flavor-profile = This one is supposed to taste {$flavor}.
+candy-flavor-profile = Этот должен быть на вкус {$flavor}.
 candy-flavor-profile-multiple = У этой должен быть вкус {$flavors} и {$lastFlavor}.
 candy-flavor-profile-unknown = Вы понятия не имеете, какой у этой должен быть вкус.
