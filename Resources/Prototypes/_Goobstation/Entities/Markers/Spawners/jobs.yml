@@ -12,6 +12,20 @@
       - state: green
       - state: ertleader
 
+#SS14RU-start
+- type: entity
+  id: SpawnPointBlueshieldCommander
+  parent: SpawnPointJobBase
+  name: blueshieldcommander
+  components:
+  - type: SpawnPoint
+    job_id: BlueshieldCommander
+  - type: Sprite
+    layers:
+      - state: green
+      - state: ertleader
+#SS14RU-end
+
 - type: entity
   id: SpawnPointNanotrasenRepresentative
   parent: SpawnPointJobBase

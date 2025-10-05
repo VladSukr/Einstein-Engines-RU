@@ -1,11 +1,13 @@
+#SS14RU New role
 - type: job
-  id: BlueshieldOfficer
-  name: jon-name-blueshield-officer
-  description: "Act as a bodyguard and advisor for Command and CentCom VIPs."
-  playTimeTracker: JobBlueshieldOfficer
-  setPreference: true #SS14RU-edit
+  id: BlueshieldCommander
+  name: jon-name-blueshield-commander
+  description: jon-description-blueshield-commander
+  # "Act as a bodyguard and advisor for Command and CentCom VIPs."
+  playTimeTracker: JobBlueshieldCommander
+  setPreference: true
   requirements:
-    - В
+    - !type:CharacterDepartmentTimeRequirement
       department: Command
       min: 54000 # 15 hours
     - !type:CharacterDepartmentTimeRequirement
@@ -14,6 +16,9 @@
     - !type:CharacterDepartmentTimeRequirement
       department: Security
       min: 54000 # 15 hours
+    - !type:CharacterDepartmentTimeRequirement
+      department: Dignitary
+      min: 36000 # 10 hours
     - !type:CharacterTraitRequirement
       inverted: true
       traits:
@@ -28,8 +33,8 @@
       - NanoTrasen # BSO works directly for centcomm, they are not a contractor.
     - !type:CharacterOverallTimeRequirement # WWDP
       min: 7200
-  weight: 20
-  startingGear: BlueshieldOfficerGear
+  weight: 25
+  startingGear: BlueshieldComGear
   icon: "JobIconBlueshield"
   requireAdminNotify: true
   joinNotifyCrew: true
@@ -44,10 +49,12 @@
   - Engineering
   - Medical
   - Research
+  - Lawyer
   - Cargo
-  # - Command #SS14RU-edit disable
-  # - CentralCommand #SS14RU-edit disable
+  - Command
+  - CentralCommand
   - BlueshieldOfficer
+  - Lawyer
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, BluespaceLifelineImplant ] #Force the implant since its manual activation now
@@ -62,7 +69,7 @@
     powerCell: PowerCellHigh
 
 - type: startingGear
-  id: BlueshieldOfficerGear
+  id: BlueshieldComGear
   subGear:
   - BlueshieldPlasmamanGear
   equipment:
@@ -72,8 +79,8 @@
     eyes: ClothingEyesGlassesMedSec
     ears: ClothingHeadsetCorporations #SS14RU-edit
     gloves: ClothingHandsGlovesCombat
-    id: CorporationsPDA #SS14RU-edit
-#    pocket1: UniqueBlueshieldOfficerLockerTeleporter #SS14RU-edit disable
+    id: CorporationsComPDA #SS14RU-edit
+#    pocket1: UniqueBlueshieldOfficerLockerTeleporter #SS14RU-edit
 #    pocket2: BluespaceLifelineImplanter    #Doesn't need this since its implanted roundstart
 
     #outerClothing: ClothingBlueshieldArmourVest

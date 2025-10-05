@@ -81,19 +81,20 @@
   primary: false
   weight: 100
 
-# WD EDIT START
-# - type: department
-#   id: Dignitary
-#   name: department-Dignitary
-#   description: department-Dignitary-description
-#   color: "#33FE6D"
-#   roles:
-#   - BlueshieldOfficer
-#   - NanotrasenRepresentative
-#   - Magistrate
-#   primary: false
-#   weight: 101
-# WD EDIT END
+#SS14RU-start
+- type: department
+  id: Dignitary
+  name: department-Dignitary
+  description: department-Dignitary-description
+  color: "#33FE6D"
+  roles:
+  - NanotrasenRepresentative
+  - BlueshieldCommander #SS14RU-add
+  - BlueshieldOfficer
+  # - Magistrate #SS14RU-edit
+  primary: false
+  weight: 99
+#SS14RU-end
 
 - type: department
   id: Engineering

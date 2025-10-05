@@ -6,3 +6,8 @@
 
 - type: playTimeTracker
   id: JobMagistrate
+
+#SS14RU-start
+- type: playTimeTracker
+  id: JobBlueshieldCommander
+#SS14RU-end

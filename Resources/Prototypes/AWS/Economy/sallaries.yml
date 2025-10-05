@@ -91,6 +91,16 @@
     HeadOfPersonnel:
       startMoney: 150
       sallary: 150
+    # Сorporations
+    NanotrasenRepresentative:
+      startMoney: 200
+      sallary: 200
+    BlueshieldCommander:
+      startMoney: 125
+      sallary: 125
+    BlueshieldOfficer:
+      startMoney: 75
+      sallary: 75
     # Engineering
     AtmosphericTechnician:
       startMoney: 50

@@ -91,11 +91,11 @@ character-item-group-LoadoutHeadOfPersonnelShoes = Head of Personnel Shoes
 character-item-group-LoadoutHeadOfPersonnelUniforms = Head of Personnel Uniforms
 
 # Engineering
-# Dignitary - BlueshieldOfficer
-character-item-group-LoadoutBlueshieldOfficerBackpacks = Blueshield Officer Backpacks
-character-item-group-LoadoutBlueshieldOfficerVests = Blueshield Officer Vests
-character-item-group-LoadoutBlueshieldOfficerUniforms = Blueshield Officer Uniforms
-character-item-group-LoadoutBlueshieldOfficerPrimary = Blueshield Officer Primary Weapon
+#Dignitary - Corporate Supervision Service Officer SS14RU-edit
+character-item-group-LoadoutBlueshieldOfficerBackpacks = corporations Officer Backpacks
+character-item-group-LoadoutBlueshieldOfficerVests = corporations Officer Vests
+character-item-group-LoadoutBlueshieldOfficerUniforms = corporations Officer Uniforms
+character-item-group-LoadoutBlueshieldOfficerPrimary = corporations Officer Primary Weapon
 
 # Dignitary - Magistrate
 character-item-group-LoadoutMagistrateHead = Magistrate Headgear

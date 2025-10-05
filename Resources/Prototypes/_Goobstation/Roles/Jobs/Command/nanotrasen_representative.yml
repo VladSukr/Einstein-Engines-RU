@@ -1,9 +1,9 @@
 - type: job
   id: NanotrasenRepresentative
-  name: Corporate Liaison
+  name: job-name-corporate-liaison
   description: "Represent your employer, send reports back to them on the station's situation, inform the heads of anything CentCom orders them to do."
   playTimeTracker: JobNanotrasenRepresentative
-  setPreference: false # WWDP disabled
+  setPreference: true #SS14RU-edit
   requirements:
     - !type:CharacterDepartmentTimeRequirement
       department: Command
@@ -20,7 +20,7 @@
       - Unemployed
     - !type:CharacterOverallTimeRequirement # WWDP
       min: 7200
-  weight: 20
+  weight: 30 #SS14RU-edit
   startingGear: NanotrasenRepresentativeGear
   icon: "JobIconNanotrasenRepresentative"
   requireAdminNotify: true
@@ -28,7 +28,7 @@
   supervisors: job-supervisors-centcom
   canBeAntag: false
   access:
-  - CentralCommand
+  - Security
   - Brig
   - External
   - Cryogenics
@@ -36,10 +36,13 @@
   - Engineering
   - Medical
   - Research
+  - Lawyer #SS14RU-edit
+  - Cargo #SS14RU-edit
   - Command
   - NanotrasenRepresentative
+  - CentralCommand #SS14RU-edit
+  - BlueshieldOfficer #SS14RU-edit
   - Lawyer
-  - Cargo
   special:
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant ]
@@ -57,11 +60,19 @@
   subGear:
   - NanotrasenRepresentativePlasmamanGear
   equipment:
+    back: ClothingBackpackSatchelNanorep #SS14RU-edit
     shoes: ClothingShoesColorBlack
-    id: CentcomPDA
+    id: NanotrasenRepresentativePDA #SS14RU-edit
     jumpsuit: ClothingUniformJumpsuitNanotrasenRepresentative
-    ears: ClothingHeadsetAltCentCom
-    pocket1: UniqueNanorepLockerTeleporter
+    ears: ClothingHeadsetNtr #SS14RU-edit
+    # pocket1: UniqueNanorepLockerTeleporter #SS14RU-edit
+  #SS14RU-start
+  storage:
+    back:
+    - RubberStampNanorep
+    - Paper
+    - Paper
+#SS14RU-end
 
 - type: startingGear
   id: NanotrasenRepresentativePlasmamanGear

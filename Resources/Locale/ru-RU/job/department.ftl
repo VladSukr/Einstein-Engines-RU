@@ -8,4 +8,4 @@ department-Security = Департамента Шерифа
 department-Epistemics = Epistemics
 department-Silicon = Синтетики
 department-Specific = На определённых станциях
-department-Dignitary = Высокопоставленные
+department-Dignitary = Служба корпоративного надзора

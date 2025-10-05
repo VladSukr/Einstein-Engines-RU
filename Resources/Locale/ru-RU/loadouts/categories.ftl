@@ -20,7 +20,7 @@ loadout-category-JobsCommandAUncategorized = All Command
 loadout-category-JobsCommandCaptain = Captain
 loadout-category-JobsCommandHeadOfPersonnel = Head of Personnel
 loadout-category-JobsCommandAdminAssistant = Administrative Assistant
-loadout-category-JobsCommandBlueshieldOfficer = Blueshield Officer
+loadout-category-JobsCommandBlueshieldOfficer = corporations Officer
 loadout-category-JobsCommandNanorep = Nanotrasen Representative
 
 # Engineering
