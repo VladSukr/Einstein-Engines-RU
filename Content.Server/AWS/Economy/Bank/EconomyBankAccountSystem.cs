@@ -314,7 +314,13 @@ namespace Content.Server.AWS.Economy.Bank
                 return false;
             }
 
-            return TrySendMoney(fromHolder, recipientAccountHolder, amount, out errorMessage);
+            if (!TryGetAccount(recipientAccountHolder.Comp.AccountID, out var recipientAccount))
+            {
+                errorMessage = Loc.GetString("economybanksystem-transaction-error-notfoundaccout", ("accountId", recipientAccountHolder.Comp.AccountID));
+                return false;
+            }
+
+            return TrySendMoney(fromHolder, recipientAccount.Value, amount, out errorMessage);
         }
 
         [PublicAPI]
@@ -566,7 +572,7 @@ namespace Content.Server.AWS.Economy.Bank
                 for (int num = 0; num < numbersPerStrik; num++)
                 {
                     formedStrik += _random.Next(0, 10);
-                }   
+                }
 
                 res = res.Length == 0 ? formedStrik : res + descriptor + formedStrik;
             }
