@@ -5,7 +5,7 @@
   playTimeTracker: JobBlueshieldOfficer
   setPreference: true #SS14RU-edit
   requirements:
-    - В
+    - !type:CharacterDepartmentTimeRequirement
       department: Command
       min: 54000 # 15 hours
     - !type:CharacterDepartmentTimeRequirement
