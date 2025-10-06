@@ -13,7 +13,7 @@ delta-chat-emote-name-awoo = Аууу
 
 # Сообщения
 # Message
-chat-emote-msg-ring = звенит.
+chat-emote-msg-ring = звенит кольцо.
 chat-emote-msg-pew = пиу!
 chat-emote-msg-bang = бах!
 chat-emote-msg-rev = ревёт!
