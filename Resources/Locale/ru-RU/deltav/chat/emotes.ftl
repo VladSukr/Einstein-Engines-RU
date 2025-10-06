@@ -27,7 +27,7 @@ chat-emote-msg-awoo = аукает!
 
 # Триггеры
 # Triggers
-chat-emote-trigger-ring-1 = звенит
+chat-emote-trigger-ring-1 = звенит кольцо.
 chat-emote-trigger-pew-1 = пиукает
 chat-emote-trigger-pew-2 = пиу-пиукает
 chat-emote-trigger-bang-1 = бахает
