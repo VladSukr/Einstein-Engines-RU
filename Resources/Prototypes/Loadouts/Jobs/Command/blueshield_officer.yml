@@ -13,7 +13,7 @@
     - !type:CharacterJobRequirement
       jobs:
         - BlueshieldOfficer
-        - JobCnsCommander
+        - CnsCommander
         - CnsOfficer
   items:
     - ClothingBackpackBlueshield
@@ -29,7 +29,7 @@
     - !type:CharacterJobRequirement
       jobs:
         - BlueshieldOfficer
-        - JobCnsCommander
+        - CnsCommander
         - CnsOfficer
   items:
     - ClothingBackpackSatchelBlueshield
@@ -45,7 +45,7 @@
     - !type:CharacterJobRequirement
       jobs:
         - BlueshieldOfficer
-        - JobCnsCommander
+        - CnsCommander
         - CnsOfficer
   items:
     - ClothingBackpackDuffelBlueshield
@@ -61,7 +61,7 @@
     - !type:CharacterJobRequirement
       jobs:
         - BlueshieldOfficer
-        - JobCnsCommander
+        - CnsCommander
         - CnsOfficer
   items:
     - ClothingModsuitPraetorian #Blueshield modsuit
@@ -87,7 +87,7 @@
     - !type:CharacterJobRequirement
       jobs:
         - BlueshieldOfficer
-        - JobCnsCommander
+        - CnsCommander
         - CnsOfficer
     - !type:CharacterAgeRequirement
       min: 21
@@ -106,7 +106,7 @@
     - !type:CharacterJobRequirement
       jobs:
         - BlueshieldOfficer
-        - JobCnsCommander
+        - CnsCommander
         - CnsOfficer
     - !type:CharacterAgeRequirement
       min: 21
@@ -126,7 +126,7 @@
     - !type:CharacterJobRequirement
       jobs:
         - BlueshieldOfficer
-        - JobCnsCommander
+        - CnsCommander
         - CnsOfficer
     - !type:CharacterAgeRequirement
       min: 21
@@ -145,7 +145,7 @@
     - !type:CharacterJobRequirement
       jobs:
         - BlueshieldOfficer
-        - JobCnsCommander
+        - CnsCommander
         - CnsOfficer
     - !type:CharacterAgeRequirement
       min: 21
@@ -160,7 +160,7 @@
     - !type:CharacterJobRequirement
       jobs:
         - BlueshieldOfficer
-        - JobCnsCommander
+        - CnsCommander
         - CnsOfficer
   items:
     - MedkitCombatFilled
@@ -173,7 +173,7 @@
     - !type:CharacterJobRequirement
       jobs:
         - BlueshieldOfficer
-        - JobCnsCommander
+        - CnsCommander
         - CnsOfficer
   items:
     - Portafib
@@ -186,7 +186,7 @@
     - !type:CharacterJobRequirement
       jobs:
         - BlueshieldOfficer
-        - JobCnsCommander
+        - CnsCommander
         - CnsOfficer
   items:
     - HandheldCrewMonitor
@@ -199,7 +199,7 @@
     - !type:CharacterJobRequirement
       jobs:
         - BlueshieldOfficer
-        - JobCnsCommander
+        - CnsCommander
         - CnsOfficer
   items:
     - BSOManual
@@ -216,7 +216,7 @@
     - !type:CharacterJobRequirement
       jobs:
         - BlueshieldOfficer
-        - JobCnsCommander
+        - CnsCommander
         - CnsOfficer
     - !type:CharacterAgeRequirement
       min: 21
@@ -242,7 +242,7 @@
     - !type:CharacterJobRequirement
       jobs:
         - BlueshieldOfficer
-        - JobCnsCommander
+        - CnsCommander
         - CnsOfficer
   items:
     - ClothingHeadHatBeretNavy
@@ -258,7 +258,7 @@
     - !type:CharacterJobRequirement
       jobs:
         - BlueshieldOfficer
-        - JobCnsCommander
+        - CnsCommander
         - CnsOfficer
   items:
     - ClothingHeadHatBeretOfficer
@@ -274,7 +274,7 @@
     - !type:CharacterJobRequirement
       jobs:
         - BlueshieldOfficer
-        - JobCnsCommander
+        - CnsCommander
         - CnsOfficer
   items:
     - ClothingHeadHatCowboyBlueshield
@@ -297,7 +297,7 @@
     - !type:CharacterJobRequirement
       jobs:
         - BlueshieldOfficer
-        - JobCnsCommander
+        - CnsCommander
         - CnsOfficer
   items:
     - ClothingBlueshieldArmoredJacket
@@ -313,7 +313,7 @@
     - !type:CharacterJobRequirement
       jobs:
         - BlueshieldOfficer
-        - JobCnsCommander
+        - CnsCommander
         - CnsOfficer
   items:
     - ClothingBlueshieldArmoredCowboyJacket
@@ -329,7 +329,7 @@
     - !type:CharacterJobRequirement
       jobs:
         - BlueshieldOfficer
-        - JobCnsCommander
+        - CnsCommander
         - CnsOfficer
   items:
     - ClothingBlueshieldArmourVest
@@ -345,7 +345,7 @@
     - !type:CharacterJobRequirement
       jobs:
         - BlueshieldOfficer
-        - JobCnsCommander
+        - CnsCommander
         - CnsOfficer
   items:
     - ClothingBlueshieldArmoredMarine
@@ -361,7 +361,7 @@
     - !type:CharacterJobRequirement
       jobs:
         - BlueshieldOfficer
-        - JobCnsCommander
+        - CnsCommander
         - CnsOfficer
   items:
     - ClothingBlueshieldArmoredVest
@@ -377,7 +377,7 @@
     - !type:CharacterJobRequirement
       jobs:
         - BlueshieldOfficer
-        - JobCnsCommander
+        - CnsCommander
         - CnsOfficer
   items:
     - ClothingBlueshieldArmoredKimono
@@ -393,7 +393,7 @@
     - !type:CharacterJobRequirement
       jobs:
         - BlueshieldOfficer
-        - JobCnsCommander
+        - CnsCommander
         - CnsOfficer
   items:
     - ClothingBlueshieldArmoredCoat
@@ -412,7 +412,7 @@
     - !type:CharacterJobRequirement
       jobs:
         - BlueshieldOfficer
-        - JobCnsCommander
+        - CnsCommander
         - CnsOfficer
   items:
     - ClothingUniformJumpskirtBlueshieldOfficer
@@ -428,7 +428,7 @@
     - !type:CharacterJobRequirement
       jobs:
         - BlueshieldOfficer
-        - JobCnsCommander
+        - CnsCommander
         - CnsOfficer
   items:
     - ClothingUniformJumpsuitBlueshieldOfficer
