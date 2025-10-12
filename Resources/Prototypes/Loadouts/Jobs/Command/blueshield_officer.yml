@@ -12,7 +12,7 @@
       group: LoadoutBlueshieldOfficerBackpacks
     - !type:CharacterJobRequirement
       jobs:
-        - BlueshieldOfficer
+#        - BlueshieldOfficer
         - CnsCommander
         - CnsOfficer
   items:
@@ -28,7 +28,7 @@
       group: LoadoutBlueshieldOfficerBackpacks
     - !type:CharacterJobRequirement
       jobs:
-        - BlueshieldOfficer
+#        - BlueshieldOfficer
         - CnsCommander
         - CnsOfficer
   items:
@@ -44,7 +44,7 @@
       group: LoadoutBlueshieldOfficerBackpacks
     - !type:CharacterJobRequirement
       jobs:
-        - BlueshieldOfficer
+#        - BlueshieldOfficer
         - CnsCommander
         - CnsOfficer
   items:
@@ -60,7 +60,7 @@
       group: LoadoutBlueshieldOfficerBackpacks
     - !type:CharacterJobRequirement
       jobs:
-        - BlueshieldOfficer
+#        - BlueshieldOfficer
         - CnsCommander
         - CnsOfficer
   items:
@@ -86,7 +86,7 @@
       min: 18000 # 5 hours
     - !type:CharacterJobRequirement
       jobs:
-        - BlueshieldOfficer
+#        - BlueshieldOfficer
         - CnsCommander
         - CnsOfficer
     - !type:CharacterAgeRequirement
@@ -105,7 +105,7 @@
       group: LoadoutBlueshieldOfficerPrimary
     - !type:CharacterJobRequirement
       jobs:
-        - BlueshieldOfficer
+#        - BlueshieldOfficer
         - CnsCommander
         - CnsOfficer
     - !type:CharacterAgeRequirement
@@ -125,7 +125,7 @@
       group: LoadoutBlueshieldOfficerPrimary
     - !type:CharacterJobRequirement
       jobs:
-        - BlueshieldOfficer
+#        - BlueshieldOfficer
         - CnsCommander
         - CnsOfficer
     - !type:CharacterAgeRequirement
@@ -144,7 +144,7 @@
       group: LoadoutBlueshieldOfficerPrimary
     - !type:CharacterJobRequirement
       jobs:
-        - BlueshieldOfficer
+#        - BlueshieldOfficer
         - CnsCommander
         - CnsOfficer
     - !type:CharacterAgeRequirement
@@ -159,7 +159,7 @@
   requirements:
     - !type:CharacterJobRequirement
       jobs:
-        - BlueshieldOfficer
+#        - BlueshieldOfficer
         - CnsCommander
         - CnsOfficer
   items:
@@ -172,7 +172,7 @@
   requirements:
     - !type:CharacterJobRequirement
       jobs:
-        - BlueshieldOfficer
+#        - BlueshieldOfficer
         - CnsCommander
         - CnsOfficer
   items:
@@ -185,7 +185,7 @@
   requirements:
     - !type:CharacterJobRequirement
       jobs:
-        - BlueshieldOfficer
+#        - BlueshieldOfficer
         - CnsCommander
         - CnsOfficer
   items:
@@ -198,7 +198,7 @@
   requirements: # Knowledge does not occupy a weapon slot. You are a trained bodyguard, so it makes sense to have it. Balanced out by costing over half of your loadout points.
     - !type:CharacterJobRequirement
       jobs:
-        - BlueshieldOfficer
+#        - BlueshieldOfficer
         - CnsCommander
         - CnsOfficer
   items:
@@ -215,7 +215,7 @@
       group: LoadoutBlueshieldOfficerPrimary
     - !type:CharacterJobRequirement
       jobs:
-        - BlueshieldOfficer
+#        - BlueshieldOfficer
         - CnsCommander
         - CnsOfficer
     - !type:CharacterAgeRequirement
@@ -241,7 +241,7 @@
       group: LoadoutBlueshieldOfficerHats
     - !type:CharacterJobRequirement
       jobs:
-        - BlueshieldOfficer
+#        - BlueshieldOfficer
         - CnsCommander
         - CnsOfficer
   items:
@@ -257,7 +257,7 @@
       group: LoadoutBlueshieldOfficerHats
     - !type:CharacterJobRequirement
       jobs:
-        - BlueshieldOfficer
+#        - BlueshieldOfficer
         - CnsCommander
         - CnsOfficer
   items:
@@ -273,7 +273,7 @@
       group: LoadoutBlueshieldOfficerHats
     - !type:CharacterJobRequirement
       jobs:
-        - BlueshieldOfficer
+#        - BlueshieldOfficer
         - CnsCommander
         - CnsOfficer
   items:
@@ -296,7 +296,7 @@
       group: LoadoutBlueshieldOfficerVests
     - !type:CharacterJobRequirement
       jobs:
-        - BlueshieldOfficer
+#        - BlueshieldOfficer
         - CnsCommander
         - CnsOfficer
   items:
@@ -312,7 +312,7 @@
       group: LoadoutBlueshieldOfficerVests
     - !type:CharacterJobRequirement
       jobs:
-        - BlueshieldOfficer
+#        - BlueshieldOfficer
         - CnsCommander
         - CnsOfficer
   items:
@@ -328,7 +328,7 @@
       group: LoadoutBlueshieldOfficerVests
     - !type:CharacterJobRequirement
       jobs:
-        - BlueshieldOfficer
+#        - BlueshieldOfficer
         - CnsCommander
         - CnsOfficer
   items:
@@ -344,7 +344,7 @@
       group: LoadoutBlueshieldOfficerVests
     - !type:CharacterJobRequirement
       jobs:
-        - BlueshieldOfficer
+#        - BlueshieldOfficer
         - CnsCommander
         - CnsOfficer
   items:
@@ -360,7 +360,7 @@
       group: LoadoutBlueshieldOfficerVests
     - !type:CharacterJobRequirement
       jobs:
-        - BlueshieldOfficer
+#        - BlueshieldOfficer
         - CnsCommander
         - CnsOfficer
   items:
@@ -376,7 +376,7 @@
       group: LoadoutBlueshieldOfficerVests
     - !type:CharacterJobRequirement
       jobs:
-        - BlueshieldOfficer
+#        - BlueshieldOfficer
         - CnsCommander
         - CnsOfficer
   items:
@@ -392,7 +392,7 @@
       group: LoadoutBlueshieldOfficerVests
     - !type:CharacterJobRequirement
       jobs:
-        - BlueshieldOfficer
+#        - BlueshieldOfficer
         - CnsCommander
         - CnsOfficer
   items:
@@ -411,7 +411,7 @@
       group: LoadoutBlueshieldOfficerUniforms
     - !type:CharacterJobRequirement
       jobs:
-        - BlueshieldOfficer
+#        - BlueshieldOfficer
         - CnsCommander
         - CnsOfficer
   items:
@@ -427,7 +427,7 @@
       group: LoadoutBlueshieldOfficerUniforms
     - !type:CharacterJobRequirement
       jobs:
-        - BlueshieldOfficer
+#        - BlueshieldOfficer
         - CnsCommander
         - CnsOfficer
   items:

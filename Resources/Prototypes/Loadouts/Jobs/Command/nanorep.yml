@@ -12,7 +12,7 @@
       group: LoadoutNanorepBackpacks
     - !type:CharacterJobRequirement
       jobs:
-        - NanotrasenRepresentative
+        # - NanotrasenRepresentative
         - CnsRepresentative
   items:
     - ClothingBackpackSatchelNanorep
@@ -32,7 +32,7 @@
       group: LoadoutNanotrasenRepresentativeWeapon
     - !type:CharacterJobRequirement
       jobs:
-        - NanotrasenRepresentative
+        # - NanotrasenRepresentative
         - CnsRepresentative
   items:
     - WeaponCCDisabler
@@ -45,7 +45,7 @@
   requirements:
     - !type:CharacterJobRequirement
       jobs:
-        - NanotrasenRepresentative
+        # - NanotrasenRepresentative
         - CnsRepresentative
   items:
     - RubberStampCorporateLiaison
@@ -67,7 +67,7 @@
       group: LoadoutHead
     - !type:CharacterJobRequirement
       jobs:
-        - NanotrasenRepresentative
+        # - NanotrasenRepresentative
         - CnsRepresentative
 # Id
 
@@ -86,7 +86,7 @@
       group: LoadoutNanorepUniforms
     - !type:CharacterJobRequirement
       jobs:
-        - NanotrasenRepresentative
+        # - NanotrasenRepresentative
         - CnsRepresentative
     - !type:CharacterEmployerRequirement
       employers:
@@ -104,7 +104,7 @@
       group: LoadoutNanorepUniforms
     - !type:CharacterJobRequirement
       jobs:
-        - NanotrasenRepresentative
+        # - NanotrasenRepresentative
         - CnsRepresentative
     - !type:CharacterEmployerRequirement
       employers:
@@ -122,7 +122,7 @@
       group: LoadoutNanorepUniforms
     - !type:CharacterJobRequirement
       jobs:
-        - NanotrasenRepresentative
+        # - NanotrasenRepresentative
         - CnsRepresentative
     - !type:CharacterEmployerRequirement
       employers:
@@ -140,7 +140,7 @@
       group: LoadoutNanorepUniforms
     - !type:CharacterJobRequirement
       jobs:
-        - NanotrasenRepresentative
+        # - NanotrasenRepresentative
         - CnsRepresentative
     - !type:CharacterEmployerRequirement
       employers:
@@ -158,7 +158,7 @@
       group: LoadoutNanorepUniforms
     - !type:CharacterJobRequirement
       jobs:
-        - NanotrasenRepresentative
+        # - NanotrasenRepresentative
         - CnsRepresentative
     - !type:CharacterEmployerRequirement
       employers:
@@ -176,7 +176,7 @@
       group: LoadoutNanorepUniforms
     - !type:CharacterJobRequirement
       jobs:
-        - NanotrasenRepresentative
+        # - NanotrasenRepresentative
         - CnsRepresentative
     - !type:CharacterEmployerRequirement
       employers:
@@ -196,7 +196,7 @@
       group: LoadoutNanorepUniforms
     - !type:CharacterJobRequirement
       jobs:
-        - NanotrasenRepresentative
+        # - NanotrasenRepresentative
         - CnsRepresentative
     - !type:CharacterEmployerRequirement
         employers:
@@ -214,7 +214,7 @@
       group: LoadoutNanorepUniforms
     - !type:CharacterJobRequirement
       jobs:
-        - NanotrasenRepresentative
+        # - NanotrasenRepresentative
         - CnsRepresentative
     - !type:CharacterEmployerRequirement
         employers:
@@ -233,7 +233,7 @@
       group: LoadoutNanorepUniforms
     - !type:CharacterJobRequirement
       jobs:
-        - NanotrasenRepresentative
+        # - NanotrasenRepresentative
         - CnsRepresentative
   items:
     - ClothingUniformJumpskirtNanotrasenRepresentative
@@ -248,7 +248,7 @@
       group: LoadoutNanorepUniforms
     - !type:CharacterJobRequirement
       jobs:
-        - NanotrasenRepresentative
+        # - NanotrasenRepresentative
         - CnsRepresentative
   items:
     - ClothingUniformJumpsuitNanotrasenRepresentative
