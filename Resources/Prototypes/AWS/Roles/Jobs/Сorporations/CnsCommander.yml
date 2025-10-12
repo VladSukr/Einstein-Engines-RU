@@ -14,9 +14,6 @@
     - !type:CharacterDepartmentTimeRequirement
       department: Security
       min: 54000 # 15 hours
-    - !type:CharacterDepartmentTimeRequirement
-      department: Dignitary
-      min: 36000 # 10 hours
     - !type:CharacterTraitRequirement
       inverted: true
       traits:
