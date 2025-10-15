@@ -14,10 +14,18 @@ RELEASE_DIR = "release"
 # CONFIGURATION PARAMETERS
 # Forks should change these to publish to their own infrastructure.
 #
-ROBUST_CDN_URL = "https://cdn.ss14.org/"
+ROBUST_CDN_URL = "https://cdn.simplestation.org/"
 FORK_ID = "einstein-engines"
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--fork-id", default=FORK_ID)
+    parser.add_argument("--robust-cdn-url", default=ROBUST_CDN_URL)
+
+    args = parser.parse_args()
+    fork_id = args.fork_id
+    robust_cdn_url = args.robust_cdn_url
+
     session = requests.Session()
     session.headers = {
         "Authorization": f"Bearer {PUBLISH_TOKEN}",
