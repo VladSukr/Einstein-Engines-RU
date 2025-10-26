@@ -30,6 +30,9 @@
   - type: Drink
   - type: Sprite
     state: icon
+  - type: PhysicalComposition
+    materialComposition:
+      Glass: 20
   - type: Spillable
     solution: drink
   - type: MeleeWeapon
@@ -58,8 +61,6 @@
   components:
   - type: Sprite
     sprite: Objects/Consumable/Drinks/golden_cup.rsi
-  - type: StaticPrice
-    price: 125
 
 - type: entity
   parent: DrinkBaseCup
@@ -71,10 +72,10 @@
   - type: Sprite
     sprite: Objects/Consumable/Drinks/mug.rsi
     layers:
-    - state: icon-0
-    - map: ["enum.SolutionContainerLayers.Fill"]
-      state: icon-3
-      visible: false
+      - state: icon-0
+      - map: ["enum.SolutionContainerLayers.Fill"]
+        state: icon-3
+        visible: false
   - type: Appearance
   - type: SolutionContainerVisuals
     maxFillLevels: 3

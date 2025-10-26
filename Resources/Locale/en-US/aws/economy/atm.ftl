@@ -1,0 +1,16 @@
+economy-bank-atm-menu-title = ATM
+economy-bank-atm-menu-account-id = Account ID
+economy-bank-atm-menu-account-owner = Owner
+economy-bank-atm-menu-account-balance = Balance
+economy-bank-atm-menu-withdraw-label = Withdraw
+economy-bank-atm-menu-withdraw-button = Withdraw
+economy-bank-atm-menu-transfer-label = Transfer
+economy-bank-atm-menu-transfer-recipient-label = Recipient account ID
+economy-bank-atm-menu-transfer-prefix-nt = NT-
+economy-bank-atm-menu-transfer-button = Transfer
+economy-bank-atm-menu-history-label = Transaction history
+economy-bank-atm-menu-history-search-placeholder = Filter transactions…
+economy-bank-atm-menu-history-empty = No transactions for this account yet.
+economy-bank-atm-menu-history-empty-filtered = No transactions match your search.
+economy-bank-atm-menu-history-entry = { $time } - { $message }
+economy-bank-atm-menu-transfer-amount-label = Transfer amount

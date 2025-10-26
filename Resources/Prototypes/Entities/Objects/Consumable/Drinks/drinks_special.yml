@@ -72,8 +72,6 @@
         map: [ "enum.SolutionContainerLayers.Overlay" ]
   - type: Appearance
   - type: SolutionContainerVisuals
-    maxFillLevels: 2
-    fillBaseName: fill
 
 - type: entity
   parent: DrinkGlassBase
@@ -154,8 +152,6 @@
     sprite: Objects/Consumable/Drinks/jigger.rsi
     state: icon
   - type: PhysicalComposition
-    materialComposition:
-      Steel: 20
 
 - type: entity
   parent: [BaseItem, BartenderMixer]
@@ -173,5 +169,3 @@
     sprite: Objects/Consumable/Drinks/icebucket.rsi
     state: icon
   - type: PhysicalComposition
-    materialComposition:
-      Steel: 75
