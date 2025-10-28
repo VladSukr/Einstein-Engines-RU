@@ -22,6 +22,9 @@
     state: icon
   - type: Item
     size: Small
+  - type: PhysicalComposition
+    materialComposition:
+      Cardboard: 40
   - type: MeleeWeapon
     canBeBlocked: false # WD EDIT
     soundNoDamage:
@@ -86,7 +89,6 @@
         - ReagentId: JuiceLime
           Quantity: 50
   - type: Sprite
-    sprite: Objects/Consumable/Drinks/limejuice.rsi
 
 - type: entity
   parent: [DrinkCartonVisualsOpenable, DrinkCartonBaseFull]
@@ -101,7 +103,6 @@
         - ReagentId: JuiceOrange
           Quantity: 50
   - type: Sprite
-    sprite: Objects/Consumable/Drinks/orangejuice.rsi
 
 - type: entity
   parent: [DrinkCartonVisualsOpenable, DrinkCartonBaseFull]
@@ -116,7 +117,6 @@
         - ReagentId: JuiceTomato
           Quantity: 50
   - type: Sprite
-    sprite: Objects/Consumable/Drinks/tomatojuice.rsi
 
 - type: entity
   parent: [DrinkBottleVisualsOpenable, DrinkBottlePlasticBaseFull]
@@ -134,7 +134,6 @@
   - type: Label
     currentLabel: reagent-name-coconut-water
   - type: Sprite
-    sprite: Objects/Consumable/Drinks/coconutwater.rsi
 
 - type: entity
   parent: [DrinkCartonVisualsOpenable, DrinkCartonBaseFull]
@@ -149,7 +148,6 @@
         - ReagentId: Cream
           Quantity: 50
   - type: Sprite
-    sprite: Objects/Consumable/Drinks/cream.rsi
 
 - type: entity
   parent: [DrinkCartonVisualsOpenable, DrinkCartonBaseLargeFull]
@@ -209,7 +207,6 @@
         - ReagentId: JuiceLemon
           Quantity: 50
   - type: Sprite
-    sprite: Objects/Consumable/Drinks/lemonjuice.rsi
 
 - type: entity
   parent: DrinkCartonBaseFull
