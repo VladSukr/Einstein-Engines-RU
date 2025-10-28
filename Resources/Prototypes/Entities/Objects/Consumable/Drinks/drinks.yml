@@ -115,7 +115,7 @@
         Blunt: 5
   - type: PhysicalComposition
     materialComposition:
-      Glass: 25
+      Glass: 13
   - type: ExaminableSolution
     solution: drink
   - type: FitsInDispenser
@@ -177,8 +177,6 @@
         drink:
           maxVol: 30
     - type: SolutionContainerVisuals
-      maxFillLevels: 5
-      fillBaseName: fill
 
 - type: entity
   parent: DrinkGlass

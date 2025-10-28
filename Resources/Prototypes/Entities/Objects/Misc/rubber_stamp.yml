@@ -88,6 +88,8 @@
     stampState: "paper_stamp-lawyer"
   - type: Sprite
     state: stamp-lawyer
+  - type: StaticPrice
+    price: 15
 
 - type: entity
   name: clown's rubber stamp
@@ -101,6 +103,8 @@
     stampState: "paper_stamp-clown"
   - type: Sprite
     state: stamp-clown
+  - type: StaticPrice
+    price: 10
   - type: Tag
     tags:
       - ClownRubberStamp
@@ -170,6 +174,8 @@
     sound: null
   - type: Sprite
     state: stamp-mime
+  - type: StaticPrice
+    price: 10
 
 - type: entity
   name: logistics officer's rubber stamp
@@ -246,6 +252,8 @@
     stampState: "paper_stamp-ok"
   - type: Sprite
     state: stamp-ok
+  - type: StaticPrice
+    price: 6
 
 - type: entity
   name: DENIED rubber stamp
@@ -258,6 +266,8 @@
     stampState: "paper_stamp-deny"
   - type: Sprite
     state: stamp-deny
+  - type: StaticPrice
+    price: 6
 
 - type: entity
   name: detective's rubber stamp

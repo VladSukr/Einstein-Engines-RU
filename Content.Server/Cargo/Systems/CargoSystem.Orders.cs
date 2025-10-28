@@ -33,6 +33,9 @@ namespace Content.Server.Cargo.Systems
         /// </summary>
         private float _timer;
 
+        partial void ShouldSkipCargoPassiveIncome(EntityUid station, StationBankAccountComponent bank, ref bool skip);
+        partial void AdjustCargoInterfaceState(EntityUid station, StationCargoOrderDatabaseComponent orderDatabase, StationBankAccountComponent bankAccount, ref CargoConsoleInterfaceState state);
+
         private void InitializeConsole()
         {
             SubscribeLocalEvent<CargoOrderConsoleComponent, CargoConsoleAddOrderMessage>(OnAddOrderMessage);
@@ -101,6 +104,14 @@ namespace Content.Server.Cargo.Systems
                 var stationQuery = EntityQueryEnumerator<StationBankAccountComponent>();
                 while (stationQuery.MoveNext(out var uid, out var bank))
                 {
+                    if (bank.IncreasePerSecond == 0)
+                        continue;
+
+                    var skipPassiveIncome = false;
+                    ShouldSkipCargoPassiveIncome(uid, bank, ref skipPassiveIncome);
+                    if (skipPassiveIncome)
+                        continue;
+
                     var balanceToAdd = bank.IncreasePerSecond * Delay;
                     UpdateBankAccount(uid, bank, balanceToAdd);
                 }
@@ -331,6 +342,8 @@ namespace Content.Server.Cargo.Systems
         private void OnOrderUIOpened(EntityUid uid, CargoOrderConsoleComponent component, BoundUIOpenedEvent args)
         {
             var station = _station.GetOwningStation(uid);
+            if (station != null)
+                EnsureAwsBalanceSync(station.Value);
             UpdateOrderState(uid, station);
         }
 
@@ -353,13 +366,14 @@ namespace Content.Server.Cargo.Systems
 
             if (_uiSystem.HasUi(consoleUid, CargoConsoleUiKey.Orders))
             {
-                _uiSystem.SetUiState(consoleUid, CargoConsoleUiKey.Orders, new CargoConsoleInterfaceState(
+                var state = new CargoConsoleInterfaceState(
                     MetaData(station.Value).EntityName,
                     GetOutstandingOrderCount(orderDatabase),
                     orderDatabase.Capacity,
                     bankAccount.Balance,
-                    orderDatabase.Orders
-                ));
+                    orderDatabase.Orders);
+                AdjustCargoInterfaceState(station.Value, orderDatabase, bankAccount, ref state);
+                _uiSystem.SetUiState(consoleUid, CargoConsoleUiKey.Orders, state);
             }
         }
 
