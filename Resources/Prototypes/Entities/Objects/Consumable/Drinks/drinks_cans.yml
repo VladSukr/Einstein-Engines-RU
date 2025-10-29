@@ -24,6 +24,7 @@
       enum.TransferAmountUiKey.Key:
         type: TransferAmountBoundUserInterface
   - type: Sprite
+    sprite: Objects/Consumable/Drinks/cola.rsi
     state: icon
     layers:
       - state: icon
@@ -270,6 +271,7 @@
           Quantity: 30
   - type: Drink
   - type: Sprite
+    sprite: Objects/Consumable/Drinks/sodawater.rsi
 
 - type: entity
   parent: DrinkCanBaseFull
@@ -357,6 +359,7 @@
           Quantity: 30
   - type: Drink
   - type: Sprite
+    sprite: Objects/Consumable/Drinks/tonic.rsi
 
 - type: entity
   parent: DrinkCanBaseFull

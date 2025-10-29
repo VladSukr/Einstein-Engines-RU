@@ -12,7 +12,7 @@
   historyType: enum.HistoryType.Culture
   container:
     blockedSkillLevels:
-      driving: [enum.SkillLevel.Experienced]
+      piloting: [enum.SkillLevel.Experienced]
 
 - type: history
   id: culture-Lunaman

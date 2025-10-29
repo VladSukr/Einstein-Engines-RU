@@ -222,7 +222,8 @@
   description: criminal-description
   showInVote: true
   rules:
-  - CriminalAntagGameRule`n  - SubGamemodesRule
+  - CriminalAntagGameRule
+  - SubGamemodesRule
   - BasicStationEventScheduler
   - MeteorSwarmScheduler
   - SpaceTrafficControlEventScheduler

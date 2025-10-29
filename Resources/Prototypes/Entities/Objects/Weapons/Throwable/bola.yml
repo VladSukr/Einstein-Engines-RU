@@ -77,11 +77,11 @@
     sound:
       collection: sparks
   - type: KnockdownOnCollide
+    jitterTime: 7
+    stutterTime: 7
     knockdownTime: 1
   - type: StaticPrice
     price: 15
-    jitterTime: 7
-    stutterTime: 7
   - type: Tag
     tags:
     - SecBeltEquip

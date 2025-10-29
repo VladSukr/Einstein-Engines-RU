@@ -54,7 +54,7 @@
       right:
       - state: inhand-right
         color: "#EAE8E8"
-  
+  - type: Clothing
     sprite: Clothing/Shoes/color.rsi
     clothingVisuals:
       shoes:
