@@ -749,6 +749,7 @@
     speechVerb: SmallMob
   - type: MovementSpeedModifier
     baseWalkSpeed : 5
+    baseSprintSpeed : 3
   - type: SolutionContainerManager
     solutions:
       food:
@@ -760,7 +761,6 @@
           Quantity: 10
         - ReagentId: Sugar
           Quantity: 36
-    baseSprintSpeed : 3
   - type: Tag
     tags:
     - VimPilot

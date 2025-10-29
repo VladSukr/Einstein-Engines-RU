@@ -142,7 +142,7 @@
           Quantity: 8
         - ReagentId: Iodine
           Quantity: 4
-        - ReagentId: LemonJuice
+        - ReagentId: JuiceLemon
           Quantity: 2
 
 - type: entity

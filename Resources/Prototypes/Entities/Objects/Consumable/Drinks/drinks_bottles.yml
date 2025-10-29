@@ -53,6 +53,7 @@
   abstract: true
   components:
   - type: Sprite
+    sprite: Objects/Consumable/Drinks/alco-bottle.rsi
     state: icon
   - type: MeleeWeapon
     bluntStaminaDamageFactor: 2.0
@@ -111,6 +112,7 @@
           True: {state: "icon_open"}
           False: {state: "icon"}
   - type: Sprite
+    sprite: Objects/Consumable/Drinks/alco-bottle.rsi
     layers:
       - state: icon
         map: ["enum.OpenableVisuals.Layer"]
@@ -352,6 +354,7 @@
         - ReagentId: Patron
           Quantity: 100
   - type: Sprite
+    sprite: Objects/Consumable/Drinks/patronbottle.rsi
 
 - type: entity
   parent: [DrinkBottleVisualsOpenable, DrinkBottleGlassBaseFull]

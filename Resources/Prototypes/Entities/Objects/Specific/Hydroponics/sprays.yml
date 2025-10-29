@@ -21,10 +21,9 @@
   - type: DrainableSolution
     solution: spray
   - type: Item
+    heldPrefix: plantbgone
   - type: StaticPrice
     price: 4
-    sprite: Objects/Tools/Hydroponics/sprays.rsi
-    heldPrefix: plantbgone
 
 - type: entity
   name: weed spray
@@ -55,7 +54,6 @@
   - type: Item
   - type: StaticPrice
     price: 4
-    sprite: Objects/Tools/Hydroponics/sprays.rsi
 
 - type: entity
   name: pest spray
@@ -78,4 +76,3 @@
   - type: Item
   - type: StaticPrice
     price: 4
-    sprite: Objects/Tools/Hydroponics/sprays.rsi

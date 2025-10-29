@@ -8,6 +8,7 @@
   suffix: Empty
   components:
   - type: Sprite
+    sprite: Objects/Consumable/Drinks/alco-bottle.rsi
     state: icon
   - type: Item
     size: Normal
@@ -101,6 +102,7 @@
   suffix: Empty
   components:
   - type: Sprite
+    sprite: Objects/Consumable/Drinks/milk.rsi
     state: icon
   - type: SolutionContainerManager
     solutions:

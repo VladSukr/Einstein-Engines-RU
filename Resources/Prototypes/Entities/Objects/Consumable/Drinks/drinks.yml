@@ -16,6 +16,7 @@
     canChangeTransferAmount: true
   - type: Drink
   - type: Sprite
+    sprite: Objects/Consumable/Drinks/beer.rsi
     state: icon
   - type: MeleeWeapon
     canBeBlocked: false # WD EDIT

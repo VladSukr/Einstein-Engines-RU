@@ -29,6 +29,7 @@
         type: TransferAmountBoundUserInterface
   - type: Drink
   - type: Sprite
+    sprite: Objects/Consumable/Drinks/glass_clear.rsi
     state: icon
   - type: PhysicalComposition
     materialComposition:
