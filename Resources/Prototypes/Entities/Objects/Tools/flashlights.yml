@@ -128,8 +128,6 @@
     damage:
       types:
         Blunt: 8
-  - type: StaticPrice
-    price: 12
     bluntStaminaDamageFactor: 2.5
     heavyRangeModifier: 1.2
     maxTargets: 1

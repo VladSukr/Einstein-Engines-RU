@@ -46,9 +46,9 @@
     - type: Seed
       seedId: wheat
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/wheat.rsi
     - type: StaticPrice
       price: 6
-      sprite: Objects/Specific/Hydroponics/wheat.rsi
 
 - type: entity
   parent: SeedBase
@@ -69,9 +69,9 @@
     - type: Seed
       seedId: oat
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/oat.rsi
     - type: StaticPrice
       price: 6
-      sprite: Objects/Specific/Hydroponics/oat.rsi
 
 - type: entity
   parent: SeedBase
@@ -81,9 +81,9 @@
     - type: Seed
       seedId: banana
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/banana.rsi
     - type: StaticPrice
       price: 8
-      sprite: Objects/Specific/Hydroponics/banana.rsi
 
 - type: entity
   parent: SeedBase
@@ -103,9 +103,9 @@
     - type: Seed
       seedId: carrots
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/carrot.rsi
     - type: StaticPrice
       price: 6
-      sprite: Objects/Specific/Hydroponics/carrot.rsi
 
 - type: entity
   parent: SeedBase
@@ -115,9 +115,9 @@
     - type: Seed
       seedId: cabbage
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/cabbage.rsi
     - type: StaticPrice
       price: 6
-      sprite: Objects/Specific/Hydroponics/cabbage.rsi
 
 - type: entity
   parent: SeedBase
@@ -127,9 +127,9 @@
     - type: Seed
       seedId: garlic
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/garlic.rsi
     - type: StaticPrice
       price: 10
-      sprite: Objects/Specific/Hydroponics/garlic.rsi
 
 - type: entity
   parent: SeedBase
@@ -150,9 +150,9 @@
     - type: Seed
       seedId: lemon
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/lemon.rsi
     - type: StaticPrice
       price: 8
-      sprite: Objects/Specific/Hydroponics/lemon.rsi
 
 - type: entity
   parent: SeedBase
@@ -172,9 +172,9 @@
     - type: Seed
       seedId: lime
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/lime.rsi
     - type: StaticPrice
       price: 8
-      sprite: Objects/Specific/Hydroponics/lime.rsi
 
 - type: entity
   parent: SeedBase
@@ -184,9 +184,9 @@
     - type: Seed
       seedId: orange
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/orange.rsi
     - type: StaticPrice
       price: 8
-      sprite: Objects/Specific/Hydroponics/orange.rsi
 
 - type: entity
   parent: SeedBase
@@ -207,9 +207,9 @@
     - type: Seed
       seedId: pineapple
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/pineapple.rsi
     - type: StaticPrice
       price: 8
-      sprite: Objects/Specific/Hydroponics/pineapple.rsi
 
 - type: entity
   parent: SeedBase
@@ -219,9 +219,9 @@
     - type: Seed
       seedId: potato
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/potato.rsi
     - type: StaticPrice
       price: 6
-      sprite: Objects/Specific/Hydroponics/potato.rsi
 
 - type: entity
   parent: SeedBase
@@ -231,9 +231,9 @@
     - type: Seed
       seedId: sugarcane
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/sugarcane.rsi
     - type: StaticPrice
       price: 6
-      sprite: Objects/Specific/Hydroponics/sugarcane.rsi
 
 - type: entity
   parent: SeedBase
@@ -243,9 +243,9 @@
     - type: Seed
       seedId: teaPlant
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/tea_plant.rsi
     - type: StaticPrice
       price: 10
-      sprite: Objects/Specific/Hydroponics/tea_plant.rsi
 
 - type: entity
   parent: SeedBase
@@ -265,9 +265,9 @@
     - type: Seed
       seedId: towercap
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/towercap.rsi
     - type: StaticPrice
       price: 12
-      sprite: Objects/Specific/Hydroponics/towercap.rsi
 
 - type: entity
   parent: SeedBase
@@ -287,9 +287,9 @@
     - type: Seed
       seedId: tomato
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/tomato.rsi
     - type: StaticPrice
       price: 6
-      sprite: Objects/Specific/Hydroponics/tomato.rsi
 
 - type: entity
   parent: SeedBase
@@ -329,9 +329,9 @@
     - type: Seed
       seedId: eggplant
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/eggplant.rsi
     - type: StaticPrice
       price: 6
-      sprite: Objects/Specific/Hydroponics/eggplant.rsi
 
 - type: entity
   parent: SeedBase
@@ -341,9 +341,9 @@
     - type: Seed
       seedId: apple
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/apple.rsi
     - type: StaticPrice
       price: 8
-      sprite: Objects/Specific/Hydroponics/apple.rsi
 
 - type: entity
   parent: SeedBase
@@ -363,9 +363,9 @@
     - type: Seed
       seedId: corn
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/corn.rsi
     - type: StaticPrice
       price: 6
-      sprite: Objects/Specific/Hydroponics/corn.rsi
 
 - type: entity
   parent: SeedBase
@@ -375,9 +375,9 @@
     - type: Seed
       seedId: chanterelle
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/chanterelle.rsi
     - type: StaticPrice
       price: 12
-      sprite: Objects/Specific/Hydroponics/chanterelle.rsi
 
 - type: entity
   parent: SeedBase
@@ -387,9 +387,9 @@
     - type: Seed
       seedId: eggy
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/eggy.rsi
     - type: StaticPrice
       price: 6
-      sprite: Objects/Specific/Hydroponics/eggy.rsi
 
 - type: entity
   parent: SeedBase
@@ -455,9 +455,9 @@
     - type: Seed
       seedId: chili
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/chili.rsi
     - type: StaticPrice
       price: 10
-      sprite: Objects/Specific/Hydroponics/chili.rsi
 
 - type: entity
   parent: SeedBase
@@ -479,9 +479,9 @@
     - type: Seed
       seedId: aloe
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/aloe.rsi
     - type: StaticPrice
       price: 12
-      sprite: Objects/Specific/Hydroponics/aloe.rsi
 
 - type: entity
   parent: SeedBase
@@ -492,9 +492,9 @@
     - type: Seed
       seedId: poppy
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/poppy.rsi
     - type: StaticPrice
       price: 12
-      sprite: Objects/Specific/Hydroponics/poppy.rsi
 
 - type: entity
   parent: SeedBase
@@ -516,9 +516,9 @@
     - type: Seed
       seedId: lingzhi
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/lingzhi.rsi
     - type: StaticPrice
       price: 12
-      sprite: Objects/Specific/Hydroponics/lingzhi.rsi
 
 - type: entity
   parent: SeedBase
@@ -529,9 +529,9 @@
     - type: Seed
       seedId: ambrosiaVulgaris
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/ambrosia_vulgaris.rsi
     - type: StaticPrice
       price: 12
-      sprite: Objects/Specific/Hydroponics/ambrosia_vulgaris.rsi
 
 - type: entity
   parent: SeedBase
@@ -553,9 +553,9 @@
     - type: Seed
       seedId: galaxythistle
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/galaxythistle.rsi
     - type: StaticPrice
       price: 12
-      sprite: Objects/Specific/Hydroponics/galaxythistle.rsi
 
 - type: entity
   parent: SeedBase
@@ -599,9 +599,9 @@
     - type: Seed
       seedId: onion
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/onion.rsi
     - type: StaticPrice
       price: 6
-      sprite: Objects/Specific/Hydroponics/onion.rsi
 
 - type: entity
   parent: SeedBase
@@ -611,9 +611,9 @@
     - type: Seed
       seedId: rice
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/rice.rsi
     - type: StaticPrice
       price: 6
-      sprite: Objects/Specific/Hydroponics/rice.rsi
 
 - type: entity
   parent: SeedBase
@@ -623,9 +623,9 @@
     - type: Seed
       seedId: soybeans
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/soybeans.rsi
     - type: StaticPrice
       price: 6
-      sprite: Objects/Specific/Hydroponics/soybeans.rsi
 
 - type: entity
   parent: SeedBase
@@ -656,9 +656,9 @@
     - type: Seed
       seedId: onionred
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/onion_red.rsi
     - type: StaticPrice
       price: 6
-      sprite: Objects/Specific/Hydroponics/onion_red.rsi
 
 - type: entity
   parent: SeedBase
@@ -668,9 +668,9 @@
     - type: Seed
       seedId: watermelon
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/watermelon.rsi
     - type: StaticPrice
       price: 8
-      sprite: Objects/Specific/Hydroponics/watermelon.rsi
 
 - type: entity
   parent: SeedBase
@@ -690,9 +690,9 @@
     - type: Seed
       seedId: grape
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/grape.rsi
     - type: StaticPrice
       price: 8
-      sprite: Objects/Specific/Hydroponics/grape.rsi
 
 - type: entity
   parent: SeedBase
@@ -702,9 +702,9 @@
     - type: Seed
       seedId: cocoa
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/cocoa.rsi
     - type: StaticPrice
       price: 10
-      sprite: Objects/Specific/Hydroponics/cocoa.rsi
 
 - type: entity
   parent: SeedBase
@@ -714,9 +714,9 @@
     - type: Seed
       seedId: berries
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/berries.rsi
     - type: StaticPrice
       price: 8
-      sprite: Objects/Specific/Hydroponics/berries.rsi
 
 - type: entity
   parent: SeedBase
@@ -738,9 +738,9 @@
     - type: Seed
       seedId: pea
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/pea.rsi
     - type: StaticPrice
       price: 6
-      sprite: Objects/Specific/Hydroponics/pea.rsi
 
 - type: entity
   parent: SeedBase
@@ -761,9 +761,9 @@
     - type: Seed
       seedId: pumpkin
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/pumpkin.rsi
     - type: StaticPrice
       price: 6
-      sprite: Objects/Specific/Hydroponics/pumpkin.rsi
 
 - type: entity
   parent: SeedBase
@@ -783,9 +783,9 @@
     - type: Seed
       seedId: cotton
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/cotton.rsi
     - type: StaticPrice
       price: 6
-      sprite: Objects/Specific/Hydroponics/cotton.rsi
 
 - type: entity
   parent: SeedBase
@@ -824,9 +824,9 @@
     - type: Seed
       seedId: cherry
     - type: Sprite
+      sprite: Objects/Specific/Hydroponics/cherry.rsi
     - type: StaticPrice
       price: 8
-      sprite: Objects/Specific/Hydroponics/cherry.rsi
 
 - type: entity
   parent: SeedBase
@@ -837,3 +837,6 @@
       seedId: anomalyBerry
     - type: Sprite
       sprite: Objects/Specific/Hydroponics/anomaly_berry.rsi
+
+
+

@@ -158,6 +158,8 @@
   - type: MachinePart
     partType: PowerCell
     rating: 3
+  - type: StaticPrice
+    price: 6
 
 - type: entity
   id: PowerCellHighPrinted

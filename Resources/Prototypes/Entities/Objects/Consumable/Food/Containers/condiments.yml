@@ -442,9 +442,10 @@
       map: ["enum.SolutionContainerLayers.Fill"]
       visible: true
   - type: Icon
+    sprite: Objects/Consumable/Food/condiments.rsi
+    state: bottle-vinegar
   - type: StaticPrice
     price: 3
-    state: bottle-vinegar
 
 - type: entity
   parent: BaseFoodCondimentBottle
