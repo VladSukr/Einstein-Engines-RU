@@ -15,15 +15,15 @@ public sealed partial class CCVars
 #else
         CVarDef.Create("mood.enabled", false, CVar.SERVER);
 #endif*/
-    public static readonly CVarDef<bool> MoodEnabled = SunriseCCVars.MoodEnabled;
+    public static CVarDef<bool> MoodEnabled => SunriseCCVars.MoodEnabled;
 
     /*public static readonly CVarDef<bool> MoodIncreasesSpeed =
         CVarDef.Create("mood.increases_speed", true, CVar.SERVER);*/
-    public static readonly CVarDef<bool> MoodIncreasesSpeed = SunriseCCVars.MoodIncreasesSpeed;
+    public static CVarDef<bool> MoodIncreasesSpeed => SunriseCCVars.MoodIncreasesSpeed;
 
     /*public static readonly CVarDef<bool> MoodDecreasesSpeed =
         CVarDef.Create("mood.decreases_speed", true, CVar.SERVER);*/
-    public static readonly CVarDef<bool> MoodDecreasesSpeed = SunriseCCVars.MoodDecreasesSpeed;
+    public static CVarDef<bool> MoodDecreasesSpeed => SunriseCCVars.MoodDecreasesSpeed;
 
     public static readonly CVarDef<bool> MoodModifiesThresholds =
         CVarDef.Create("mood.modify_thresholds", false, CVar.SERVER);
