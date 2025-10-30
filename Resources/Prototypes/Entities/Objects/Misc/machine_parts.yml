@@ -39,7 +39,7 @@
         - CapacitorStockPart
     - type: Stack
       stackType: Capacitor
-    - type: StaticPrice
+    - type: StackPrice
       price: 10
   # WWDP quick crafts
     - type: Construction
@@ -63,7 +63,7 @@
       - MicroManipulatorStockPart
     - type: Stack
       stackType: Manipulator
-    - type: StaticPrice
+    - type: StackPrice
       price: 10
 
 - type: entity
@@ -83,7 +83,7 @@
       - MatterBinStockPart
     - type: Stack
       stackType: MatterBin
-    - type: StaticPrice
+    - type: StackPrice
       price: 10
 
 # Rating 2

@@ -24,8 +24,6 @@
   - type: Clickable
   - type: StaticPrice
     price: 0
-  - type: StackPrice
-    price: 2.25
   - type: PhysicalComposition
     materialComposition:
       Steel: 15
@@ -59,6 +57,8 @@
     cablePrototypeID: CableHV
     blockingWireType: HighVoltage
   - type: Appearance
+  - type: StackPrice
+    price: 0.4
   - type: Extractable
     grindableSolutionName: hvcable
   - type: SolutionContainerManager
@@ -151,6 +151,8 @@
     cablePrototypeID: CableMV
     blockingWireType: MediumVoltage
   - type: Appearance
+  - type: StackPrice
+    price: 0.333333
   - type: Extractable
     grindableSolutionName: mvcable
   - type: SolutionContainerManager
@@ -236,8 +238,6 @@
     cablePrototypeID: CableApcExtension
     blockingWireType: Apc
   - type: Appearance
-  - type: StaticPrice
-    price: 12
   - type: Extractable
     grindableSolutionName: lvcable
   - type: SolutionContainerManager
@@ -283,7 +283,7 @@
     - prototype: makeshifthandcuffs
     - prototype: CableTerminal
   - type: StackPrice
-    price: 0.4
+    price: 0.2666667
 
 - type: entity
   parent: CableApcStack
