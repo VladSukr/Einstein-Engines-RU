@@ -311,7 +311,7 @@ namespace Content.Server.GameTicking
                             ("gender", character.Gender), // WD-EDIT
                             ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))),
                         Loc.GetString("latejoin-arrival-sender"),
-                        playDefaultSound: false,
+                        playSound: false,
                         colorOverride: Color.Gold);
                 }
                 else
@@ -323,7 +323,7 @@ namespace Content.Server.GameTicking
                             ("gender", character.Gender), // WD-EDIT
                             ("job", CultureInfo.CurrentCulture.TextInfo.ToTitleCase(jobName))),
                         Loc.GetString("latejoin-arrival-sender"),
-                        playDefaultSound: false);
+                        playSound: false);
                 }
             }
 
@@ -587,3 +587,4 @@ namespace Content.Server.GameTicking
         #endregion
     }
 }
+

@@ -35,6 +35,9 @@
   - type: NpcFactionMember
     factions:
     - Dragon
+  - type: CollectiveMind
+    minds:
+    - Carp
   - type: Speech
     speechVerb: LargeMob
   - type: CombatMode

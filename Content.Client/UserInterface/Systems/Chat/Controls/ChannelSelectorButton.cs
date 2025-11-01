@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Numerics;
+using Content.Shared._Sunrise.CollectiveMind;
 using Content.Shared.Chat;
 using Robust.Client.Graphics;
 using Robust.Client.ResourceManagement;
@@ -73,17 +74,34 @@ public sealed class ChannelSelectorButton : ChatPopupButton<ChannelSelectorPopup
             ChatSelectChannel.OOC => Color.LightSkyBlue,
             ChatSelectChannel.Dead => Color.MediumPurple,
             ChatSelectChannel.Admin => Color.HotPink,
+            ChatSelectChannel.CollectiveMind => Color.LightGreen,
             ChatSelectChannel.Telepathic => Color.PaleVioletRed, //Nyano - Summary: determines the color for the chat.
             _ => Color.DarkGray
         };
     }
 
-    public void UpdateChannelSelectButton(ChatSelectChannel channel, Shared.Radio.RadioChannelPrototype? radio)
+    public void UpdateChannelSelectButton(ChatSelectChannel channel, Shared.Radio.RadioChannelPrototype? radio, CollectiveMindPrototype? collectiveMind = null)
     {
-        // WWDP EDIT START
-        var text = radio != null ? Loc.GetString(radio.Name) : ChannelSelectorName(channel);
+        string text;
+        Color color;
+
+        if (collectiveMind != null)
+        {
+            text = Loc.GetString(collectiveMind.Name);
+            color = collectiveMind.Color;
+        }
+        else if (radio != null)
+        {
+            text = Loc.GetString(radio.Name);
+            color = radio.Color;
+        }
+        else
+        {
+            text = ChannelSelectorName(channel);
+            color = ChannelSelectColor(channel);
+        }
+
         Text = $"[{text}]";
-        Modulate = radio?.Color ?? ChannelSelectColor(channel);
-        // WWDP EDIT END
+        Modulate = color;
     }
 }

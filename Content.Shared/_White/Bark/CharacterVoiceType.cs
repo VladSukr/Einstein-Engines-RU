@@ -6,6 +6,5 @@ namespace Content.Shared._White.Bark;
 public enum CharacterVoiceType
 {
     None,
-    Bark,
     TTS,
 }

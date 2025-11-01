@@ -118,9 +118,7 @@ public sealed partial class TTSSystem : EntitySystem
             return;
         }
 
-        var accentEvent = new TTSSanitizeEvent(args.Message);
-        RaiseLocalEvent(args.Source, accentEvent);
-        var message = accentEvent.Text;
+        var message = args.Message;
 
         HandleRadio(args.Receivers, message, protoVoice, voiceEv.Effect);
     }
@@ -354,6 +352,7 @@ public sealed class TTSSanitizeEvent : EntityEventArgs
         Text = text;
     }
 }
+
 
 
 

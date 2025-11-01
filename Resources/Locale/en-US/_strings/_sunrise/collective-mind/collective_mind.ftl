@@ -1,0 +1,14 @@
+collective-mind-chat-wrap-message = [bold]{ $channel }: { $message }[/bold]
+collective-mind-chat-wrap-message-with-author = [bold]{ $channel } ({ $source }): { $message }[/bold]
+collective-mind-chat-wrap-message-admin = { $source } ({ $channel }): { $message }
+hud-chatbox-select-channel-CollectiveMind = Collective Mind
+collective-mind-flesh-cult = Flesh
+collective-mind-xeno = Xeno
+collective-mind-blob = Blob
+collective-mind-dioneas = Diona
+collective-mind-arachnids = Arachnid
+collective-mind-carp = Carp
+collective-mind-zombie = Zombie
+collective-mind-changeling = Changeling
+collective-mind-blood-cult = Blood Cult
+collective-mind-abductor = Abductor

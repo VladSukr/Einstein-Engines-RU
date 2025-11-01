@@ -88,7 +88,7 @@ public sealed class MobReplacementRuleSystem : GameRuleSystem<MobReplacementRule
 
                 if (k == MathF.MaxMagnitude(component.NumberToReplace, 1)
                     && component.DoAnnouncement)
-                    _chat.DispatchStationAnnouncement(stations[0], Loc.GetString("station-event-rampant-intelligence-announcement"), playDefaultSound: true,
+                    _chat.DispatchStationAnnouncement(stations[0], Loc.GetString("station-event-rampant-intelligence-announcement"), playSound: true,
                         colorOverride: Color.Red, sender: "Central Command");
 
                 k--;
@@ -167,3 +167,4 @@ public sealed class MobReplacementRuleSystem : GameRuleSystem<MobReplacementRule
             aPC.NeedsPower = false;
     }
 }
+
