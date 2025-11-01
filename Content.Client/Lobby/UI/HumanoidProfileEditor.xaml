@@ -82,28 +82,6 @@
                                     <OptionButton Name="VoiceButton" HorizontalAlignment="Right" />
                                     <Button Name="VoicePlayButton" Text="▶" MaxWidth="80" />
                                 </BoxContainer>
-                                <!--BARK-->
-                                <BoxContainer HorizontalExpand="True" Orientation="Horizontal">
-                                    <Label Text="{Loc 'humanoid-profile-editor-bark-voice-label'}" />
-                                    <Control HorizontalExpand="True"/>
-                                    <OptionButton Name="VoiceBarkButton" HorizontalAlignment="Right" />
-                                    <Button Name="VoiceBarkPlayButton" Text="▶" MaxWidth="80" />
-                                </BoxContainer>
-
-                                <BoxContainer HorizontalExpand="True" Orientation="Horizontal">
-                                    <BoxContainer HorizontalExpand="True" Orientation="Vertical">
-                                        <controls:Knob Name="BarkPitchSlider" MinValue="0" MaxValue="255" HorizontalExpand="True" Margin="5 0 5 0" />
-                                        <Label Text="{Loc 'humanoid-profile-editor-bark-pitch-label'}" HorizontalAlignment="Center"/>
-                                    </BoxContainer>
-                                    <BoxContainer HorizontalExpand="True" Orientation="Vertical">
-                                        <controls:Knob Name="BarkPitchVarianceSlider" MinValue="0" MaxValue="255" HorizontalExpand="True" Margin="5 0 5 0" />
-                                        <Label Text="{Loc 'humanoid-profile-editor-bark-pitch-variance-label'}" HorizontalAlignment="Center"/>
-                                    </BoxContainer>
-                                    <BoxContainer HorizontalExpand="True" Orientation="Vertical">
-                                        <controls:Knob Name="BarkPauseSlider" MinValue="0" MaxValue="255" HorizontalExpand="True" Margin="5 0 5 0" />
-                                        <Label Text="{Loc 'humanoid-profile-editor-bark-pause-label'}" HorizontalAlignment="Center"/>
-                                    </BoxContainer>
-                                </BoxContainer>
                                 <!--WD EDIT END-->
                                 <!-- Customizable, cosmetic pronouns -->
                                 <BoxContainer Name="CosmeticPronousContainer" HorizontalExpand="True">

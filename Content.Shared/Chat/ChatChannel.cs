@@ -4,7 +4,7 @@ namespace Content.Shared.Chat
     ///     Represents chat channels that the player can filter chat tabs by.
     /// </summary>
     [Flags, Serializable]
-    public enum ChatChannel : ushort
+    public enum ChatChannel : uint
     {
         None = 0,
 
@@ -91,9 +91,14 @@ namespace Content.Shared.Chat
         Telepathic = 1 << 15,
 
         /// <summary>
+        ///     Collective mind channel for entities who share consciousness.
+        /// </summary>
+        CollectiveMind = 1 << 16, // Sunrise-Edit
+
+        /// <summary>
         ///     Channels considered to be IC.
         /// </summary>
-        IC = Local | Whisper | Radio | Dead | Emotes | Damage | Visual | Telepathic | Notifications, //Nyano - Summary: Adds telepathic as an 'IC' labelled chat..
+        IC = Local | Whisper | Radio | Dead | Emotes | Damage | Visual | Telepathic | Notifications | CollectiveMind,
 
         AdminRelated = Admin | AdminAlert | AdminChat,
     }

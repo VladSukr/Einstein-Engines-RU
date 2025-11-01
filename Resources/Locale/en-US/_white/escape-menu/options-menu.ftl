@@ -16,4 +16,5 @@ ui-options-film-grain-strength = Grain intensity: { $strength }
 ui-options-bark-volume = Bark volume
 ui-options-bark-limit = Bark limit
 ui-options-toggle-combat-mode-sounds = Sound of switching combat mode
+ui-voice-option = Character voice type
 

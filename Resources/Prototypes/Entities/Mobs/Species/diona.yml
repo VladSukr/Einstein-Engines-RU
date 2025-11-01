@@ -125,6 +125,9 @@
     whitelist:
       types:
       - Shard
+  - type: CollectiveMind
+    minds:
+    - Dioneas
   - type: FootPrints
     leftBarePrint: "footprint-left-bare-diona"
     rightBarePrint: "footprint-right-bare-diona"

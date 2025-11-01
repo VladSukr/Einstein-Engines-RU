@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Content.Server._Sunrise.Chat.Sanitization;
 using Content.Server._White.Hearing;
 using Content.Server.Administration.Logs;
 using Content.Server.Chat.Systems;
@@ -124,6 +125,12 @@ public sealed class RadioSystem : EntitySystem
 
         if (!language.SpeechOverride.AllowRadio)
             return;
+
+        var trySendEvent = new TrySendChatMessageEvent(message, InGameICChatType.Speak);
+        RaiseLocalEvent(messageSource, trySendEvent);
+        if (trySendEvent.Cancelled)
+            return;
+        message = trySendEvent.Message;
 
         // TODO if radios ever garble / modify messages, feedback-prevention needs to be handled better than this.
         if (!_messages.Add(message))

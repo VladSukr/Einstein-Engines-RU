@@ -42,9 +42,9 @@ public sealed class CultRuneRendingSystem : EntitySystem
         _chat.DispatchGlobalAnnouncement(
             message,
             Loc.GetString("blood-cult-title"),
-            true,
-            rune.Comp.FinishedDrawingAudio,
-            Color.DarkRed);
+            playSound: true,
+            announcementSound: rune.Comp.FinishedDrawingAudio,
+            colorOverride: Color.DarkRed);
     }
 
     private void OnRendingRuneInvoked(Entity<CultRuneRendingComponent> rune, ref TryInvokeCultRuneEvent args)

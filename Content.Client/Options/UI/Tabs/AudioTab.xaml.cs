@@ -67,15 +67,6 @@ public sealed partial class AudioTab : Control
             SliderVolumeTts,
             scale: ContentAudioSystem.TTSMultiplier);
 
-        Control.AddOptionPercentSlider(
-            WhiteCVars.BarkVolume,
-            SliderVolumeBark);
-
-        Control.AddOptionSlider(
-            WhiteCVars.BarkLimit,
-            SliderLimitBark,
-            0,
-            128);
         // WD EDIT END
 
         Control.AddOptionSlider(
@@ -98,7 +89,6 @@ public sealed partial class AudioTab : Control
             DropDownVoiceType,
             [
                 new (CharacterVoiceType.None, Loc.GetString("char-voice-none")),
-                new (CharacterVoiceType.Bark, Loc.GetString("char-voice-bark")),
                 new (CharacterVoiceType.TTS, Loc.GetString("char-voice-tts")),
             ]);
         // WD EDIT END

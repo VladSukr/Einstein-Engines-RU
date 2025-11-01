@@ -63,6 +63,9 @@
     understands:
     - TauCetiBasic
     - Xeeplian
+  - type: CollectiveMind
+    minds:
+    - Abductor
 
 - type: entity
   parent: BaseSpeciesDummy
