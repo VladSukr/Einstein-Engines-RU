@@ -37,4 +37,4 @@ gravity-generator-window-eta-value = { TOSTRING($left, "m\\:ss") }
 gravity-generator-examine-mass = Масса станции: { $mass } т
 gravity-generator-examine-ftl = БСС: { $state }
 gravity-generator-examine-ftl-locked = заблокирована
-gravity-generator-examine-ftl-free = доступна
+gravity-generator-examine-ftl-free = доступен
