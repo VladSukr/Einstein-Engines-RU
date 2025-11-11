@@ -5,7 +5,7 @@ namespace Content.Server.Power.Components;
 
 /// <inheritdoc cref="Content.Shared.Power.SharedPowerChargeComponent" />
 [RegisterComponent]
-[Access(typeof(PowerChargeSystem), typeof(Content.Server.Gravity.GravityGeneratorSystem))]
+[Access(typeof(PowerChargeSystem))]
 public sealed partial class PowerChargeComponent : SharedPowerChargeComponent
 {
     /// <summary>
@@ -63,8 +63,4 @@ public sealed partial class PowerChargeComponent : SharedPowerChargeComponent
 
     [ViewVariables]
     public bool NeedUIUpdate { get; set; }
-
-    [ViewVariables] public bool HasStationStatus { get; set; }
-    [ViewVariables] public float StationMassCache { get; set; }
-    [ViewVariables] public bool StationFtlLockedCache { get; set; }
 }

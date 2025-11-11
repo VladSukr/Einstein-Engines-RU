@@ -24,12 +24,14 @@
                 <ProgressBar Name="ChargeBar" MaxValue="255">
                     <Label Name="ChargeText" Margin="4 0" Text="0 %" />
                 </ProgressBar>
+                <!-- IH - Start -->
                 <!-- Station Mass -->
                 <Label Name="MassTitle" Text="{Loc 'gravity-generator-window-mass'}" StyleClasses="StatusFieldTitle" Visible="False" />
-                <Label Name="MassValue" Text="—" Visible="False" />
+                <Label Name="MassValue" Text="&#8212;" Visible="False" />
                 <!-- FTL -->
                 <Label Name="FtlTitle" Text="{Loc 'gravity-generator-window-ftl'}" StyleClasses="StatusFieldTitle" Visible="False" />
-                <Label Name="FtlValue" Text="—" Visible="False" />
+                <Label Name="FtlValue" Text="&#8212;" Visible="False" />
+                <!-- IH - End -->
             </GridContainer>
         </BoxContainer>
         <PanelContainer Margin="12 0 0 0" StyleClasses="Inset" VerticalAlignment="Center">
