@@ -58,6 +58,9 @@
   - type: GravityGenerator
     lightRadiusMin: 0.75
     lightRadiusMax: 2.5
+    protectRadius: 64
+    massMultiplier: 10
+    blocksFtl: true
     spriteMap:
       broken: "broken"
       unpowered: "off"
@@ -137,5 +140,8 @@
   - type: GravityGenerator
     lightRadiusMin: 0.75
     lightRadiusMax: 2.5
+    protectRadius: 12
+    massMultiplier: 1
+    blocksFtl: false
   - type: StaticPrice
     price: 2000

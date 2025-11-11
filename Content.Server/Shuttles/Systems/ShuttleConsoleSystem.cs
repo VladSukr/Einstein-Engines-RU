@@ -1,3 +1,4 @@
+using Content.Server.Gravity;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Shuttles.Components;
@@ -43,6 +44,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
     private EntityQuery<MetaDataComponent> _metaQuery;
     private EntityQuery<TransformComponent> _xformQuery;
+    private EntityQuery<GridGravityWellComponent> _gravityWellQuery = default!;
 
     private readonly HashSet<Entity<ShuttleConsoleComponent>> _consoles = new();
 
@@ -52,6 +54,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
         _metaQuery = GetEntityQuery<MetaDataComponent>();
         _xformQuery = GetEntityQuery<TransformComponent>();
+        _gravityWellQuery = GetEntityQuery<GridGravityWellComponent>();
 
         SubscribeLocalEvent<ShuttleConsoleComponent, ComponentShutdown>(OnConsoleShutdown);
         SubscribeLocalEvent<ShuttleConsoleComponent, PowerChangedEvent>(OnConsolePowerChange);

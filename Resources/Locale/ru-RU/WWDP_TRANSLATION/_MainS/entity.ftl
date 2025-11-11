@@ -622,27 +622,27 @@ ent-CrateLogisticsLavrionHardsuit = ящик с скафандром "Лаври
 
 
 ent-CrateSecurityShanlinTacsuit = Ящик с бронекостюмом «Шанлин»
-    .desc = Содержит один тактический костюм CSA-51a «Шанлин». Требуется доступ Департамента Шерифа.
+    .desc = Содержит один тактический костюм CSA-51a «Шанлин». Требуется доступ службы безопасности.
 
 
 ent-CrateSecurityShiweiTacsuit = Ящик с бронекостюмом «Шивэй»
-    .desc = Содержит один тактический костюм CSA-54UA «Шивэй». Требуется доступ Департамента Шерифа.
+    .desc = Содержит один тактический костюм CSA-54UA «Шивэй». Требуется доступ службы безопасности.
 
 
 ent-CrateSecurityGuanYuTacsuit = Ящик с бронекостюмом «Гуань Юй»
-    .desc = Содержит один тактический костюм CSA-80UA «Гуань Юй». Требуется доступ Департамента Шерифа.
+    .desc = Содержит один тактический костюм CSA-80UA «Гуань Юй». Требуется доступ службы безопасности.
 
 
 ent-CrateSecurityBaghaturTacsuit = Ящик с бронекостюмом «Багатур»
-    .desc = Содержит один тактический костюм FPA-83s «Багатур». Требуется доступ Департамента Шерифа.
+    .desc = Содержит один тактический костюм FPA-83s «Багатур». Требуется доступ службы безопасности.
 
 
 ent-CrateSecuritySuldeTacsuit = Ящик с бронекостюмом «Сулде»
-    .desc = Содержит один тактический костюм FPA-93 «Сулде Mk.II». Требуется доступ Департамента Шерифа.
+    .desc = Содержит один тактический костюм FPA-93 «Сулде Mk.II». Требуется доступ службы безопасности.
 
 
 ent-CrateSecurityTsagaanTacsuit = Ящик с бронекостюмом «Цагаан»
-    .desc = Содержит один тактический костюм FPA-86 «Цагаан Mk.II». Требуется доступ Департамента Шерифа.
+    .desc = Содержит один тактический костюм FPA-86 «Цагаан Mk.II». Требуется доступ службы безопасности.
 
 
 ent-CrateMaterialTextiles = Ящик с тканями
@@ -731,19 +731,19 @@ ent-CrateScienceBiosuit = ящик с био-костюмами учёных
 
 
 ent-CrateSecurityHeavyBallisticArmor = ящик с тяжёлой баллистической бронёй
-    .desc = Два комплекта брони против пуль, с шлемами, щитами и противогазами. Требуется доступ к ДШ.
+    .desc = Два комплекта брони против пуль, с шлемами, щитами и противогазами. Требуется доступ к СБ.
 
 
 ent-CrateSecurityHeavyAblativeArmor = ящик с лазеростойкой бронёй
-    .desc = Два комплекта брони, устойчивой к лазерам, с шлемами, щитами и противогазами. Требуется доступ к ДШ.
+    .desc = Два комплекта брони, устойчивой к лазерам, с шлемами, щитами и противогазами. Требуется доступ к СБ.
 
 
-ent-CrateSecurityHeavySecurityArmor = ящик с тяжёлой бронёй ДШ
-    .desc = Два комплекта тяжёлой брони ДШ с шлемами и противогазами. Требуется доступ к ДШ.
+ent-CrateSecurityHeavySecurityArmor = ящик с тяжёлой бронёй СБ
+    .desc = Два комплекта тяжёлой брони СБ с шлемами и противогазами. Требуется доступ к СБ.
 
 
 ent-CrateSecuritySwat = ящик с комплектами спецназа
-    .desc = Два полноценных костюма спецназа для особых операций. Требуется доступ к ДШ.
+    .desc = Два полноценных костюма спецназа для особых операций. Требуется доступ к СБ.
 
 
 ent-CrateServiceTheatre = ящик для театра
@@ -803,22 +803,22 @@ ent-ClothingBeltMilitaryWebbingGrenadeFilled = Разгрузка под гра�
 
 ent-ToolboxElectricalTurretFilled = Электротехнический ящик
 
-ent-ToolboxArtisticFilled = художественный тулбокс
+ent-ToolboxArtisticFilled = Художественный ящик
 
 ent-LockerWallMedicalDoctorFilled = Настенный шкаф врача
 
 
-ent-GunSafeDisabler = Сейф со Станнером
+ent-GunSafeDisabler = Сейф с дезактиватором
 
 ent-GunSafePistolMk58 = Сейф с пистолетом Mk58
 
 ent-GunSafeRifleLecter = Сейф с винтовкой Lecter
 
-ent-GunSafeSubMachineGunDrozd = Сейф с ПП Дрозд
+ent-GunSafeSubMachineGunDrozd = Сейф с ПП Drozd
 
-ent-GunSafeShotgunEnforcer = Сейф с дробовиком Силовик
+ent-GunSafeShotgunEnforcer = Сейф с дробовиком Enforcer
 
-ent-GunSafeShotgunKammerer = Сейф с дробовиком Каммерер
+ent-GunSafeShotgunKammerer = Сейф с дробовиком Kammerer
 
 ent-GunSafeSubMachineGunWt550 = Сейф с ПП WT550
 
@@ -830,11 +830,24 @@ ent-GunSafeRifleBRDIR25 = Сейф с BRDI-R25
 ent-LockerOldAISat = Старый шкаф
 
     .desc = Набор симпатичной оранжевой одежды для тех, кто временно поселился в бриге.
+    .desc = Из содержимого этого шкафа можно собрать полноценного робота.
+    .desc = Эти ярко-оранжевые тряпки сделают тебя менее выбрасываемым из химлаборатории.
+    .desc = Эти модные синие тряпки придают тебе шарма в отделе генетики.
+    .desc = Зелёный — это не заразно. Это стильно. Заходи.
+    .desc = Поначитал(ся) поп-науки? Теперь время настоящей науки.
+    .desc = Стань одним из растений — в этих одеждах, конечно же натуральных.
+    .desc = Все мы когда-то "играли во врача". А теперь пора заниматься медициной.
+    .desc = Для достойного облика перед своей паствой.
+    .desc = Перейди ту самую тонкую красную линию.
+    .desc = Этот шкаф? Пожалуй, 500 спе́зосов. Братство? Бесценно.
+    .desc = Содержит форму атмосферного техника.
+    .desc = Содержит форму инженера — или социального инженера.
 
 
 ent-PaperWrittenCombatBakeryKit = Инструкция к боевой пекарне
     .desc = Съешь бумажку после прочтения.
 
+    .desc = Бюрократическая единица. Документ, напечатанный на принтере.
 
 ent-ActionChitzite = Изрыгнуть хицит
     .desc = Избавьтесь от накопленного излучения, исторгнув из себя токсичную массу вещества.
@@ -957,7 +970,7 @@ ent-ClothingBeltSuspendersBlack = Подтяжки
 
 
 ent-ClothingBeltCorpsmanWebbing = Страховка санитара
-    .desc = Комплект разгрузки для Департамента Шерифа с синими элементами корпуса санитара.
+    .desc = Комплект разгрузки для службы безопасности с синими элементами корпуса санитара.
 
 
 ent-ClothingEyesGlassesGarMeson = Гар-мезоны
@@ -1093,7 +1106,7 @@ ent-ClothingOuterClerkVest = жилет клерка
 
 
 ent-ClothingOuterWinterCCWarden = зимний бронеплащ Центкома
-    .desc = Мощный утилитарный плащ, предназначенный для бейлифов Центрального Командования. Кевларовые вставки и качественный мех позволяют выглядеть стильно и при этом не мёрзнуть.
+    .desc = Мощный утилитарный плащ, предназначенный для смотрителей Центрального Командования. Кевларовые вставки и качественный мех позволяют выглядеть стильно и при этом не мёрзнуть.
 
 
 ent-ClothingOuterCorporateJacket = корпоративная куртка Нанотрейзен
@@ -1104,7 +1117,7 @@ ent-ClothingOuterDenimJacket = джинсовка
     .desc = Джинсовая куртка с тёплой подкладкой. Классика времён, которых уже нет.
 
 
-ent-ClothingOuterStasecSweater = свитер Департамента Шерифа
+ent-ClothingOuterStasecSweater = свитер службы безопасности
     .desc = Толстый синтетический свитер с усиленными плечами и локтями. Согреет даже самого хмурого офицера.
 
 
@@ -1144,7 +1157,7 @@ ent-ClothingShoesBootsWinterGenetics = зимние сапоги генетик�
 
 ent-ClothingShoesBootsWinterHeadOfPersonel = зимние сапоги главы персонала
 
-ent-ClothingShoesBootsWinterHeadOfSecurity = зимние сапоги главы Департамента Шерифа
+ent-ClothingShoesBootsWinterHeadOfSecurity = зимние сапоги главы службы безопасности
 
 ent-ClothingShoesBootsWinterHydro = зимние сапоги ботаника
 
@@ -1174,7 +1187,7 @@ ent-ClothingUniformSkirtCourier = юбка курьера
     .desc = Враг всех собак, независимо от породы.
 
 
-ent-ClothingUniformJumpskirtSecBlue = синяя юбка Департамента Шерифа
+ent-ClothingUniformJumpskirtSecBlue = синяя юбка службы безопасности
     .desc = Холодный синий верх, угольно-чёрная юбка — для сдержанных и уверенных в себе офицеров.
 
 
@@ -1186,12 +1199,12 @@ ent-ClothingUniformJumpskirtWardenGrey = серая юбка Надзирате�
     .desc = Угольно-чёрная юбка, серая рубашка и белые знаки отличия Надзирателя.
 
 
-ent-ClothingUniformJumpskirtHoSBlue = синяя юбка главы Департамента Шерифа
-    .desc = Синяя рубашка Департамента Шерифа и угольная юбка. Украшена золотыми эмблемами и командирскими эполетами.
+ent-ClothingUniformJumpskirtHoSBlue = синяя юбка главы службы безопасности
+    .desc = Синяя рубашка Службы Безопасности и угольная юбка. Украшена золотыми эмблемами и командирскими эполетами.
 
 
-ent-ClothingUniformJumpskirtHoSGrey = серая юбка главы Департамента Шерифа
-    .desc = Серая рубашка Департамента Шерифа с угольной юбкой. Выделяется алыми вставками, золотыми эмблемами и эполетами командира.
+ent-ClothingUniformJumpskirtHoSGrey = серая юбка главы службы безопасности
+    .desc = Серая рубашка Службы Безопасности с угольной юбкой. Выделяется алыми вставками, золотыми эмблемами и эполетами командира.
 
 
 ent-ClothingUniformJumpskirtCentcomDirector = юбка директора Центкома
@@ -1258,8 +1271,8 @@ ent-ClothingUniformJumpsuitSuitWhiteMob = гангстерский костюм
     .desc = Красная рубашка и светлые штаны. Навевает мысли об организованной японской преступности.
 
 
-ent-ClothingUniformJumpsuitSecFormal = парадная форма Департамента Шерифа
-    .desc = Церемониальная форма Департамента Шерифа, надеваемая по особо важным поводам.
+ent-ClothingUniformJumpsuitSecFormal = парадная форма службы безопасности
+    .desc = Церемониальная форма Службы Безопасности, надеваемая по особо важным поводам.
 
 
 ent-ClothingUniformJumpsuitSober = свитер трезвости
@@ -1365,7 +1378,7 @@ ent-SpawnPointAdminAssistant = административный ассистен
 
 ent-SpawnMobArcticFoxSiobhan = Спавнер арктической лисицы Шивон
 
-ent-SpawnMobSecDogLaika = Спавнер пса ДШ Лайки
+ent-SpawnMobSecDogLaika = Спавнер пса СБ Лайки
 
 ent-SpawnMobRadioGuard = Спавнер охранника Синдиката
 
@@ -1998,7 +2011,7 @@ ent-ClothingBackpackEtherealTeleporter = эфирный телепортёр
     .desc = Разработан во время экспериментов над Теневыми. Позволяет шагать сквозь реальность в Тьму… и обратно.
 
 
-ent-ClothingBeltSecurityWebbingFilled = разгрузка ДШ
+ent-ClothingBeltSecurityWebbingFilled = разгрузка СБ
     .desc = Та же система, только уже нагруженная. Готов к действию.
 
 
@@ -2095,8 +2108,8 @@ ent-ClothingEyesGlassesSunglassesVisor = защищённый визор
     .desc = Эти визорные очки специально созданы, чтобы защищать от ослепляющих вспышек света.
 
 
-ent-ClothingEyesGlassesSecurityVisor = визор Департамента Шерифа
-    .desc = Продвинутый визор, обеспечивающий защиту от вспышек и доступ к интерфейсу Департамента Шерифа.
+ent-ClothingEyesGlassesSecurityVisor = визор службы безопасности
+    .desc = Продвинутый визор, обеспечивающий защиту от вспышек и доступ к интерфейсу службы безопасности.
 
 
 ent-ClothingEyesVisorNinja = визор ниндзя
@@ -2135,7 +2148,7 @@ ent-ClothingEyesEyepatchHudMedical = медицинская повязка с HU
     .desc = HUD, сканирующий гуманоидов и отображающий их состояние здоровья. Для настоящих патриотов.
 
 
-ent-ClothingEyesEyepatchHudSecurity = повязка ДШ с HUD
+ent-ClothingEyesEyepatchHudSecurity = повязка СБ с HUD
     .desc = HUD, отображающий ID и статус безопасности гуманоидов. Для настоящих патриотов.
 
 
@@ -2364,7 +2377,7 @@ ent-ClothingHeadEnvirohelmChaplain = шлем капеллана
     .desc = Только для самых верующих… или самых фанатичных.
 
 
-ent-ClothingHeadEnvirohelmDetective = шлем следователя
+ent-ClothingHeadEnvirohelmDetective = шлем детектива
     .desc = Защитит от огня, криков и вопросов "где улики?"
 
 
@@ -2388,7 +2401,7 @@ ent-ClothingHeadEnvirohelmHoP = шлем главы персонала
     .desc = Солидный, надёжный, словно человек, который его носит… или прикидывается им.
 
 
-ent-ClothingHeadEnvirohelmHoS = шлем главы Департамента Шерифа
+ent-ClothingHeadEnvirohelmHoS = шлем главы службы безопасности
     .desc = Золотые полосы, суровый вид и шлёпанцы — атрибуты власти.
 
 
@@ -2441,16 +2454,16 @@ ent-ClothingHeadEnvirohelmScientist = шлем учёного (плазмаме�
     .desc = Плазменный шлем, разработанный специально для учёных.
 
 
-ent-ClothingHeadEnvirohelmSec = шлем Департамента Шерифа (плазмамен)
-    .desc = Защитный шлем для плазмаменов в ДШ. Защищает от огня и... других неприятностей.
+ent-ClothingHeadEnvirohelmSec = шлем службы безопасности (плазмамен)
+    .desc = Защитный шлем для плазмаменов в СБ. Защищает от огня и... других неприятностей.
 
 
-ent-ClothingHeadEnvirohelmSecBlue = синий шлем ДШ (плазмамен)
-    .desc = Крутой синий шлем для плазменных офицеров-патрульных.
+ent-ClothingHeadEnvirohelmSecBlue = синий шлем СБ (плазмамен)
+    .desc = Крутой синий шлем для плазменных офицеров СБ.
 
 
-ent-ClothingHeadEnvirohelmSecGrey = серый шлем ДШ (плазмамен)
-    .desc = Светло-серый шлем с ярко-красными акцентами для плазменных сотрудников ДШ.
+ent-ClothingHeadEnvirohelmSecGrey = серый шлем СБ (плазмамен)
+    .desc = Светло-серый шлем с ярко-красными акцентами для плазменных сотрудников СБ.
 
 
 ent-ClothingHeadEnvirohelmVirology = шлем вирусолога (плазмамен)
@@ -2533,8 +2546,8 @@ ent-ClothingHeadEnvirohelmBlackPinkAlt = шлем "BlackPink" (альт) (пла
     .desc = Этот шлем пробуждает в тебе желание "убить эту любовь".
 
 
-ent-ClothingHeadEnvirohelmBlueshield =  шлем СКН (плазмамен)
-    .desc = Защитный шлем для плазменного сотрудника СКН.
+ent-ClothingHeadEnvirohelmBlueshield = шлем блюшилда (плазмамен)
+    .desc = Защитный шлем для плазменного блюшилда.
 
 
 ent-ClothingHeadEnvirohelmTrans = шлем трансильванского плазмамена
@@ -2545,7 +2558,7 @@ ent-ClothingHeadEnvirohelmPrisonGuard = шлем тюремщика (плазм�
     .desc = Надеюсь, заключённый его у тебя не отнимет.
 
 
-ent-ClothingHeadEnvirohelmBrigmedic = шлем санитара ДШ (плазмамен)
+ent-ClothingHeadEnvirohelmBrigmedic = шлем санитара СБ (плазмамен)
     .desc = Специальный шлем для Корпсмэнов, борющихся с вирусами... и клоунами.
 
 
@@ -2646,7 +2659,7 @@ ent-ClothingHeadEnvirohelmEnviroslacksMNKAlt = монохромный шлем M
 
 
 ent-ClothingHeadHelmetEVA = шлем EVA
-    .desc = Старенький, но надёжный шлем для выхода в открытый космос. Делает офицеров-патрульных слегка нервными.
+    .desc = Старенький, но надёжный шлем для выхода в открытый космос. Делает офицеров СБ слегка нервными.
 
 
 ent-ClothingHeadHelmetSyndicate = шлем EVA синдиката
@@ -3316,8 +3329,8 @@ ent-ClothingOuterArmorRaid = рейдовый костюм синдиката
     .desc = Гибкий, прочный и страшный. Плечо светится, броня красная, космоса боится.
 
 
-ent-ClothingOuterArmorHosSamurai = самурайские доспехи Шерифа
-    .desc = Церемониальные доспехи для Шерифа. Неудобны, но стильные. Идеально дополняются катаной.
+ent-ClothingOuterArmorHosSamurai = самурайские доспехи главы охраны
+    .desc = Церемониальные доспехи для ХоСа. Неудобны, но стильные. Идеально дополняются катаной.
 
 
 ent-ClothingOuterArmorCaptainDogi = доспешный доги сёгуна
@@ -3556,11 +3569,11 @@ ent-ClothingOuterVestThick = толстый жилет
 
 ent-ClothingOuterWinterCoatToggleable = зимнее пальто с капюшоном
 
-ent-ClothingOuterWinterHoSUnarmored = зимнее пальто главы Департамента Шерифа
+ent-ClothingOuterWinterHoSUnarmored = зимнее пальто главы службы безопасности
     .desc = Тёплое и надёжное пальто, но без брони. Всё-таки вы на станции, а не на войне… пока что.
 
 
-ent-ClothingOuterWinterWardenUnarmored = зимнее пальто бейлифа
+ent-ClothingOuterWinterWardenUnarmored = зимнее пальто смотрителя
     .desc = Тёплое и прочное пальто, но брони в нём нет. Надеемся, тебе это не понадобится.
 
 
@@ -3645,7 +3658,7 @@ ent-ClothingShoesBootsWinterMed = зимние ботинки медика
 
 ent-ClothingShoesBootsWinterSci = зимние ботинки учёного
 
-ent-ClothingShoesBootsWinterSec = зимние ботинки Департамента Шерифа
+ent-ClothingShoesBootsWinterSec = зимние ботинки службы безопасности
 
 ent-ClothingShoesBootsWinterSyndicate = зимние ботинки Синдиката
     .desc = Тяжёлые и прочные сапоги. Выглядят как сувенир из "Синди-ленда".
@@ -3788,7 +3801,7 @@ ent-ClothingUniformEnvirosuitEngineering = инженерный плазмоко
     .desc = Герметичный инженерный костюм с оранжевыми полосками вместо фиолетовых.
 
 
-ent-ClothingUniformEnvirosuitDetective = плазмокостюм следователя
+ent-ClothingUniformEnvirosuitDetective = плазмокостюм детектива
     .desc = Индивидуальный костюм, доработанный одним из слишком стильных плазмочелов. Одобрен НаноТрейзен.
 
 
@@ -3796,7 +3809,7 @@ ent-ClothingUniformEnvirosuitHoP = плазмокостюм главы перс�
     .desc = Скафандр для тех, кто отвечает за людей и бюрократию.
 
 
-ent-ClothingUniformEnvirosuitHoS = плазмокостюм главы Департамента Шерифа
+ent-ClothingUniformEnvirosuitHoS = плазмокостюм главы службы безопасности
     .desc = Торжественно украшенный костюм для самых безумных охранных фанатиков.
 
 
@@ -3864,8 +3877,8 @@ ent-ClothingUniformEnvirosuitVirology = плазмокостюм вирусол�
     .desc = Надевается теми, кто способен создать чуму и случайно выжить.
 
 
-ent-ClothingUniformEnvirosuitWarden = плазмокостюм бейлифа
-    .desc = Отличается от остальных белыми полосками. Потому что бейлиф — главный среди молчаливых мясников.
+ent-ClothingUniformEnvirosuitWarden = плазмокостюм смотрителя
+    .desc = Отличается от остальных белыми полосками. Потому что смотритель — главный среди молчаливых мясников.
 
 
 ent-ClothingUniformEnvirosuitOperative = плазмокостюм оперативника
@@ -3888,8 +3901,8 @@ ent-ClothingUniformEnvirosuitCentcomOfficer = плазмокостюм офиц�
     .desc = Для офицеров, которые следят, чтобы станция не слишком веселилась.
 
 
-ent-ClothingUniformEnvirosuitBlueshield = плазмокостюм СКН
-    .desc = Костюм для плазменных сотрудников СКН, отвечающих за сохранность активов корпорации. И свою.
+ent-ClothingUniformEnvirosuitBlueshield = плазмокостюм блюшилда
+    .desc = Костюм для плазмочелов, отвечающих за жизнь важных персон. И свою.
 
 
 ent-ClothingUniformEnvirosuitCourier = плазмокостюм курьера
@@ -4082,7 +4095,7 @@ ent-ClothingUniformJumpskirtCurator = сдержанная юбка
     .desc = Чересчур сдержанная. Подозрительно сдержанная.
 
 
-ent-ClothingUniformJumpskirtSecGrey = серая юбка Департамента Шерифа
+ent-ClothingUniformJumpskirtSecGrey = серая юбка службы безопасности
     .desc = Светло-серый верх с красными вставками — для оперативных и дисциплинированных.
 
 
@@ -6849,7 +6862,7 @@ ent-PlushieHolocarp = плюшевая голографкарпа
 
 
 ent-PlushiePenguin = плюшевый пингвин
-    .desc = I use arch btw!
+    .desc = Кстати, я использую Arch.
 
 
 ent-PlushieHuman = плюшевый человек
@@ -7472,7 +7485,7 @@ ent-PotatoAIChip = сверхкомпактный AI-чип
     .desc = Требует ровно 1,1 В. На 1,2 В превращается в пюре.
 
 
-ent-RubberStampDetective = штамп следователя
+ent-RubberStampDetective = штамп детектива
 
 
 ent-Spaceshroom = космогриб
@@ -8478,7 +8491,7 @@ ent-SpeedLoaderMagnumShrapnel = скорозарядник (.45 магнум, ш
 
 
 ent-WeaponPulsePistolHoS = антикварный импульсный пистолет
-    .desc = Один из экспонатов частной коллекции главы Департамента Шерифа. На корпусе выгравировано: «Прости нас, Матерь Соль».
+    .desc = Один из экспонатов частной коллекции главы службы безопасности. На корпусе выгравировано: «Прости нас, Матерь Соль».
 
 
 ent-WeaponPulsePistolCaptain = капитанский импульсный пистолет
@@ -8543,7 +8556,7 @@ ent-BaseWeaponShotgunSmall = малый дробовик
 
 
 ent-WeaponSubMachineGunWt550HoS = антикварный WT550
-    .desc = Гордость главы ДШ. На рукояти выгравированы 24 звезды вокруг пылающего факела, а на стволе засохла кровь...
+    .desc = Гордость главы СБ. На рукояти выгравированы 24 звезды вокруг пылающего факела, а на стволе засохла кровь...
 
 
 ent-BaseWeaponBallisticTurret = баллистическая турель
@@ -8668,6 +8681,8 @@ ent-Cobweb1 = паутина
 
 ent-BaseCurtains = шторы
     .desc = Скрывают то, что другим видеть не положено.
+
+    .desc = Содержит менее 1% ртути. А значит, практически безопасно.
 
 
 ent-FleshBlocker = кусок плоти
@@ -8879,8 +8894,8 @@ ent-WebDoor = паучья дверь
     .desc = Или к паукам, или в космос. В любом случае — не открывай.
 
 
-ent-BaseSecretDoor = обычная стена
-    .desc = Удерживает воздух внутри, а ассистентов снаружи.
+ent-BaseSecretDoor = глухая стена
+    .desc = Воздух — внутри. Грейтайд — снаружи.
 
 
 ent-BlastDoorFrame = каркас бронированной двери
@@ -8940,6 +8955,7 @@ ent-PsychBed = кушетка психолога
 ent-BenchComfy = удобная скамейка
     .desc = У этой скамьи такая спинка, что не захочется вставать.
 
+    .desc = У этой скамьи такая спинка, что не захочется вставать.
 
 
 ent-RollingOfficeChairBase = катящееся кресло
@@ -8947,10 +8963,8 @@ ent-RollingOfficeChairBase = катящееся кресло
 
 
 ent-ChairGreyscale = серый стул
-    .desc = Обычный серый стул. Ничего особенного, но надёжный.
 
 ent-ChairBrass = латунный стул
-    .desc = Элегантный стул из латуни. Блестит и не ржавеет, как и положено латуни.
 
 ent-ChairWeb = паучий стул
     .desc = Для настоящих веб-девелоперов.
@@ -9619,7 +9633,7 @@ ent-BaseIntercom = интерком
 ent-IntercomAssembly = корпус интеркома
     .desc = Интерком. Сейчас он выглядит бесполезным.
 
-    .desc = Интерком. Усилен металлом с шлемов ДШ. Вскрыть — целая пытка.
+    .desc = Интерком. Усилен металлом с шлемов СБ. Вскрыть — целая пытка.
 
 
 ent-NoticeBoard = доска объявлений
@@ -9837,6 +9851,7 @@ ent-PosterLegitPeriodicTable = Периодическая таблица эле�
 ent-PosterLegitRenault = Постер Рено
     .desc = Тяф.
 
+
 ent-PosterLegitNTTGC = Карточки Nanotrasen TCG
     .desc = Реклама коллекционной карточной игры от NT. Покупай ещё!
 
@@ -9872,12 +9887,92 @@ ent-SignNTMine = табличка: шахта
 ent-IronRock = железная порода
     .desc = Каменистый астероид.
 
+    .desc = Жила, богатая солью.
+
+
 ent-IronRockMining = железная порода
     .desc = Астероид.
 
+    .desc = Жила с залежами боксита.
+
+    .desc = Жила с касситеритом.
+
+    .desc = Жила с самородной медью.
+
+    .desc = Жила с вольфрамитом.
+
+
 ent-WallRockSand = песчаник
+    .desc = Жила, богатая углём.
+
+    .desc = Жила, богатая золотом.
+
+    .desc = Жила, полная алмазов.
+
+    .desc = Жила с залежами плазмы.
+
+    .desc = Жила с вкраплениями кварца.
+
+    .desc = Жила, богатая серебром.
+
+    .desc = Жила, богатая железом.
+
+    .desc = Жила с ураном.
+
+    .desc = Жила с бананиумом.
+
+    .desc = Каменная стена... Что это там торчит?
+
+    .desc = Жила, богатая солью.
+
+    .desc = Каменная стена... Что это там торчит?
+
+    .desc = Каменная стена... Что это там торчит?
+
+    .desc = Жила с залежами боксита.
+
+    .desc = Жила с касситеритом.
+
+    .desc = Жила с самородной медью.
+
+    .desc = Жила с вольфрамитом.
+
 
 ent-WallRockChromite = хромит
+    .desc = Жила, богатая углём.
+
+    .desc = Жила, богатая золотом.
+
+    .desc = Жила, полная алмазов.
+
+    .desc = Жила с залежами плазмы.
+
+    .desc = Жила с вкраплениями кварца.
+
+    .desc = Жила, богатая серебром.
+
+    .desc = Жила, богатая железом.
+
+    .desc = Жила с ураном.
+
+    .desc = Жила с бананиумом.
+
+    .desc = Каменная стена... Что это там торчит?
+
+    .desc = Жила, богатая солью.
+
+    .desc = Каменная стена... Что это там торчит?
+
+    .desc = Каменная стена... Что это там торчит?
+
+    .desc = Жила с залежами боксита.
+
+    .desc = Жила с касситеритом.
+
+    .desc = Жила с самородной медью.
+
+    .desc = Жила с вольфрамитом.
+
 
 ent-WallRockAndesite = андезит
     .desc = Жила, богатая углём.
@@ -9945,6 +10040,20 @@ ent-FenceWoodSmallGate = калитка маленького деревянно�
 
 ent-ClockworkGirder = шестерёнчатая стена
     .desc = Большая шестерёнка с креплениями под латунную обшивку. Можно превратить в стену.
+
+
+ent-ClockworkGrille = шестерёнчатая решётка
+    .desc = Хрупкая решётка из железных прутьев, собранная по традиции Ратвара.
+
+
+ent-ClockworkGrilleBroken = шестерёнчатая решётка
+    .desc = Хрупкая решётка в стиле Ратвара. Видала лучшие времена.
+
+
+ent-GrilleDiagonal = диагональная решётка
+
+ent-ClockworkGrilleDiagonal = диагональная шестерёнчатая решётка
+
 
 ent-RailingRound = перила
     .desc = Простенькие перила, чтобы такие идиоты, как ты, не падали вниз.
@@ -10517,7 +10626,7 @@ ent-ClothingUniformJumpsuitGalaxyBlue = синий галактический к
     .desc = Синий стиль для большого космического бизнеса.
 
 
-ent-ClothingUniformJumpsuitSecSummer = летняя форма ДШ
+ent-ClothingUniformJumpsuitSecSummer = летняя форма СБ
     .desc = Просторный и повседневный вариант формы охраны. Лето в космосе?
 
 
@@ -10655,6 +10764,28 @@ ent-MobOniBase = Урист МакОни
 ent-MobOniDummy = Урист МакОни
     .desc = Манекен-они для настройки персонажа.
 
+    .desc = Вино из риса, оно же сакэ!
+
+    .desc = Апельсиновое сливочное блаженство.
+
+    .desc = Навевает воспоминания о семье...
+
+    .desc = Токсично для всего живого — особенно для печени.
+
+    .desc = Любимый напиток офицеров безопасности после трудового дня.
+
+    .desc = Хонкмать гордилась бы тобой.
+
+    .desc = Совсем не похоже на жабу.
+
+    .desc = Для тех смен, что тянутся вечно...
+
+    .desc = НЕ делает тебя пуленепробиваемым. В комплекте — изотопы!
+
+    .desc = Цивилизации рушились, пытаясь понять, действительно ли это на вкус как "розовый".
+
+    .desc = Толстая трубочка не прилагается.
+
 
 ent-DrinkSakeBottleFull = бутылка сакэ
     .desc = Прозрачное или с лёгкой дымкой.\nХолодное, как мороженое сакэ.\nНалей и выпей до дна!
@@ -10752,9 +10883,9 @@ ent-FoodMealFishChips = фиш-н-чипс
     .desc = Классика из жареной рыбы и картошки — горячо, жирно, вкусно.
 
 
-ent-FoodPSBTrash = обёртка от ПДШ
+ent-FoodPSBTrash = обёртка от ПСБ
 
-ent-FoodPSB = энергетический рацион (ПДШ)
+ent-FoodPSB = энергетический рацион (ПСБ)
     .desc = Плотный, насыщенный питательными веществами, искусственно окрашенный и ароматизированный рацион, созданный для выживания всех видов в условиях дефицита еды.
 
 
@@ -11309,7 +11440,7 @@ ent-PosterLegitSafetyMothPoisoning = Сэйфти-Мот: Отравления
 
 
 ent-PosterLegitSafetyMothBoH = Сэйфти-Мот: Сумки-сингулярки
-    .desc = Сэйфти-Мот™ предупреждает: «Никогда не вкладывай сумку Шерифа в сумку Шерифа! Взрыв — это не стиль, это боль».
+    .desc = Сэйфти-Мот™ предупреждает: «Никогда не вкладывай сумку ХоСа в сумку ХоСа! Взрыв — это не стиль, это боль».
 
 
 ent-PosterLegitSafetyMothFires = Сэйфти-Мот: Пожары
@@ -11317,14 +11448,14 @@ ent-PosterLegitSafetyMothFires = Сэйфти-Мот: Пожары
 
 
 ent-PosterLegitSafetyMothPills = Сэйфти-Мот: Таблетки
-    .desc = Брошенные пилюли съедают крысы, ассистенты и шериф. Храни лекарства в бутылках, а нервы — в порядке.
+    .desc = Брошенные пилюли съедают крысы, ассистенты и ГСБ. Храни лекарства в бутылках, а нервы — в порядке.
 
 
 ent-PosterLegitSafetyMothGlimmer = Сэйфти-Мот: Блеск-бабах
     .desc = Когда уровень глиммера красный, залезай в шкаф и молись. Или просто эвакуируйся — тоже вариант.
 
 
-ent-SignSec = табличка «Департамент Шерифа»
+ent-SignSec = табличка «Служба безопасности»
     .desc = Тут начинается территория дубинок и красных карт.
 
 
@@ -11378,7 +11509,7 @@ ent-TerrorObjective = Наведи ужас
 
 
 ent-MassArrestObjective = Всех — в розыск!
-    .desc = Хакни базу данных и сделай так, чтобы каждый стал «особо опасным». Работа ДШ мечты.
+    .desc = Хакни базу данных и сделай так, чтобы каждый стал «особо опасным». Работа СБ мечты.
 
 
 ent-EscapeThiefShuttleObjective = Сбежать на ЦК живым и без наручников
@@ -11530,7 +11661,7 @@ ent-ClothingUniformJumpsuitSeniorTrooper = форма старшего бойц�
 
 
 ent-WeaponSubMachineGunBRDIR25BSO = BRDI R-25
-    .desc = Знаменитое оружие Иностранного Легиона Республики Бисель. Перекрашено для офицеров СКН.
+    .desc = Знаменитое оружие Иностранного Легиона Республики Бисель. Перекрашено для офицеров BlueShield.
 
 
 ent-XelthiaRegenerateAction = Отрастить руки
@@ -11791,7 +11922,7 @@ ent-ClothingNeckFurWrap = меховая мантия
     .desc = Стильная синтетическая накидка из меха. Почувствуй себя королём!
 
 
-ent-ClothingNeckCloakHosFur = меховой плащ главы Департамента Шерифа
+ent-ClothingNeckCloakHosFur = меховой плащ главы службы безопасности
     .desc = Роскошный тёмный плащ с золотой отделкой. Идеален для позирования на космическом камне перед построением.
 
 
@@ -12032,12 +12163,12 @@ ent-CrateSANModsuitGroup = Групповой комплект модсьюто�
     .desc = Пять комплектов. Пять солдат. Много трупов.
 
 
-ent-ClothingOuterJacketZavDetective = Плащ следователя
-    .desc = Надёжный следовательский плащ от Zavodskoi Interstellar. Укрывает от ветра, пуль и совести.
+ent-ClothingOuterJacketZavDetective = Плащ детектива
+    .desc = Надёжный детективский плащ от Zavodskoi Interstellar. Укрывает от ветра, пуль и совести.
 
 
 ent-ClothingOuterJacketZavSecurity = Куртка охраны
-    .desc = Тёплая и плотная куртка для сотрудников Департамента Шерифа ЗИ.
+    .desc = Тёплая и плотная куртка для сотрудников службы безопасности ЗИ.
 
 
 ent-ClothingOuterJacketZavSecurityAlt = Куртка охраны
@@ -12048,15 +12179,15 @@ ent-ClothingUniformJumpsuitZavodAtmos = Комбинезон атмосферн�
     .desc = Форма для тех, кто держит воздух в трубах и не даёт станции задохнуться.
 
 
-ent-ClothingUniformJumpsuitZavodCadet = Комбинезон кадета
+ent-ClothingUniformJumpsuitZavodCadet = Комбинезон кадета охраны
     .desc = Форма для зелёных, но уже вооружённых.
 
 
-ent-ClothingUniformJumpsuitZavodDetective = Комбинезон следователя
+ent-ClothingUniformJumpsuitZavodDetective = Комбинезон детектива
     .desc = Форма для тех, кто ищет правду среди тел.
 
 
-ent-ClothingUniformJumpsuitZavodDetectiveAlt = Комбинезон следователя
+ent-ClothingUniformJumpsuitZavodDetectiveAlt = Комбинезон детектива
     .desc = То же самое, только с модным воротником.
 
 
@@ -12275,23 +12406,23 @@ ent-ClothingModsuitBootsPraetorian = модкостюм «Преториан»: 
     .desc = Магботинки: шагай, где легионы даже не мечтали.
 
 
-ent-ClothingModsuitResponsorySecurity = модкостюм «Респонсорий ДШ»: блок управления
+ent-ClothingModsuitResponsorySecurity = модкостюм «Респонсорий СБ»: блок управления
     .desc = Сердце безопасности — красный код включён по умолчанию.
 
 
-ent-ClothingModsuitGauntletsResponsorySecurity = модкостюм «Респонсорий ДШ»: рукавицы
+ent-ClothingModsuitGauntletsResponsorySecurity = модкостюм «Респонсорий СБ»: рукавицы
     .desc = Рукавицы правосудия: держат тазер как родного.
 
 
-ent-ClothingModsuitHelmetResponsorySecurity = модкостюм «Респонсорий ДШ»: шлем
+ent-ClothingModsuitHelmetResponsorySecurity = модкостюм «Респонсорий СБ»: шлем
     .desc = Шлем с HUD: видит преступления до того, как они согрешили.
 
 
-ent-ClothingModsuitChestplateResponsorySecurity = модкостюм «Респонсорий ДШ»: кираса
+ent-ClothingModsuitChestplateResponsorySecurity = модкостюм «Респонсорий СБ»: кираса
     .desc = Кираса с сервомеханикой — броня, что сама бежит ловить преступника.
 
 
-ent-ClothingModsuitBootsResponsorySecurity = модкостюм «Респонсорий ДШ»: маг-ботинки
+ent-ClothingModsuitBootsResponsorySecurity = модкостюм «Респонсорий СБ»: маг-ботинки
     .desc = Магботинки, что не тормозят — преступникам остаётся лишь скользить.
 
 
@@ -12707,12 +12838,12 @@ ent-ChangelingSurviveObjective = Выжить
     .desc = Мне нужно сбежать на шаттле… и при этом не палиться.
 
 
-ent-ClothingBackpackBlueshield = рюкзак СКН
-    .desc = Очень крепкий рюкзак. Пахнет энергопушкой и корпоративной ответственностью.
+ent-ClothingBackpackBlueshield = рюкзак блющилда
+    .desc = Очень крепкий рюкзак. Пахнет энергопушкой и ответственностью.
 
 
-ent-ClothingBackpackDuffelBlueshield = сумка СКН
-    .desc = Такая же, но больше. И запах корпоративной лояльности — сильнее.
+ent-ClothingBackpackDuffelBlueshield = сумка блющилда
+    .desc = Такая же, но больше. И запах пушек — сильнее.
 
 
 ent-ClothingModsuitStandard = стандартный модкостюм: блок управления
@@ -12723,8 +12854,9 @@ ent-ClothingBackpackSatchelNanorep = дипломатическая сумка
     .desc = Дорогой тёмно-зелёный ранец. Пахнет факсом и бюрократией.
 
 
-ent-ClothingBackpackSatchelBlueshield = сумка СКН
-    .desc = Защищённая сумка, пахнущая энергопушкой и корпоративным долгом.
+ent-ClothingBackpackSatchelBlueshield = сумка блющилда
+    .desc = Защищённая сумка, пахнущая энергопушкой и долгом.
+
 
 ent-ClothingBeltCorporateJudo = пояс корпоративного дзюдо
     .desc = Обучает владельца стилю NT Corporate Judo. А ещё держит штаны.
@@ -12735,10 +12867,10 @@ ent-ClothingBeltCorporateJudoFilled = пояс корпоративного дз
 
 
 ent-ClothingBeltCorporateJudoHoS = пояс корпоративного дзюдо
-    .desc = Особый пояс от NT — теперь и для главы ДШ. Добро с кулаками.
+    .desc = Особый пояс от NT — теперь и для главы СБ. Добро с кулаками.
 
 
-ent-ClothingEyesGlassesMedSec = очки медбея/ДШ
+ent-ClothingEyesGlassesMedSec = очки медбея/СБ
     .desc = Солнцезащитные очки с медицинским и охранным HUD. Умные, стильные, следят за твоим пульсом.
 
 
@@ -12746,8 +12878,8 @@ ent-ClothingModsuitGauntletsStandard = перчатки стандартного
     .desc = Перчатки, защищающие от ударов током. Подойдут даже сварщику на каникулах.
 
 
-ent-ClothingHeadHelmetHardsuitBlueshield = шлем скафандра СКН
-    .desc = Оснащён встроенным прицелом. Идеален для тех, кто защищает интересы корпорации — и метко стреляет.
+ent-ClothingHeadHelmetHardsuitBlueshield = шлем скафандра блющилда
+    .desc = Оснащён встроенным прицелом. Идеален для тех, кто защищает важных — и метко стреляет.
 
 
 ent-ClothingHeadHelmetHardsuitDreadnought = CSA-105UA «Синтянь» — шлем
@@ -12762,8 +12894,8 @@ ent-ClothingHeadHatBeretOfficer = офицерский берет
     .desc = Чёрный берет с эмблемой NT. Немного пафоса, немного власти.
 
 
-ent-ClothingHeadHatCowboyBlueshield = ковбойская шляпа СКН
-    .desc = Корпоративный законник снова в городе, детки.
+ent-ClothingHeadHatCowboyBlueshield = ковбойская шляпа блющилда
+    .desc = Шериф снова в городе, детки.
 
 
 ent-BaseClothingModsuitHelmet = базовый шлем модкостюма
@@ -12774,39 +12906,40 @@ ent-ClothingModsuitHelmetStandard = стандартный шлем модкос
     .desc = Прочный складной шлем с защитой от космоса. Складывается в блок управления.
 
 
-ent-ClothingBlueshieldArmourVest = бронежилет СКН
-    .desc = Бронежилет с эмблемой СКН. Для тех, кто стоит между опасностью и активами корпорации.
+ent-ClothingBlueshieldArmourVest = бронежилет блющилда
+    .desc = Бронежилет с эмблемой блющилда. Для тех, кто стоит между опасностью и капитаном.
 
 
-ent-ClothingBlueshieldArmoredJacket = бронежакет СКН
-    .desc = Куртка со встроенной бронезащитой. Модно, надёжно, в стиле СКН.
+ent-ClothingBlueshieldArmoredJacket = бронежакет блющилда
+    .desc = Куртка с встроенной бронезащитой. Модно, надёжно, блющилдовски.
 
 
-ent-ClothingBlueshieldArmoredCowboyJacket = ковбойская бронекуртка СКН
-    .desc = Для защиты интересов NanoTrasen на диких просторах станции. Или тех, кто просто хочет выглядеть круто.
+ent-ClothingBlueshieldArmoredCowboyJacket = ковбойская бронекуртка блющилда
+    .desc = Для защиты важных персон на диких просторах станции. Или тех, кто просто хочет выглядеть круто.
 
 
-ent-ClothingBlueshieldArmoredCoat = бронеплащ СКН
-    .desc = Плотный зимний плащ с бронировкой. Защищает от холода и посягательств на собственность корпорации.
+ent-ClothingBlueshieldArmoredCoat = бронеплащ блющилда
+    .desc = Плотный зимний плащ с бронировкой. Тепло и безопасно.
 
 
-ent-ClothingBlueshieldArmoredCoatOpen = бронеплащ СКН
+ent-ClothingBlueshieldArmoredCoatOpen = бронеплащ блющилда
 
 
-ent-ClothingBlueshieldArmoredMarine = бронежилет морпеха СКН
-    .desc = Остался с былых времён службы в морпехах. Пропитан боевым духом и корпоративной лояльностью.
+ent-ClothingBlueshieldArmoredMarine = бронежилет морпеха блющилда
+    .desc = Остался с былых времён службы в морпехах. Пропитан боевым духом и потом.
 
 
-ent-ClothingBlueshieldArmoredVest = бронежилет СКН
-    .desc = Жилет с укреплёнными слоями брони. Верный спутник корпоративного защитника.
+ent-ClothingBlueshieldArmoredVest = бронежилет блющилда
+    .desc = Жилет с укреплёнными слоями брони. Верный спутник важного охранника.
 
 
-ent-ClothingBlueshieldArmoredKimono = бронекимоно СКН
-    .desc = Времена меняются — и СКН тоже. Теперь с восточным вкусом.
+ent-ClothingBlueshieldArmoredKimono = бронекимоно блющилда
+    .desc = Времена меняются — и блющилд тоже. Теперь с восточным вкусом.
 
 
-ent-ClothingOuterHardsuitBlueshield = скафандр СКН
-    .desc = Особый корпоративный скафандр с усиленной защитой. Лёгкий, надёжный, в стиле СКН.
+ent-ClothingOuterHardsuitBlueshield = скафандр блющилда
+    .desc = Особый охранный скафандр с усиленной защитой. Лёгкий, надёжный, блющилдовский.
+
 
 ent-ClothingOuterHardsuitCybersunDreadnought = CSA-105UA «Синтянь» — тактикостюм
     .desc = Редкий и пугающий плод инженерного гнева Сола. Надевается в наказание. И действует так же.
@@ -12821,8 +12954,9 @@ ent-ClothingModsuitBootsStandard = ботинки стандартного мо�
     .desc = Пространствозащитные ботинки, складываются в блок управления модкостюмом. Удобно, как в шкафу.
 
 
-ent-ClothingUniformJumpskirtBlueshieldOfficer = форменная юбка СКН
-    .desc = Серо-синяя юбка-комбинезон с коротким рукавом из прочного материала. Стандартное обмундирование офицера СКН.
+ent-ClothingUniformJumpskirtBlueshieldOfficer = форменная юбка блющилда
+    .desc = Серо-синяя юбка-комбинезон с коротким рукавом из прочного материала. Стандартное обмундирование блющилда.
+
 
 ent-CentcomAgentSkirt = юбка агента ЦентКома
     .desc = Юбка, которую носят представители юридического отдела ЦентКома. Пахнет сожжённым кофе и усталостью.
@@ -12832,8 +12966,8 @@ ent-ClothingUniformJumpskirtNanotrasenRepresentative = юбка корпорат
     .desc = Чёрная юбка, официальная одежда представителей NanoTrasen.
 
 
-ent-ClothingUniformJumpsuitBlueshieldOfficer = форменный комбинезон СКН
-    .desc = Серо-синий комбинезон с коротким рукавом из прочной ткани. Униформа офицера СКН.
+ent-ClothingUniformJumpsuitBlueshieldOfficer = форменный комбинезон блющилда
+    .desc = Серо-синий комбинезон с коротким рукавом из прочной ткани. Униформа офицера блющилда.
 
 
 ent-ClothingUniformJumpsuitNanotrasenRepresentative = костюм корпоративного представителя
@@ -12856,7 +12990,7 @@ ent-BluespaceLifeline = линия жизни блюспейса
     .desc = Телепортирует тело владельца — в случае беды, паники или большой глупости.
 
 
-ent-UniqueMarkerBlueshieldLocker = метка шкафчика СКН
+ent-UniqueMarkerBlueshieldLocker = метка шкафчика блющилда
 
 ent-UniqueMarkerNanorepLocker = метка шкафчика корпоративного представителя
 
@@ -12868,7 +13002,7 @@ ent-SpawnPointGhostBingle = точка появления роли-призра�
 ent-GhostBarSpawner = точка появления в баре (призрак)
 
 
-ent-SpawnPointBlueshieldOfficer = офицер СКН
+ent-SpawnPointBlueshieldOfficer = офицер блющилда
 
 ent-SpawnPointNanotrasenRepresentative = корпоративный представитель
 
@@ -12936,8 +13070,8 @@ ent-BaseLockerTeleporter = телепортатор спецснаряжения
     .desc = Устройство для вызова доставки особого снаряжения. Как посылка, только эпичнее.
 
 
-ent-BlueshieldOfficerLockerTeleporter = телепортатор шкафчика СКН
-    .desc = Призывает шкафчик офицера СКН. Надеюсь, он не забудет сменку.
+ent-BlueshieldOfficerLockerTeleporter = телепортатор шкафчика блющилда
+    .desc = Призывает шкафчик офицера блющилда. Надеюсь, он не забудет сменку.
 
 
 ent-NanorepLockerTeleporter = телепортатор шкафчика корпоративного представителя
@@ -13003,9 +13137,7 @@ ent-DurandTargetingElectronics = модуль наведения и оружия
     .desc = Система наведения для тяжелого меха Дуранд. Попади с первого раза — второго может не быть.
 
 
-ent-BlueshieldIDCard = ID карта офицера СКН
-
-ent-BlueshieldComIDCard = ID карта командира СКН
+ent-BlueshieldIDCard = удостоверение офицера блющилда
 
 
 ent-RubberStampNanorep = печать корпоративного представителя
@@ -13570,8 +13702,8 @@ ent-ModsuitCoreStandard = стандартное ядро МОД-костюма
     .desc = На пышных и плодородных равнинах планеты Спраут произрастает редкий кристалл — Сердцецвет. Эти органические пьезоэлектрические кристаллы имеют огромное значение для касты художников Эфириалов, ведь внешне они один в один как сердце самого Эфириала. Какой именно кристалл достался вам — неизвестно. Но теперь он стал сердцем вашей брони.
 
 
-ent-BlueshieldAmmunitionBox = коробка с патронами СКН
-    .desc = Коробка с боеприпасами и магазинами для оружия под патрон .45 магнум. Для служебного пользования СКН.
+ent-BlueshieldAmmunitionBox = коробка с патронами Блюшилд
+    .desc = Коробка с боеприпасами и магазинами для оружия под патрон .45 магнум.
 
 
 ent-FishingRod = удочка
@@ -13693,7 +13825,8 @@ ent-WeaponRifleBurner = «Горелка»
 
 
 ent-BlueshieldMace = ДТ-3 "Зверство"
-    .desc = Угости дубинкой каждого, кто встанет на пути интересов корпорации. В активированном состоянии работает как электрошокер.
+    .desc = Угости дубинкой каждого, кто встанет на пути твоих командиров. В активированном состоянии работает как электрошокер.
+
 
 ent-CaneBladeNanotrasen = трость-клинок
     .desc = Острый клинок с рукоятью в виде трости. На лезвии выгравирован логотип НаноТрейзен.
@@ -13711,7 +13844,7 @@ ent-SleepingCarpScroll = таинственный свиток
     .desc = Покрыт загадочными символами. Похоже, здесь изображено древнее боевое искусство… или просто каракули безумца.
 
 
-ent-LockerBlueshieldOfficer = шкаф офицера СКН
+ent-LockerBlueshieldOfficer = шкаф офицера Синего Щита
 
 ent-LockerNanorep = шкаф корпоративного представителя
     .desc = Шкаф снаряжения для представителей корпорации. Отправлен напрямую с Центрального Командования NanoTrasen.
@@ -13739,8 +13872,8 @@ ent-BluespaceLifelineImplant = блюспейс-имплант спасения
     .desc = Телепортирует владельца в безопасное место. Один раз — и ты вне игры. Назад пути нет.
 
 
-ent-BlueShieldShield = корпоративный щит
-    .desc = Самый узнаваемый символ СКН. Часто ловит пули, предназначенные для защиты интересов корпорации.
+ent-BlueShieldShield = великий щит
+    .desc = Самый узнаваемый символ Синего Щита. Часто ловит пули, предназначенные для капитана.
 
 
 ent-FloorTileItemBingle = плитка "бингл"
@@ -14711,20 +14844,15 @@ ent-N14ChairArmchair = кресло
 
 
 ent-N14ChairOfficeRed = офисное кресло
-    .desc = Удобное красное офисное кресло. Для тех, кто любит яркие цвета.
 
 ent-N14ChairOfficeBlue = офисное кресло
-    .desc = Удобное синее офисное кресло. Классический выбор для офиса.
 
 ent-N14ChairOfficeGreen = офисное кресло
-    .desc = Удобное зелёное офисное кресло. Идеально для долгих смен.
 
 
 ent-N14ChairMetalFolding = складной стул
-    .desc = Металлический складной стул. Удобно хранить и переносить.
 
 ent-N14ChairBarRetro = винтажный барный стул
-    .desc = Винтажный барный стул в стиле 50-х годов. Классика.
 
 ent-N14ChairPlastic = пластиковый стул
     .desc = Пластиковый стул. Неудобный. И скрипит.
@@ -14739,7 +14867,6 @@ ent-N14FitnessWeightsBench1 = скамья для жима
 
 
 ent-N14FitnessWeightLifter = штанга
-    .desc = Тяжёлая штанга для силовых тренировок. Поднимай и становись сильнее.
 
 ent-N14FitnessPunchingBag = боксёрская груша
     .desc = Бей! Не жалей! Груша выдержит.
@@ -16394,7 +16521,7 @@ ent-CrateNPCGondola = ящик с гондолой
 
 
 ent-CrateSecurityGrenadeBarrier = ящик с барьерными гранатами
-    .desc = Содержит четыре барьерных гранаты. Открывается только с доступом ДШ.
+    .desc = Содержит четыре барьерных гранаты. Открывается только с доступом СБ.
 
 
 ent-SmokeRed = красный дым
@@ -16627,6 +16754,10 @@ ent-giber = гоблер
 ent-SmallExplosionInstant = мгновенный взрыв (малый)
 
 ent-MediumExplosionInstant = мгновенный взрыв (средний)
+
+
+ent-PlushieSanabi = плюшевая игрушка бригадира
+    .desc = Маленькая мягкая копия сурового бригадного генерала. Ужасно милая.
 
 
 ent-ItemSnowballMaker = снежколеп
@@ -17050,32 +17181,24 @@ ent-WeaponSecurityRiotLauncher = гранатомёт подавления
     .desc = Компактный однозарядный гранатомёт.
 
 
-ent-BaseFluxCore = термоядро
-    .desc = Прямо как в том фильме.
+ent-BaseRegulatorLamp = регуляторная лампа
+    .desc = Лампа в стиле девяностых.
 
 
-ent-BasicFluxCore = стандартное термоядро
-    .desc = Стандартное оружейное термоядро. Используется для стабилизации работы лазерных установок за счёт сбора и рассеивания температуры. Стрельба из оружия без термоядра может привести к печальным последствиям.
+ent-BasicRegulatorLamp = стандартная регуляторная лампа
+    .desc = Лампа в стиле девяностых. Никто толком не знает, зачем она нужна, но без неё большинство энергетического оружия не работает.
 
 
-ent-AdvancedFluxCore = продвинутое термоядро
-    .desc = Продвинутое оружейное термоядро, с улучшенными характеристиками термоёмкости и скорости рассеивания. Используется для стабилизации работы лазерных установок за счёт сбора и рассеивания температуры. Стрельба из оружия без термоядра может привести к печальным последствиям.
+ent-AdvancedRegulatorLamp = продвинутая регуляторная лампа
+    .desc = Лампа с налётом нулевых.
 
 
-ent-SmallBasicFluxCore = стандартное мини-термоядро
-    .desc = Стандартное оружейное термоядро для использования в пистолетах. Используется для стабилизации работы лазерных установок за счёт сбора и рассеивания температуры. Стрельба из оружия без термоядра может привести к печальным последствиям.
+ent-BoxBasicRegulatorLamp = коробка регуляторных ламп
+    .desc = Спасение всех некомпетентных офицеров сектора. Вмещает 6 запасных ламп.
 
 
-ent-SmallAdvancedFluxCore = продвинутое мини-термоядро
-    .desc = Продвинутое оружейное термоядро для использования в пистолетах, с улучшенными характеристиками термоёмкости и скорости рассеивания. Используется для стабилизации работы лазерных установок за счёт сбора и рассеивания температуры. Стрельба из оружия без термоядра может привести к печальным последствиям.
-
-
-ent-BoxBasicFluxCore = коробка термоядер
-    .desc = Помни, кадет: техника безопасности написана кровью. Внутри 8 стандартных ядер; 4 полноразмерных и 4 маленьких.
-
-
-ent-BoxBasicFluxCoreBig = большая коробка термоядер
-    .desc = Помни, кадет: техника безопасности написана кровью. Внутри 12 стандартных термоядер; 6 полноразмерных и 6 маленьких.
+ent-BoxBasicRegulatorLampBig = большая коробка регуляторных ламп
+    .desc = Спасение всех некомпетентных офицеров сектора. Вмещает 12 запасных ламп.
 
 
 ent-BoxMeteor = диспенсер метеорных патронов

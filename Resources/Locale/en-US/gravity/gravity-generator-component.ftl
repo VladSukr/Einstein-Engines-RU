@@ -26,3 +26,10 @@ gravity-generator-window-power-label = { $draw } / { $max } W
 
 gravity-generator-window-eta-none = N/A
 gravity-generator-window-eta-value = { TOSTRING($left, "m\\:ss") }
+
+## Examination details
+
+gravity-generator-examine-mass = Station mass: { $mass } t
+gravity-generator-examine-ftl = FTL lock: { $state }
+gravity-generator-examine-ftl-locked = engaged
+gravity-generator-examine-ftl-free = released

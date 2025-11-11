@@ -1,5 +1,6 @@
 using System.Numerics;
 using System.Runtime.CompilerServices;
+using Content.Server.Gravity;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Systems;
 using Content.Shared.Movement.Components;
@@ -19,11 +20,13 @@ public sealed class MoverController : SharedMoverController
     [Dependency] private readonly ThrusterSystem _thruster = default!;
     [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
 
+    private EntityQuery<GridGravityWellComponent> _gravityWellQuery = default!;
     private Dictionary<EntityUid, (ShuttleComponent, List<(EntityUid, PilotComponent, InputMoverComponent, TransformComponent)>)> _shuttlePilots = new();
 
     public override void Initialize()
     {
         base.Initialize();
+        _gravityWellQuery = GetEntityQuery<GridGravityWellComponent>();
         SubscribeLocalEvent<RelayInputMoverComponent, PlayerAttachedEvent>(OnRelayPlayerAttached);
         SubscribeLocalEvent<RelayInputMoverComponent, PlayerDetachedEvent>(OnRelayPlayerDetached);
         SubscribeLocalEvent<InputMoverComponent, PlayerAttachedEvent>(OnPlayerAttached);
@@ -309,6 +312,10 @@ public sealed class MoverController : SharedMoverController
                 continue;
 
             var shuttleNorthAngle = _xformSystem.GetWorldRotation(shuttleUid, xformQuery);
+            var thrustScale = 1f;
+
+            if (_gravityWellQuery.TryGetComponent(shuttleUid, out var gravityWell) && gravityWell.Active)
+                thrustScale = gravityWell.ThrustScale;
 
             // Collate movement linear and angular inputs together
             var linearInput = Vector2.Zero;
@@ -395,6 +402,7 @@ public sealed class MoverController : SharedMoverController
                         force.Y -= shuttle.LinearThrust[index];
                     }
 
+                    force *= thrustScale;
                     var impulse = force * brakeInput * ShuttleComponent.BrakeCoefficient;
                     impulse = shuttleNorthAngle.RotateVec(impulse);
                     var forceMul = frameTime * body.InvMass;
@@ -413,7 +421,7 @@ public sealed class MoverController : SharedMoverController
 
                 if (body.AngularVelocity != 0f)
                 {
-                    var torque = shuttle.AngularThrust * brakeInput * (body.AngularVelocity > 0f ? -1f : 1f) * ShuttleComponent.BrakeCoefficient;
+                    var torque = shuttle.AngularThrust * brakeInput * (body.AngularVelocity > 0f ? -1f : 1f) * ShuttleComponent.BrakeCoefficient * thrustScale;
                     var torqueMul = body.InvI * frameTime;
 
                     if (body.AngularVelocity > 0f)
@@ -495,6 +503,7 @@ public sealed class MoverController : SharedMoverController
                             throw new ArgumentOutOfRangeException($"Attempted to apply thrust to shuttle {shuttleUid} along invalid dir {dir}.");
                     }
 
+                    force *= thrustScale;
                     _thruster.EnableLinearThrustDirection(shuttle, dir);
                     var impulse = force * linearInput.Length();
                     totalForce += impulse;
@@ -533,7 +542,7 @@ public sealed class MoverController : SharedMoverController
             else
             {
                 PhysicsSystem.SetSleepingAllowed(shuttleUid, body, false);
-                var torque = shuttle.AngularThrust * -angularInput;
+                var torque = shuttle.AngularThrust * -angularInput * thrustScale;
 
                 // Need to cap the velocity if 1 tick of input brings us over cap so we don't continuously
                 // edge onto the cap over and over.
