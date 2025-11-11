@@ -27,7 +27,9 @@ public sealed class GravityGeneratorSystem : EntitySystem
         var query = EntityQueryEnumerator<GravityGeneratorComponent, PowerChargeComponent>();
         while (query.MoveNext(out var uid, out var grav, out var charge))
         {
+            //IH - Start
             var switchedOn = charge.SwitchedOn;
+            //IH - End
 
             if (!_lights.TryGetLight(uid, out var pointLight))
                 continue;
