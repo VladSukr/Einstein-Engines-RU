@@ -167,6 +167,7 @@ public sealed class DockingConsoleSystem : SharedDockingConsoleSystem
             Log.Error("Failed to call Mining shuttle since it failed to load.");
             return;
         }
+        //IH - Start
 
         // Add the station of the calling console
         var targetUid = Transform(ent).MapUid;
@@ -175,6 +176,7 @@ public sealed class DockingConsoleSystem : SharedDockingConsoleSystem
 
         // Ensure the freshly spawned shuttle knows about the station it's docking to.
         RaiseLocalEvent(shuttle.Value, new ShuttleAddStationEvent(targetUid.Value, targetMap, grid));
+        //IH - END
 
         // Finally FTL
         _shuttle.FTLToDock(shuttle.Value, Comp<ShuttleComponent>(shuttle.Value), grid, priorityTag: docking.DockTag);
