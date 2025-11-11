@@ -16,25 +16,31 @@ public sealed class GravityGeneratorSystem : EntitySystem
 {
     [Dependency] private readonly GravitySystem _gravitySystem = default!;
     [Dependency] private readonly SharedPointLightSystem _lights = default!;
+    //IH - Start
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
 
     private EntityQuery<MapGridComponent> _gridQuery = default!;
     private EntityQuery<PhysicsComponent> _physicsQuery = default!;
     private EntityQuery<GridGravityWellComponent> _gravityWellQuery = default!;
+    //IH - End
 
     public override void Initialize()
     {
         base.Initialize();
 
+        //IH - Start
         _gridQuery = GetEntityQuery<MapGridComponent>();
         _physicsQuery = GetEntityQuery<PhysicsComponent>();
         _gravityWellQuery = GetEntityQuery<GridGravityWellComponent>();
+        //IH - End
 
         SubscribeLocalEvent<GravityGeneratorComponent, EntParentChangedMessage>(OnParentChanged);
         SubscribeLocalEvent<GravityGeneratorComponent, ChargedMachineActivatedEvent>(OnActivated);
         SubscribeLocalEvent<GravityGeneratorComponent, ChargedMachineDeactivatedEvent>(OnDeactivated);
+        //IH - Start
         SubscribeLocalEvent<GravityGeneratorComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<GravityGeneratorComponent, ExaminedEvent>(OnExamined);
+        //IH - End
     }
 
     public override void Update(float frameTime)
@@ -55,7 +61,9 @@ public sealed class GravityGeneratorSystem : EntitySystem
     private void OnActivated(Entity<GravityGeneratorComponent> ent, ref ChargedMachineActivatedEvent args)
     {
         ent.Comp.GravityActive = true;
+        //IH - Start
         TryEnableField(ent.Owner, ent.Comp);
+        //IH - End
 
         if (TryComp<TransformComponent>(ent, out var xform) &&
             TryComp(xform.ParentUid, out GravityComponent? gravity))
@@ -67,7 +75,9 @@ public sealed class GravityGeneratorSystem : EntitySystem
     private void OnDeactivated(Entity<GravityGeneratorComponent> ent, ref ChargedMachineDeactivatedEvent args)
     {
         ent.Comp.GravityActive = false;
+        //IH - Start
         DisableField(ent.Owner, ent.Comp);
+        //IH - End
 
         if (TryComp<TransformComponent>(ent, out var xform) &&
             TryComp(xform.ParentUid, out GravityComponent? gravity))
@@ -76,10 +86,12 @@ public sealed class GravityGeneratorSystem : EntitySystem
         }
     }
 
+    //IH - Start
     private void OnShutdown(Entity<GravityGeneratorComponent> ent, ref ComponentShutdown args)
     {
         DisableField(ent.Owner, ent.Comp);
     }
+    //IH - End
 
     private void OnParentChanged(EntityUid uid, GravityGeneratorComponent component, ref EntParentChangedMessage args)
     {
@@ -88,6 +100,7 @@ public sealed class GravityGeneratorSystem : EntitySystem
             _gravitySystem.RefreshGravity(args.OldParent.Value, gravity);
         }
 
+        //IH - Start
         if (!component.GravityActive)
             return;
 
@@ -95,8 +108,10 @@ public sealed class GravityGeneratorSystem : EntitySystem
             RemoveFromGrid(args.OldParent.Value, uid, component);
 
         TryEnableField(uid, component);
+        //IH - End
     }
 
+    //IH - Start
     private void TryEnableField(EntityUid generator, GravityGeneratorComponent component)
     {
         if (!component.GravityActive || !TryGetParentGrid(generator, out var gridUid))
@@ -113,7 +128,9 @@ public sealed class GravityGeneratorSystem : EntitySystem
             _physics.SetAngularVelocity(gridUid, 0f, body: body);
         }
     }
+    //IH - End
 
+    //IH - Start
     private void DisableField(EntityUid generator, GravityGeneratorComponent component)
     {
         if (component.CurrentGrid is not { } grid)
@@ -121,7 +138,9 @@ public sealed class GravityGeneratorSystem : EntitySystem
 
         RemoveFromGrid(grid, generator, component);
     }
+    //IH - End
 
+    //IH - Start
     private void RemoveFromGrid(EntityUid gridUid, EntityUid generator, GravityGeneratorComponent component)
     {
         if (!_gravityWellQuery.TryGetComponent(gridUid, out var well))
@@ -144,7 +163,9 @@ public sealed class GravityGeneratorSystem : EntitySystem
             Dirty(gridUid, well);
         }
     }
+    //IH - End
 
+    //IH - Start
     private bool TryGetParentGrid(EntityUid uid, out EntityUid gridUid)
     {
         gridUid = EntityUid.Invalid;
@@ -163,7 +184,9 @@ public sealed class GravityGeneratorSystem : EntitySystem
         gridUid = parent;
         return true;
     }
+    //IH - End
 
+    //IH - Start
     private void OnExamined(Entity<GravityGeneratorComponent> ent, ref ExaminedEvent args)
     {
         if (!args.IsInDetailsRange || !TryGetParentGrid(ent.Owner, out var gridUid))
@@ -185,4 +208,5 @@ public sealed class GravityGeneratorSystem : EntitySystem
             args.PushMarkup(Loc.GetString("gravity-generator-examine-ftl", ("state", Loc.GetString("gravity-generator-examine-ftl-free"))));
         }
     }
+    //IH - End
 }

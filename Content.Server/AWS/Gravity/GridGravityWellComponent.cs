@@ -1,3 +1,4 @@
+//IH - Start
 using System;
 using System.Collections.Generic;
 
@@ -65,3 +66,4 @@ public sealed partial class GridGravityWellComponent : Component
 }
 
 public readonly record struct GridGravityWellGeneratorInfo(float MassMultiplier, float Radius, bool BlocksFtl);
+//IH - End
