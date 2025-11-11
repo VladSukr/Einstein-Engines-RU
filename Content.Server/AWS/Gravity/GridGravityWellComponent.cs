@@ -1,6 +1,7 @@
 //IH - Start
 using System;
 using System.Collections.Generic;
+using Robust.Shared.Maths;
 
 namespace Content.Server.Gravity;
 
@@ -11,10 +12,13 @@ namespace Content.Server.Gravity;
 public sealed partial class GridGravityWellComponent : Component
 {
     private readonly Dictionary<EntityUid, GridGravityWellGeneratorInfo> _generators = new();
+    private readonly Dictionary<string, float> _baseFixtureDensities = new();
 
     [ViewVariables] public float MassMultiplier { get; private set; } = 1f;
+    // TODO: ProtectRadius понадобится, когда эффекты гравигена ограничим зонами; сейчас храним значение в преддверии следующих шагов.
     [ViewVariables] public float ProtectRadius { get; private set; }
     [ViewVariables] public bool BlocksFtl { get; private set; }
+    [ViewVariables] public float AppliedMassMultiplier { get; set; } = 1f;
 
     public bool Active => _generators.Count > 0;
 
@@ -62,6 +66,31 @@ public sealed partial class GridGravityWellComponent : Component
         MassMultiplier = maxMultiplier;
         ProtectRadius = maxRadius;
         BlocksFtl = blockFtl;
+    }
+
+    public bool TryGetBaseDensity(string id, out float density)
+        => _baseFixtureDensities.TryGetValue(id, out density);
+
+    public void RememberBaseDensity(string id, float density)
+        => _baseFixtureDensities[id] = density;
+
+    public void ClearBaseDensities()
+    {
+        _baseFixtureDensities.Clear();
+        AppliedMassMultiplier = 1f;
+    }
+
+    public bool TryUpdateGeneratorMultiplier(EntityUid uid, float newMultiplier)
+    {
+        if (!_generators.TryGetValue(uid, out var existing))
+            return false;
+
+        if (MathHelper.CloseTo(existing.MassMultiplier, newMultiplier))
+            return false;
+
+        _generators[uid] = existing with { MassMultiplier = newMultiplier };
+        Recalculate();
+        return true;
     }
 }
 

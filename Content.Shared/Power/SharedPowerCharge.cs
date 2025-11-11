@@ -26,6 +26,9 @@ public sealed class PowerChargeState : BoundUserInterfaceState
     public short PowerDraw;
     public short PowerDrawMax;
     public short EtaSeconds;
+    public bool HasStationStatus;
+    public float StationMass;
+    public bool StationFtlLocked;
 
     public PowerChargeState(
         bool on,
@@ -33,7 +36,10 @@ public sealed class PowerChargeState : BoundUserInterfaceState
         PowerChargePowerStatus powerStatus,
         short powerDraw,
         short powerDrawMax,
-        short etaSeconds)
+        short etaSeconds,
+        bool hasStationStatus = false,
+        float stationMass = 0f,
+        bool stationFtlLocked = false)
     {
         On = on;
         Charge = charge;
@@ -41,6 +47,9 @@ public sealed class PowerChargeState : BoundUserInterfaceState
         PowerDraw = powerDraw;
         PowerDrawMax = powerDrawMax;
         EtaSeconds = etaSeconds;
+        HasStationStatus = hasStationStatus;
+        StationMass = stationMass;
+        StationFtlLocked = stationFtlLocked;
     }
 }
 

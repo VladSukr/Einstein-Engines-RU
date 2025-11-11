@@ -6,6 +6,7 @@ using Content.Shared.Examine;
 using Content.Shared.Gravity;
 using Robust.Shared.Localization;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Maths;
@@ -22,6 +23,7 @@ public sealed class GravityGeneratorSystem : EntitySystem
     private EntityQuery<MapGridComponent> _gridQuery = default!;
     private EntityQuery<PhysicsComponent> _physicsQuery = default!;
     private EntityQuery<GridGravityWellComponent> _gravityWellQuery = default!;
+    private EntityQuery<FixturesComponent> _fixturesQuery = default!;
     //IH - End
 
     public override void Initialize()
@@ -32,6 +34,7 @@ public sealed class GravityGeneratorSystem : EntitySystem
         _gridQuery = GetEntityQuery<MapGridComponent>();
         _physicsQuery = GetEntityQuery<PhysicsComponent>();
         _gravityWellQuery = GetEntityQuery<GridGravityWellComponent>();
+        _fixturesQuery = GetEntityQuery<FixturesComponent>();
         //IH - End
 
         SubscribeLocalEvent<GravityGeneratorComponent, EntParentChangedMessage>(OnParentChanged);
@@ -49,12 +52,32 @@ public sealed class GravityGeneratorSystem : EntitySystem
         var query = EntityQueryEnumerator<GravityGeneratorComponent, PowerChargeComponent>();
         while (query.MoveNext(out var uid, out var grav, out var charge))
         {
+            var switchedOn = charge.SwitchedOn;
+
+            if (!switchedOn && grav.CurrentGrid is { } offGrid && !grav.GravityActive)
+            {
+                DisableField(uid, grav);
+            }
+            else if (switchedOn && grav.CurrentGrid is null)
+            {
+                TryEnableField(uid, grav);
+            }
+
             if (!_lights.TryGetLight(uid, out var pointLight))
                 continue;
 
             _lights.SetEnabled(uid, charge.Charge > 0, pointLight);
             _lights.SetRadius(uid, MathHelper.Lerp(grav.LightRadiusMin, grav.LightRadiusMax, charge.Charge),
                 pointLight);
+
+            if (grav.CurrentGrid is { } grid && _gravityWellQuery.TryGetComponent(grid, out var well))
+            {
+                var effectiveMultiplier = GetEffectiveMassMultiplier(uid, grav, charge);
+                if (well.TryUpdateGeneratorMultiplier(uid, effectiveMultiplier))
+                {
+                    ApplyGridEffects(grid, well);
+                }
+            }
         }
     }
 
@@ -114,12 +137,14 @@ public sealed class GravityGeneratorSystem : EntitySystem
     //IH - Start
     private void TryEnableField(EntityUid generator, GravityGeneratorComponent component)
     {
-        if (!component.GravityActive || !TryGetParentGrid(generator, out var gridUid))
+        if (!TryGetParentGrid(generator, out var gridUid))
             return;
 
         var well = EnsureComp<GridGravityWellComponent>(gridUid);
-        well.SetGenerator(generator, MathF.Max(component.MassMultiplier, 1f), component.ProtectRadius, component.BlocksFtl);
-        Dirty(gridUid, well);
+        var effectiveMultiplier = GetEffectiveMassMultiplier(generator, component);
+        var blocksFtl = component.GravityActive && component.BlocksFtl;
+        well.SetGenerator(generator, effectiveMultiplier, component.ProtectRadius, blocksFtl);
+        ApplyGridEffects(gridUid, well);
         component.CurrentGrid = gridUid;
 
         if (_physicsQuery.TryGetComponent(gridUid, out var body))
@@ -154,14 +179,9 @@ public sealed class GravityGeneratorSystem : EntitySystem
 
         component.CurrentGrid = null;
 
+        ApplyGridEffects(gridUid, well);
         if (!well.Active)
-        {
             RemCompDeferred<GridGravityWellComponent>(gridUid);
-        }
-        else
-        {
-            Dirty(gridUid, well);
-        }
     }
     //IH - End
 
@@ -207,6 +227,67 @@ public sealed class GravityGeneratorSystem : EntitySystem
         {
             args.PushMarkup(Loc.GetString("gravity-generator-examine-ftl", ("state", Loc.GetString("gravity-generator-examine-ftl-free"))));
         }
+    }
+    //IH - End
+
+    //IH - Start
+    private void ApplyGridEffects(EntityUid gridUid, GridGravityWellComponent well)
+    {
+        UpdateGridMass(gridUid, well);
+        Dirty(gridUid, well);
+    }
+
+    private void UpdateGridMass(EntityUid gridUid, GridGravityWellComponent well)
+    {
+        if (!_fixturesQuery.TryGetComponent(gridUid, out var fixtures))
+        {
+            well.ClearBaseDensities();
+            return;
+        }
+
+        var targetMultiplier = MathF.Max(1f, well.MassMultiplier);
+
+        if (MathHelper.CloseTo(targetMultiplier, 1f))
+        {
+            if (!MathHelper.CloseTo(well.AppliedMassMultiplier, 1f))
+            {
+                foreach (var (id, fixture) in fixtures.Fixtures)
+                {
+                    if (!well.TryGetBaseDensity(id, out var baseDensity))
+                        continue;
+
+                    _physics.SetDensity(gridUid, id, fixture, baseDensity, manager: fixtures);
+                }
+            }
+
+            well.ClearBaseDensities();
+            return;
+        }
+
+        foreach (var (id, fixture) in fixtures.Fixtures)
+        {
+            if (!well.TryGetBaseDensity(id, out var baseDensity))
+            {
+                baseDensity = fixture.Density;
+                well.RememberBaseDensity(id, baseDensity);
+            }
+
+            _physics.SetDensity(gridUid, id, fixture, baseDensity * targetMultiplier, manager: fixtures);
+        }
+
+        well.AppliedMassMultiplier = targetMultiplier;
+    }
+    //IH - End
+
+    //IH - Start
+    private float GetEffectiveMassMultiplier(EntityUid generator, GravityGeneratorComponent component, PowerChargeComponent? chargeComp = null)
+    {
+        var maxMultiplier = MathF.Max(component.MassMultiplier, 1f);
+        var chargeLevel = chargeComp?.Charge ??
+            (TryComp(generator, out PowerChargeComponent? storedCharge) ? storedCharge.Charge : 1f);
+
+        chargeLevel = Math.Clamp(chargeLevel, 0f, 1f);
+        return MathHelper.Lerp(1f, maxMultiplier, chargeLevel);
     }
     //IH - End
 }

@@ -12,6 +12,7 @@ namespace Content.Server.Gravity
         [DataField("lightRadiusMax")] public float LightRadiusMax { get; set; }
 
         //IH - Start
+        // TODO: ProtectRadius задуман для будущих проверок радиуса (солнечные лучи / локальные зоны), пока не используется.
         [DataField("protectRadius")] public float ProtectRadius { get; set; } = 48f;
         [DataField("massMultiplier")] public float MassMultiplier { get; set; } = 10f;
         [DataField("blocksFtl")] public bool BlocksFtl { get; set; } = true;

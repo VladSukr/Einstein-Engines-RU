@@ -1,11 +1,14 @@
 ﻿using Content.Server.Administration.Logs;
 using Content.Server.Audio;
+using Content.Server.Gravity;
 using Content.Server.Power.Components;
 using Content.Shared.Database;
 using Content.Shared.Power;
 using Content.Shared.UserInterface;
 using Robust.Server.GameObjects;
+using Robust.Shared.GameObjects;
 using Robust.Shared.Player;
+using Robust.Shared.Physics.Components;
 
 namespace Content.Server.Power.EntitySystems;
 
@@ -15,10 +18,16 @@ public sealed class PowerChargeSystem : EntitySystem
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly AmbientSoundSystem _ambientSoundSystem = default!;
+    private EntityQuery<PhysicsComponent> _physicsQuery = default!;
+    private EntityQuery<TransformComponent> _xformQuery = default!;
+    private EntityQuery<GridGravityWellComponent> _gravityWellQuery = default!;
 
     public override void Initialize()
     {
         base.Initialize();
+        _physicsQuery = GetEntityQuery<PhysicsComponent>();
+        _xformQuery = GetEntityQuery<TransformComponent>();
+        _gravityWellQuery = GetEntityQuery<GridGravityWellComponent>();
         SubscribeLocalEvent<PowerChargeComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<PowerChargeComponent, ComponentShutdown>(OnComponentShutdown);
         SubscribeLocalEvent<PowerChargeComponent, ActivatableUIOpenAttemptEvent>(OnUIOpenAttempt);
@@ -109,6 +118,8 @@ public sealed class PowerChargeSystem : EntitySystem
             if (!chargingMachine.Intact)
                 continue;
 
+            var statusChanged = RefreshGravityGeneratorStatus(uid, chargingMachine);
+
             // Calculate charge rate based on power state and such.
             // Negative charge rate means discharging.
             float chargeRate;
@@ -152,7 +163,7 @@ public sealed class PowerChargeSystem : EntitySystem
                 }
             }
 
-            var updateUI = chargingMachine.NeedUIUpdate;
+            var updateUI = chargingMachine.NeedUIUpdate || statusChanged;
             if (!MathHelper.CloseTo(lastCharge, chargingMachine.Charge))
             {
                 UpdateState(ent);
@@ -207,13 +218,18 @@ public sealed class PowerChargeSystem : EntitySystem
             _ => throw new ArgumentOutOfRangeException()
         };
 
+        var (hasStationStatus, stationMass, stationFtlLocked) = GetGravityGeneratorStatus(ent.Owner, component);
+
         var state = new PowerChargeState(
             component.SwitchedOn,
             (byte) (component.Charge * 255),
             status,
             (short) Math.Round(powerReceiver.PowerReceived),
             (short) Math.Round(powerReceiver.Load),
-            chargeEta
+            chargeEta,
+            hasStationStatus,
+            stationMass,
+            stationFtlLocked
         );
 
         _uiSystem.SetUiState(
@@ -276,6 +292,43 @@ public sealed class PowerChargeSystem : EntitySystem
         _ambientSoundSystem.SetAmbience(ent, true);
 
         _appearance.SetData(ent, PowerChargeVisuals.State, PowerChargeStatus.On, appearance);
+    }
+
+
+    private (bool showStatus, float mass, bool ftlLocked) GetGravityGeneratorStatus(EntityUid uid, PowerChargeComponent component)
+        => (component.HasStationStatus, component.StationMassCache, component.StationFtlLockedCache);
+
+    private bool RefreshGravityGeneratorStatus(EntityUid uid, PowerChargeComponent component)
+    {
+        if (!HasComp<GravityGeneratorComponent>(uid))
+        {
+            if (!component.HasStationStatus)
+                return false;
+
+            component.HasStationStatus = false;
+            component.StationMassCache = 0f;
+            component.StationFtlLockedCache = false;
+            return true;
+        }
+
+        if (!_xformQuery.TryGetComponent(uid, out var xform))
+            return false;
+
+        var parent = xform.ParentUid;
+        if (!_physicsQuery.TryGetComponent(parent, out var physics))
+            return false;
+
+        var locked = _gravityWellQuery.TryGetComponent(parent, out var well) && well.BlocksFtl;
+        var mass = physics.Mass;
+
+        var changed = !component.HasStationStatus
+                      || !MathHelper.CloseTo(component.StationMassCache, mass)
+                      || component.StationFtlLockedCache != locked;
+
+        component.HasStationStatus = true;
+        component.StationMassCache = mass;
+        component.StationFtlLockedCache = locked;
+        return changed;
     }
 }
 

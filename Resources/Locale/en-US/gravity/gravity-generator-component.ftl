@@ -10,6 +10,9 @@ gravity-generator-window-status = Status:
 gravity-generator-window-power = Power:
 gravity-generator-window-eta = ETA:
 gravity-generator-window-charge = Charge:
+gravity-generator-window-mass = Station mass:
+gravity-generator-window-ftl = FTL lock:
+gravity-generator-window-mass-value = { $mass } t
 
 ## UI statuses
 gravity-generator-window-status-fully-charged = Fully Charged

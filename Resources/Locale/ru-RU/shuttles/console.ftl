@@ -16,7 +16,7 @@ shuttle-console-linear-velocity = Линейная скорость:
 shuttle-console-angular-velocity = Угловая скорость:
 
 shuttle-console-unknown = Неизвестно
-shuttle-console-iff-label = {  } ({  } м)
+shuttle-console-iff-label = {$name} ({$distance} м)
 shuttle-console-exclusion = Запретная зона
 
 shuttle-console-nav-settings = Настройки
