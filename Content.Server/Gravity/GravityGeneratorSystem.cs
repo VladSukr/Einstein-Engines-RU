@@ -2,9 +2,7 @@ using System;
 using System.Numerics;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
-using Content.Shared.Examine;
 using Content.Shared.Gravity;
-using Robust.Shared.Localization;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
@@ -42,7 +40,6 @@ public sealed class GravityGeneratorSystem : EntitySystem
         SubscribeLocalEvent<GravityGeneratorComponent, ChargedMachineDeactivatedEvent>(OnDeactivated);
         //IH - Start
         SubscribeLocalEvent<GravityGeneratorComponent, ComponentShutdown>(OnShutdown);
-        SubscribeLocalEvent<GravityGeneratorComponent, ExaminedEvent>(OnExamined);
         //IH - End
     }
 
@@ -203,30 +200,6 @@ public sealed class GravityGeneratorSystem : EntitySystem
 
         gridUid = parent;
         return true;
-    }
-    //IH - End
-
-    //IH - Start
-    private void OnExamined(Entity<GravityGeneratorComponent> ent, ref ExaminedEvent args)
-    {
-        if (!args.IsInDetailsRange || !TryGetParentGrid(ent.Owner, out var gridUid))
-            return;
-
-        if (!_physicsQuery.TryGetComponent(gridUid, out var physics))
-            return;
-
-        var mass = physics.Mass;
-        args.PushMarkup(Loc.GetString("gravity-generator-examine-mass", ("mass", Math.Round(mass, 1))));
-
-        if (_gravityWellQuery.TryGetComponent(gridUid, out var well) && well.Active)
-        {
-            var state = well.BlocksFtl ? "gravity-generator-examine-ftl-locked" : "gravity-generator-examine-ftl-free";
-            args.PushMarkup(Loc.GetString("gravity-generator-examine-ftl", ("state", Loc.GetString(state))));
-        }
-        else
-        {
-            args.PushMarkup(Loc.GetString("gravity-generator-examine-ftl", ("state", Loc.GetString("gravity-generator-examine-ftl-free"))));
-        }
     }
     //IH - End
 

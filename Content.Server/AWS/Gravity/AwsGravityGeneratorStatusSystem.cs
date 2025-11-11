@@ -1,6 +1,9 @@
+using System;
 using Content.Server.Gravity;
 using Content.Shared.AWS.Gravity;
+using Content.Shared.Examine;
 using Robust.Shared.GameObjects;
+using Robust.Shared.Localization;
 using Robust.Shared.Maths;
 using Robust.Shared.Physics.Components;
 
@@ -11,16 +14,15 @@ namespace Content.Server.AWS.Gravity;
 /// </summary>
 public sealed class AwsGravityGeneratorStatusSystem : EntitySystem
 {
-    private EntityQuery<TransformComponent> _xformQuery = default!;
     private EntityQuery<PhysicsComponent> _physicsQuery = default!;
     private EntityQuery<GridGravityWellComponent> _gravityWellQuery = default!;
 
     public override void Initialize()
     {
         base.Initialize();
-        _xformQuery = GetEntityQuery<TransformComponent>();
         _physicsQuery = GetEntityQuery<PhysicsComponent>();
         _gravityWellQuery = GetEntityQuery<GridGravityWellComponent>();
+        SubscribeLocalEvent<AwsGravityGeneratorStatusComponent, ExaminedEvent>(OnExamined);
     }
 
     public override void Update(float frameTime)
@@ -73,5 +75,20 @@ public sealed class AwsGravityGeneratorStatusSystem : EntitySystem
         mass = physics.Mass;
         locked = _gravityWellQuery.TryGetComponent(gridUid, out var well) && well.BlocksFtl;
         return true;
+    }
+
+    private void OnExamined(Entity<AwsGravityGeneratorStatusComponent> ent, ref ExaminedEvent args)
+    {
+        if (!args.IsInDetailsRange)
+            return;
+
+        var status = ent.Comp;
+        if (!status.ShowStatus)
+            return;
+
+        args.PushMarkup(Loc.GetString("gravity-generator-examine-mass", ("mass", Math.Round(status.StationMass, 1))));
+
+        var stateKey = status.StationFtlLocked ? "gravity-generator-examine-ftl-locked" : "gravity-generator-examine-ftl-free";
+        args.PushMarkup(Loc.GetString("gravity-generator-examine-ftl", ("state", Loc.GetString(stateKey))));
     }
 }
