@@ -1,4 +1,4 @@
-ui-options-emotes-menu = Тип меню эмоции:
+﻿ui-options-emotes-menu = Тип меню эмоций
 
 ui-options-log-in-chat = Логировать действия в чат
 
@@ -20,3 +20,5 @@ ui-options-toggle-combat-mode-sounds = Звук переключения бое�
 char-voice-none = Ничего
 char-voice-bark = Лай
 char-voice-tts = TTS
+
+ui-voice-option = Голос персонажа

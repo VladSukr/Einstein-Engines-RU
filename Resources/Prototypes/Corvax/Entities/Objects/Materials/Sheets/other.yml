@@ -22,6 +22,8 @@
   - type: Tag
     tags:
     - Document
+  - type: StackPrice
+    price: 1
 
 - type: entity
   parent: SheetPrinter

@@ -1,13 +1,14 @@
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Threading.Tasks;
+using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Server._Sunrise.TTS;
 using Content.Server.Power.Components;
 using Content.Shared._Sunrise.AnnouncementSpeaker.Components;
 using Content.Shared._Sunrise.AnnouncementSpeaker.Events;
 using Content.Shared._Sunrise.TTS;
-using Content.Server.Station.Components;
+using Content.Shared.Station.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;

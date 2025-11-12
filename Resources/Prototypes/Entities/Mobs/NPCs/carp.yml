@@ -16,6 +16,9 @@
     - type: NpcFactionMember
       factions:
       - Dragon
+    - type: CollectiveMind
+      minds:
+      - Carp
     - type: Sprite
       drawdepth: Mobs
       sprite: Mobs/Aliens/Carps/space.rsi

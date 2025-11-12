@@ -1,6 +1,7 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Xml.Linq;
+using Content.Shared._Sunrise.CollectiveMind;
 using Content.Shared.Decals;
 using Content.Shared.Popups;
 using Content.Shared.Radio;
@@ -28,6 +29,7 @@ public abstract class SharedChatSystem : EntitySystem
     public const char AdminPrefix = ']';
     public const char WhisperPrefix = ',';
     public const char TelepathicPrefix = '='; //Nyano - Summary: Adds the telepathic channel's prefix.
+    public const char CollectiveMindPrefix = '+'; // Sunrise-Edit
     public const char DefaultChannelKey = 'h';
     // WD EDIT START
     public const int VoiceRange = 10;
@@ -52,6 +54,7 @@ public abstract class SharedChatSystem : EntitySystem
     /// Cache of the keycodes for faster lookup.
     /// </summary>
     private readonly Dictionary<char, RadioChannelPrototype> _keyCodes = new(); // WD EDIT
+    private readonly Dictionary<char, CollectiveMindPrototype> _mindKeyCodes = new(); // Sunrise-Edit
 
     public override void Initialize()
     {
@@ -60,6 +63,7 @@ public abstract class SharedChatSystem : EntitySystem
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypeReload);
         CacheRadios();
         CacheNameColors(); // WWDP EDIT
+        CacheCollectiveMinds(); // Sunrise-Edit
     }
 
     protected virtual void OnPrototypeReload(PrototypesReloadedEventArgs obj)
@@ -68,6 +72,8 @@ public abstract class SharedChatSystem : EntitySystem
             CacheRadios();
         if (obj.WasModified<ColorPalettePrototype>())   // WWDP EDIT
             CacheNameColors();                          // WWDP EDIT
+        if (obj.WasModified<CollectiveMindPrototype>()) // Sunrise-Edit
+            CacheCollectiveMinds();
     }
 
     // WWDP EDIT START
@@ -96,6 +102,21 @@ public abstract class SharedChatSystem : EntitySystem
         }
         // WD EDIT END
     }
+
+    // Sunrise-Start
+    private void CacheCollectiveMinds()
+    {
+        _mindKeyCodes.Clear();
+        foreach (var proto in _prototypeManager.EnumeratePrototypes<CollectiveMindPrototype>())
+        {
+            if (proto.KeyCode == '\0')
+                continue;
+            var key = char.ToLower(proto.KeyCode);
+            if (!_mindKeyCodes.ContainsKey(key))
+                _mindKeyCodes.Add(key, proto);
+        }
+    }
+    // Sunrise-End
 
     /// <summary>
     ///     Attempts to find an applicable <see cref="SpeechVerbPrototype"/> for a speaking entity's message.
@@ -213,6 +234,43 @@ public abstract class SharedChatSystem : EntitySystem
 
         return true;
     }
+
+    // Sunrise-Start
+    public bool TryProccessCollectiveMindMessage(
+        EntityUid source,
+        string input,
+        out string output,
+        out CollectiveMindPrototype? channel,
+        bool quiet = false)
+    {
+        output = input.Trim();
+        channel = null;
+
+        if (input.Length == 0)
+            return false;
+
+        if (!input.StartsWith(CollectiveMindPrefix))
+            return false;
+
+        if (input.Length < 2 || char.IsWhiteSpace(input[1]))
+        {
+            output = SanitizeMessageCapital(input[1..].TrimStart());
+            if (!quiet)
+                _popup.PopupEntity(Loc.GetString("chat-manager-no-radio-key"), source, source);
+            return true;
+        }
+
+        var channelKey = char.ToLower(input[1]);
+        output = SanitizeMessageCapital(input[2..].TrimStart());
+
+        if (_mindKeyCodes.TryGetValue(channelKey, out channel) || quiet)
+            return true;
+
+        var msg = Loc.GetString("chat-manager-no-such-channel", ("key", channelKey));
+        _popup.PopupEntity(msg, source, source);
+        return false;
+    }
+    // Sunrise-End
 
     public virtual void TrySendInGameICMessage(
         EntityUid source,
@@ -385,6 +443,7 @@ public enum InGameICChatType : byte
     Speak,
     Emote,
     Whisper,
+    CollectiveMind, // Sunrise-Edit
     Telepathic
 }
 

@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using Content.Server._Sunrise.AnnouncementSpeaker;
+using Content.Server._Sunrise.Chat.Sanitization;
 using Content.Server._White.Hearing;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
@@ -14,6 +16,8 @@ using Content.Server.Speech.EntitySystems;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.ActionBlocker;
+using Content.Shared._Shitmed.Antags.Abductor;
+using Content.Shared._Sunrise.CollectiveMind;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
@@ -75,6 +79,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
     [Dependency] private readonly ExamineSystemShared _examineSystem = default!;
     [Dependency] private readonly HearingSystem _hearing = default!; // WD EDIT
+    [Dependency] private readonly AnnouncementSpeakerSystem _announcementSpeaker = default!; // Sunrise-Edit
 
     public const int VoiceRange = 10; // how far voice goes in world units
     public const int WhisperClearRange = 2; // how far whisper goes while still being understandable, in world units
@@ -199,6 +204,15 @@ public sealed partial class ChatSystem : SharedChatSystem
             source = newSource;
         // WWDP EDIT END
 
+        if (TryComp<AbductorComponent>(source, out var abductorComp))
+        {
+            if (_prototypeManager.TryIndex<CollectiveMindPrototype>(abductorComp.AbductorCollectiveMindProto, out var abductorMind))
+            {
+                SendCollectiveMindChat(source, message, abductorMind);
+                return;
+            }
+        }
+
         if (HasComp<GhostComponent>(source))
         {
             // Ghosts can only send dead chat messages, so we'll forward it to InGame OOC.
@@ -217,6 +231,12 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         if (!CanSendInGame(message, shell, player))
             return;
+
+        var trySendEvent = new TrySendChatMessageEvent(message, desiredType);
+        RaiseLocalEvent(source, trySendEvent);
+        if (trySendEvent.Cancelled)
+            return;
+        message = trySendEvent.Message;
 
         ignoreActionBlocker = CheckIgnoreSpeechBlocker(source, ignoreActionBlocker);
 
@@ -274,6 +294,15 @@ public sealed partial class ChatSystem : SharedChatSystem
             }
         }
 
+        if (desiredType == InGameICChatType.CollectiveMind)
+        {
+            if (TryProccessCollectiveMindMessage(source, message, out var modMessage, out var collectiveMind))
+            {
+                SendCollectiveMindChat(source, modMessage, collectiveMind);
+                return;
+            }
+        }
+
         message = FormattedMessage.EscapeText(message);
 
         // Otherwise, send whatever type.
@@ -292,6 +321,9 @@ public sealed partial class ChatSystem : SharedChatSystem
             case InGameICChatType.Telepathic:
                 _telepath.SendTelepathicChat(source, message, range == ChatTransmitRange.HideChat);
                 break;
+            case InGameICChatType.CollectiveMind:
+                SendCollectiveMindChat(source, message, null);
+                break;
         }
     }
 
@@ -306,6 +338,12 @@ public sealed partial class ChatSystem : SharedChatSystem
     {
         if (!CanSendInGame(message, shell, player))
             return;
+
+        var trySendEvent = new TrySendChatMessageEvent(message, oocChatType: type);
+        RaiseLocalEvent(source, trySendEvent);
+        if (trySendEvent.Cancelled)
+            return;
+        message = trySendEvent.Message;
 
         if (player != null && _chatManager.HandleRateLimit(player) != RateLimitStatus.Allowed)
             return;
@@ -345,97 +383,113 @@ public sealed partial class ChatSystem : SharedChatSystem
     #region Announcements
 
     /// <summary>
-    /// Dispatches an announcement to all.
+    /// Dispatches an announcement to all players.
     /// </summary>
-    /// <param name="message">The contents of the message</param>
-    /// <param name="sender">The sender (Communications Console in Communications Console Announcement)</param>
-    /// <param name="playSound">Play the announcement sound</param>
-    /// <param name="colorOverride">Optional color for the announcement message</param>
     public void DispatchGlobalAnnouncement(
         string message,
         string? sender = null,
         bool playSound = true,
         SoundSpecifier? announcementSound = null,
-        Color? colorOverride = null
-        )
+        bool playTts = true,
+        string? announceVoice = null,
+        Color? colorOverride = null)
     {
         sender ??= Loc.GetString("chat-manager-sender-announcement");
 
-        var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", FormattedMessage.EscapeText(message)));
-        _chatManager.ChatMessageToAll(ChatChannel.Radio, message, wrappedMessage, default, false, true, colorOverride);
-        if (playSound)
+        var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message",
+            ("sender", sender),
+            ("message", FormattedMessage.EscapeText(message)));
+
+        var filteredPlayers = GetPlayersWithWorkingSpeakers();
+        if (filteredPlayers.Recipients.Any())
+            _chatManager.ChatMessageToManyFiltered(filteredPlayers, ChatChannel.Radio, message, wrappedMessage, default, false, true, colorOverride);
+
+        if (playTts && (playSound || announcementSound != null))
         {
-            _audio.PlayGlobal(announcementSound == null ? DefaultAnnouncementSound : _audio.GetSound(announcementSound), Filter.Broadcast(), true, AudioParams.Default.WithVolume(-2f));
+            if (playSound && announcementSound == null)
+                announcementSound = new SoundPathSpecifier(DefaultAnnouncementSound);
+
+            _announcementSpeaker.DispatchAnnouncementToAllStations(message, announcementSound, announceVoice);
         }
+
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Global station announcement from {sender}: {message}");
     }
 
     /// <summary>
     /// Dispatches an announcement to players selected by filter.
     /// </summary>
-    /// <param name="filter">Filter to select players who will recieve the announcement</param>
-    /// <param name="message">The contents of the message</param>
-    /// <param name="source">The entity making the announcement (used to determine the station)</param>
-    /// <param name="sender">The sender (Communications Console in Communications Console Announcement)</param>
-    /// <param name="playDefaultSound">Play the announcement sound</param>
-    /// <param name="announcementSound">Sound to play</param>
-    /// <param name="colorOverride">Optional color for the announcement message</param>
     public void DispatchFilteredAnnouncement(
         Filter filter,
         string message,
         EntityUid? source = null,
         string? sender = null,
         bool playSound = true,
+        bool playTts = true,
+        string? announceVoice = null,
         SoundSpecifier? announcementSound = null,
         Color? colorOverride = null)
     {
         sender ??= Loc.GetString("chat-manager-sender-announcement");
 
-        var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", FormattedMessage.EscapeText(message)));
-        _chatManager.ChatMessageToManyFiltered(filter, ChatChannel.Radio, message, wrappedMessage, source ?? default, false, true, colorOverride);
-        if (playSound)
+        var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message",
+            ("sender", sender),
+            ("message", FormattedMessage.EscapeText(message)));
+
+        var filteredChatPlayers = FilterPlayersByWorkingSpeakers(filter);
+        if (filteredChatPlayers.Recipients.Any())
+            _chatManager.ChatMessageToManyFiltered(filteredChatPlayers, ChatChannel.Radio, message, wrappedMessage, source ?? default, false, true, colorOverride);
+
+        if (playTts && (playSound || announcementSound != null) && source != null)
         {
-            _audio.PlayGlobal(announcementSound?.ToString() ?? DefaultAnnouncementSound, filter, true, AudioParams.Default.WithVolume(-2f));
+            if (playSound && announcementSound == null)
+                announcementSound = new SoundPathSpecifier(DefaultAnnouncementSound);
+
+            var station = _stationSystem.GetOwningStation(source.Value);
+            if (station != null)
+                _announcementSpeaker.DispatchAnnouncementToSpeakers(station.Value, message, announcementSound, announceVoice);
         }
+
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Station Announcement from {sender}: {message}");
     }
 
     /// <summary>
-    /// Dispatches an announcement on a specific station
+    /// Dispatches an announcement on a specific station.
     /// </summary>
-    /// <param name="source">The entity making the announcement (used to determine the station)</param>
-    /// <param name="message">The contents of the message</param>
-    /// <param name="sender">The sender (Communications Console in Communications Console Announcement)</param>
-    /// <param name="playDefaultSound">Play the announcement sound</param>
-    /// <param name="colorOverride">Optional color for the announcement message</param>
     public void DispatchStationAnnouncement(
         EntityUid source,
         string message,
         string? sender = null,
-        bool playDefaultSound = true,
-        SoundSpecifier? announcementSound = null,
-        Color? colorOverride = null)
+        bool playSound = true,
+        bool playTts = true,
+        Color? colorOverride = null,
+        string? announceVoice = null,
+        SoundSpecifier? announcementSound = null)
     {
         sender ??= Loc.GetString("chat-manager-sender-announcement");
 
-        var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message", ("sender", sender), ("message", FormattedMessage.EscapeText(message)));
+        var wrappedMessage = Loc.GetString("chat-manager-sender-announcement-wrap-message",
+            ("sender", sender),
+            ("message", FormattedMessage.EscapeText(message)));
+
         var station = _stationSystem.GetOwningStation(source);
-
         if (station == null)
-        {
-            // you can't make a station announcement without a station
             return;
-        }
 
-        if (!EntityManager.TryGetComponent<StationDataComponent>(station, out var stationDataComp)) return;
+        if (!TryComp<StationDataComponent>(station, out var stationDataComp))
+            return;
 
         var filter = _stationSystem.GetInStation(stationDataComp);
 
-        _chatManager.ChatMessageToManyFiltered(filter, ChatChannel.Radio, message, wrappedMessage, source, false, true, colorOverride);
+        var filteredChatPlayers = FilterPlayersByWorkingSpeakers(filter);
+        if (filteredChatPlayers.Recipients.Any())
+            _chatManager.ChatMessageToManyFiltered(filteredChatPlayers, ChatChannel.Radio, message, wrappedMessage, source, false, true, colorOverride);
 
-        if (playDefaultSound)
+        if (playTts)
         {
-            _audio.PlayGlobal(announcementSound?.ToString() ?? DefaultAnnouncementSound, filter, true, AudioParams.Default.WithVolume(-2f));
+            if (playSound && announcementSound == null)
+                announcementSound = new SoundPathSpecifier(DefaultAnnouncementSound);
+
+            _announcementSpeaker.DispatchAnnouncementToSpeakers(station.Value, message, announcementSound, announceVoice);
         }
 
         _adminLogger.Add(LogType.Chat, LogImpact.Low, $"Station Announcement on {station} from {sender}: {message}");
@@ -1035,6 +1089,118 @@ public sealed partial class ChatSystem : SharedChatSystem
             sb.Append(_random.Pick(charOptions));
         }
         return sb.ToString();
+    }
+
+    private void SendCollectiveMindChat(EntityUid source, string message, CollectiveMindPrototype? collectiveMind)
+    {
+        var trySendEvent = new TrySendChatMessageEvent(message, InGameICChatType.CollectiveMind);
+        RaiseLocalEvent(source, trySendEvent);
+        if (trySendEvent.Cancelled)
+            return;
+        message = trySendEvent.Message;
+
+        if (_mobStateSystem.IsDead(source))
+            return;
+
+        if (collectiveMind == null || string.IsNullOrEmpty(message))
+            return;
+
+        if (!TryComp<CollectiveMindComponent>(source, out var sourceMind) ||
+            !sourceMind.Minds.Contains(collectiveMind.ID))
+            return;
+
+        var clients = Filter.Empty();
+        var receivers = new HashSet<EntityUid>();
+        var mindQuery = EntityQueryEnumerator<CollectiveMindComponent, ActorComponent>();
+        while (mindQuery.MoveNext(out var uid, out var mindComp, out var actorComp))
+        {
+            if (_mobStateSystem.IsDead(uid))
+                continue;
+
+            if (!mindComp.Minds.Contains(collectiveMind.ID))
+                continue;
+
+            if (actorComp.PlayerSession != null)
+                clients.AddPlayer(actorComp.PlayerSession);
+
+            receivers.Add(uid);
+        }
+
+        if (!clients.Recipients.Any())
+            return;
+
+        var messageWrap = collectiveMind.ShowAuthor
+            ? Loc.GetString("collective-mind-chat-wrap-message-with-author",
+                ("source", source),
+                ("message", message),
+                ("channel", collectiveMind.LocalizedName))
+            : Loc.GetString("collective-mind-chat-wrap-message",
+                ("message", message),
+                ("channel", collectiveMind.LocalizedName));
+
+        var adminMessageWrap = Loc.GetString("collective-mind-chat-wrap-message-admin",
+            ("source", source),
+            ("message", message),
+            ("channel", collectiveMind.LocalizedName));
+
+        _adminLogger.Add(LogType.Chat, LogImpact.Low,
+            $"CollectiveMind chat from {ToPrettyString(source):Player}: {message}");
+
+        _chatManager.ChatMessageToManyFiltered(
+            clients,
+            ChatChannel.CollectiveMind,
+            message,
+            messageWrap,
+            source,
+            false,
+            true,
+            collectiveMind.Color);
+
+        var admins = _adminManager.ActiveAdmins.Select(p => p.Channel);
+
+        _chatManager.ChatMessageToMany(
+            ChatChannel.CollectiveMind,
+            message,
+            adminMessageWrap,
+            source,
+            false,
+            true,
+            admins,
+            collectiveMind.Color);
+
+        RaiseLocalEvent(new CollectiveMindSpokeEvent(source, message, receivers, collectiveMind.ID));
+    }
+
+    private Filter GetPlayersWithWorkingSpeakers()
+    {
+        var filteredPlayers = Filter.Empty();
+
+        foreach (var player in _playerManager.Sessions)
+        {
+            if (player.AttachedEntity is not { Valid: true } playerEntity)
+                continue;
+
+            if (_announcementSpeaker.HasWorkingSpeakersNearby(playerEntity))
+                filteredPlayers = filteredPlayers.AddPlayer(player);
+        }
+
+        return filteredPlayers;
+    }
+
+    private Filter FilterPlayersByWorkingSpeakers(Filter originalFilter)
+    {
+        var filteredPlayers = Filter.Empty();
+
+        foreach (var player in originalFilter.Recipients)
+        {
+            if (player.AttachedEntity is not { Valid: true } playerEntity)
+                continue;
+
+            if (_announcementSpeaker.HasWorkingSpeakersNearby(playerEntity))
+                filteredPlayers = filteredPlayers.AddPlayer(player);
+        }
+
+        return filteredPlayers;
     }
 
     private bool CheckAttachedGrids(EntityUid source, EntityUid receiver)
