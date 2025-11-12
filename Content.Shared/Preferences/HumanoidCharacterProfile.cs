@@ -551,6 +551,127 @@ public sealed partial class HumanoidCharacterProfile : ICharacterProfile
             && FlavorText == other.FlavorText;
     }
 
+    public FormattedMessage? GetBackgroundBlockedMessage(
+        ProtoId<JobPrototype> jobId,
+        IPrototypeManager prototypeManager,
+        IConfigurationManager configManager)
+    {
+        if (!BackgroundBlockingEnabled(configManager))
+            return null;
+
+        var reasons = new List<string>(capacity: 3);
+
+        AppendBackgroundBlockMessage<NationalityPrototype>(
+            Nationality,
+            jobId,
+            prototypeManager,
+            "contractor-background-type-nationality",
+            static proto => proto.BlockingJobs,
+            static proto => proto.NameKey,
+            reasons);
+
+        AppendBackgroundBlockMessage<EmployerPrototype>(
+            Employer,
+            jobId,
+            prototypeManager,
+            "contractor-background-type-employer",
+            static proto => proto.BlockingJobs,
+            static proto => proto.NameKey,
+            reasons);
+
+        AppendBackgroundBlockMessage<LifepathPrototype>(
+            Lifepath,
+            jobId,
+            prototypeManager,
+            "contractor-background-type-lifepath",
+            static proto => proto.BlockingJobs,
+            static proto => proto.NameKey,
+            reasons);
+
+        if (reasons.Count == 0)
+            return null;
+
+        var backgrounds = string.Join(", ", reasons);
+        var text = Loc.GetString("contractor-background-job-blocked", ("backgrounds", backgrounds));
+        return FormattedMessage.FromMarkup(text);
+    }
+
+    public IReadOnlyCollection<ProtoId<JobPrototype>> GetBlockedJobs(
+        IPrototypeManager prototypeManager,
+        IConfigurationManager configManager)
+    {
+        var blocked = new HashSet<ProtoId<JobPrototype>>();
+
+        if (!BackgroundBlockingEnabled(configManager))
+            return blocked;
+
+        CollectBlockedJobs<NationalityPrototype>(
+            Nationality,
+            prototypeManager,
+            blocked,
+            static proto => proto.BlockingJobs);
+
+        CollectBlockedJobs<EmployerPrototype>(
+            Employer,
+            prototypeManager,
+            blocked,
+            static proto => proto.BlockingJobs);
+
+        CollectBlockedJobs<LifepathPrototype>(
+            Lifepath,
+            prototypeManager,
+            blocked,
+            static proto => proto.BlockingJobs);
+
+        return blocked;
+    }
+
+    private static bool BackgroundBlockingEnabled(IConfigurationManager configManager)
+    {
+        return configManager.GetCVar(CCVars.ContractorsEnabled)
+               && configManager.GetCVar(CCVars.ContractorsCharacterRequirementsEnabled);
+    }
+
+    private static void AppendBackgroundBlockMessage<TPrototype>(
+        string? prototypeId,
+        ProtoId<JobPrototype> jobId,
+        IPrototypeManager prototypeManager,
+        string typeLoc,
+        Func<TPrototype, IEnumerable<ProtoId<JobPrototype>>> blockingSelector,
+        Func<TPrototype, string> nameSelector,
+        ICollection<string> output)
+        where TPrototype : class, IPrototype
+    {
+        if (string.IsNullOrWhiteSpace(prototypeId))
+            return;
+
+        if (!prototypeManager.TryIndex(prototypeId, out TPrototype? prototype))
+            return;
+
+        if (!blockingSelector(prototype).Contains(jobId))
+            return;
+
+        var typeName = Loc.GetString(typeLoc);
+        var backgroundName = Loc.GetString(nameSelector(prototype));
+        output.Add($"{typeName}: {backgroundName}");
+    }
+
+    private static void CollectBlockedJobs<TPrototype>(
+        string? prototypeId,
+        IPrototypeManager prototypeManager,
+        ISet<ProtoId<JobPrototype>> blocked,
+        Func<TPrototype, IEnumerable<ProtoId<JobPrototype>>> blockingSelector)
+        where TPrototype : class, IPrototype
+    {
+        if (string.IsNullOrWhiteSpace(prototypeId))
+            return;
+
+        if (!prototypeManager.TryIndex(prototypeId, out TPrototype? prototype))
+            return;
+
+        blocked.UnionWith(blockingSelector(prototype));
+    }
+
     public void EnsureValid(ICommonSession session, IDependencyCollection collection)
     {
         var configManager = collection.Resolve<IConfigurationManager>();

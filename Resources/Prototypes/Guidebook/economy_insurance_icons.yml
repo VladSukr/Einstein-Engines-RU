@@ -1,7 +1,7 @@
 - type: entity
   id: GuideInsuranceIconNonStatus
   name: Иконка страховки — гражданская
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: /Textures/AWS/economy/insurance.rsi
@@ -11,7 +11,7 @@
 - type: entity
   id: GuideInsuranceIconCopper
   name: Иконка страховки — бронзовая
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: /Textures/AWS/economy/insurance.rsi
@@ -21,7 +21,7 @@
 - type: entity
   id: GuideInsuranceIconSilver
   name: Иконка страховки — серебряная
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: /Textures/AWS/economy/insurance.rsi
@@ -31,7 +31,7 @@
 - type: entity
   id: GuideInsuranceIconGold
   name: Иконка страховки — золотая
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: /Textures/AWS/economy/insurance.rsi
@@ -41,7 +41,7 @@
 - type: entity
   id: GuideInsuranceIconPlatinum
   name: Иконка страховки — платиновая
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   components:
   - type: Sprite
     sprite: /Textures/AWS/economy/insurance.rsi
