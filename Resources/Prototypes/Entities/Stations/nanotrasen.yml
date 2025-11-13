@@ -77,6 +77,8 @@
   categories: [ HideSpawnMenu ]
   components:
   - type: Transform
+  - type: StationBankAccount
+    balance: 2600
 
 - type: entity
   id: StandardNanotrasenStationNoShuttles
@@ -124,3 +126,5 @@
   categories: [HideSpawnMenu]
   components:
   - type: Transform
+  - type: StationBankAccount
+    balance: 2600

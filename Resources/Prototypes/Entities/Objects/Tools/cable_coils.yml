@@ -26,7 +26,7 @@
     price: 0
   - type: PhysicalComposition
     materialComposition:
-      Steel: 15
+      Steel: 6
   - type: GuideHelp
     guides:
     - VoltageNetworks

@@ -3,13 +3,13 @@
   id: culture-Earthman
   name: historical-name-Culture-Earthman
   description: historical-description-Culture-Earthman
-  historyType: enum.HistoryType.Culture
+  historyType: Culture
 
 - type: history
   id: culture-Marsman
   name: historical-name-Culture-Marsman
   description: historical-description-Culture-Marsman
-  historyType: enum.HistoryType.Culture
+  historyType: Culture
   container:
     blockedSkillLevels:
       piloting: [enum.SkillLevel.Experienced]
@@ -18,6 +18,6 @@
   id: culture-Lunaman
   name: historical-name-Culture-Lunaman
   description: historical-description-Culture-Lunaman
-  historyType: enum.HistoryType.Culture
+  historyType: Culture
   container:
     additionalSkillPoints: 5

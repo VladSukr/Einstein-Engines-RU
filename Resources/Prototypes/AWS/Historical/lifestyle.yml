@@ -3,4 +3,4 @@
   id: lifestyle-Ascetic
   name: historical-name-Lifestyle-Ascetic
   description: historical-description-Lifestyle-Ascetic
-  historyType: enum.HistoryType.Lifestyle
+  historyType: Lifestyle

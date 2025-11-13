@@ -11,6 +11,11 @@
     deconstructionTarget: null
     graph: TimerElectronics
     node: signal
+  - type: PhysicalComposition
+    materialComposition:
+      Glass: 150
+    chemicalComposition:
+      Silicon: 1
   - type: Tag
     tags:
     - TimerSignalElectronics

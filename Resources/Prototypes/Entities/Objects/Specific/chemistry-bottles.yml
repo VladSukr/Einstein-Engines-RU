@@ -11,7 +11,7 @@
     - Trash
   - type: PhysicalComposition
     materialComposition:
-      Glass: 25
+      Glass: 5
   - type: SpaceGarbage
   - type: Sprite
     sprite: Objects/Specific/Chemistry/bottle.rsi

@@ -52,7 +52,7 @@
     - Trash
   - type: PhysicalComposition
     materialComposition:
-      Glass: 60
+      Glass: 20
   - type: SpaceGarbage
   - type: Fixtures
     fixtures:
@@ -120,7 +120,7 @@
         acts: [ "Destruction" ]
   - type: PhysicalComposition
     materialComposition:
-      Glass: 30
+      Glass: 10
   - type: StaticPrice
     price: 2
 
@@ -195,7 +195,7 @@
     - Trash
   - type: PhysicalComposition
     materialComposition:
-      Steel: 60
+      Steel: 20
   - type: SpaceGarbage
   - type: StaticPrice
     price: 4
@@ -221,7 +221,7 @@
     - Trash
   - type: PhysicalComposition
     materialComposition:
-      Steel: 30
+      Steel: 10
   - type: SpaceGarbage
   - type: StaticPrice
     price: 6

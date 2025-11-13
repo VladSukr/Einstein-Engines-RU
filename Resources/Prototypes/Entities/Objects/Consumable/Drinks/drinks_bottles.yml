@@ -41,7 +41,7 @@
     solution: drink
   - type: PhysicalComposition
     materialComposition:
-      Plastic: 25
+      Plastic: 2
   - type: DnaSubstanceTrace
   - type: PressurizedSolution
     solution: drink
@@ -98,7 +98,7 @@
   - type: PhysicalComposition
     materialComposition:
       Plastic: 0
-      Glass: 40
+      Glass: 12
 
 - type: entity
   id: DrinkBottleVisualsOpenable

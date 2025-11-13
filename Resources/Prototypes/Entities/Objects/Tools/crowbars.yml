@@ -43,7 +43,7 @@
   - type: ToolTileCompatible
   - type: PhysicalComposition
     materialComposition:
-      Steel: 100
+      Steel: 20
   - type: StaticPrice
     price: 5
   - type: Prying

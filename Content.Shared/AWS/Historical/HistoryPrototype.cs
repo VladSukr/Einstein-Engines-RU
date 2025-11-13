@@ -13,16 +13,16 @@ public sealed partial class HistoryPrototype : IPrototype
     public bool IsDefault { get; set; } = false;
 
     [ViewVariables(VVAccess.ReadWrite), DataField(required: true)]
-    public Enum HistoryType { get; set; } = default!;
+    public HistoryType HistoryType { get; private set; } = HistoryType.Culture;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField(required: true)]
-    public string Name = string.Empty;
+    [ViewVariables(VVAccess.ReadWrite), DataField("name", required: true)]
+    public string Name { get; private set; } = string.Empty;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField(required: true)]
-    public string Description = string.Empty;
+    [ViewVariables(VVAccess.ReadWrite), DataField("description", required: true)]
+    public string Description { get; private set; } = string.Empty;
 
-    [ViewVariables(VVAccess.ReadWrite), DataField]
-    public ProtoId<SkillCategoryPrototype> BlockedForSpecies = new();
+    [ViewVariables(VVAccess.ReadWrite), DataField("blockedForSpecies")]
+    public ProtoId<SkillCategoryPrototype>? BlockedForSpecies = null;
 
     [ViewVariables(VVAccess.ReadWrite), DataField]
     public List<ProtoId<HistoryPrototype>> BlockingHistories = new();
@@ -31,7 +31,7 @@ public sealed partial class HistoryPrototype : IPrototype
     public List<ProtoId<JobPrototype>> BlockingJobs = new();
 
     [ViewVariables(VVAccess.ReadWrite), DataField]
-    public SkillContainer Container = new();
+    public SkillContainer Container { get; private set; } = new();
 }
 
 public enum HistoryType

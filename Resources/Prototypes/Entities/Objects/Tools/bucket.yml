@@ -65,7 +65,7 @@
       - Bucket
   - type: PhysicalComposition
     materialComposition:
-      Plastic: 50
+      Plastic: 15
   - type: DnaSubstanceTrace
   - type: StaticPrice
     price: 5

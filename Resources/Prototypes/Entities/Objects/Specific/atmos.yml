@@ -30,8 +30,8 @@
     price: 20
   - type: PhysicalComposition
     materialComposition:
-      Steel: 400
-      Glass: 100
+      Steel: 40
+      Glass: 20
   - type: GuideHelp
     guides:
     - AtmosTools

@@ -68,9 +68,6 @@
   - type: SpaceGarbage
   - type: TrashOnSolutionEmpty
     solution: drink
-  - type: PhysicalComposition
-    materialComposition:
-      Steel: 26 # tuned for ~4 cr tare cost
   - type: Tag
     tags:
     - DrinkCan

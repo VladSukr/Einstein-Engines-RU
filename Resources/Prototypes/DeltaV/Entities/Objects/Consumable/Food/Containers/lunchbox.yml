@@ -23,7 +23,7 @@
     - 4,0,4,2
   - type: PhysicalComposition
     materialComposition:
-      Plastic: 100
+      Plastic: 15
   - type: MeleeWeapon
     damage:
       types:

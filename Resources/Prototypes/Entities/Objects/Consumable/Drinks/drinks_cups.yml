@@ -33,7 +33,7 @@
     state: icon
   - type: PhysicalComposition
     materialComposition:
-      Glass: 20
+      Glass: 15
   - type: Spillable
     solution: drink
   - type: MeleeWeapon

@@ -21,9 +21,9 @@
           Off: { state: tray-off }
   - type: PhysicalComposition
     materialComposition:
-      Aluminum: 300
-      Glass: 100
-      Circuitry: 25
+      Aluminum: 40
+      Glass: 10
+      Circuitry: 5
   - type: StaticPrice
     price: 15
   - type: RequiredSkill

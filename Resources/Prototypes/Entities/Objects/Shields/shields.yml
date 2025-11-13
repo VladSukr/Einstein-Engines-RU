@@ -121,6 +121,31 @@
       heldPrefix: riot_laser
     - type: StaticPrice
       price: 45
+    - type: Destructible
+      thresholds:
+        - trigger:
+            !type:DamageTrigger
+            damage: 140
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+        - trigger:
+            !type:DamageTrigger
+            damage: 100
+          behaviors:
+            - !type:DoActsBehavior
+              acts: [ "Destruction" ]
+            - !type:PlaySoundBehavior
+              sound:
+                collection: MetalBreak
+            - !type:SpawnEntitiesBehavior
+              spawn:
+                SheetSteel:
+                  min: 1
+                  max: 1
+                SheetGlass:
+                  min: 1
+                  max: 1
     - type: Blocking
       passiveBlockModifier:
         coefficients:

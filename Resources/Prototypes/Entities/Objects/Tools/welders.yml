@@ -114,7 +114,7 @@
   - type: RequiresEyeProtection
   - type: PhysicalComposition
     materialComposition:
-      Steel: 200
+      Steel: 130
   - type: StaticPrice
     price: 20
   - type: IgnitionSource

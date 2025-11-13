@@ -152,7 +152,7 @@
     storedRotation: 0
   - type: PhysicalComposition #you can't just pass up some free plastic!
     materialComposition:
-      Plastic: 100
+      Plastic: 20
   - type: StaticPrice
     price: 5
 

@@ -12,8 +12,8 @@
   - type: EyeProtection
   - type: PhysicalComposition
     materialComposition:
-      Steel: 200
-      Glass: 100
+      Steel: 40
+      Glass: 10
   - type: StaticPrice
     price: 12
   - type: Tag

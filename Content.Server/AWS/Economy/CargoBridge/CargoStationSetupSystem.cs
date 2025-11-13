@@ -38,7 +38,7 @@ public sealed class CargoStationSetupSystem : EntitySystem
             ? int.MaxValue
             : (int) account.Value.Comp.Balance;
 
-        if (bank.Balance >= newBalance)
+        if (bank.Balance == newBalance)
             return;
 
         var delta = newBalance - bank.Balance;

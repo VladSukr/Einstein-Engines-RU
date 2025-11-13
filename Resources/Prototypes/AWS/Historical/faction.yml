@@ -3,13 +3,13 @@
   id: faction-Nanotrasen
   name: historical-name-faction-Nanotrasen
   description: historical-description-Faction-Nanotrasen
-  historyType: enum.HistoryType.Faction
+  historyType: Faction
 
 - type: history
   id: faction-Central-Government-of-the-Solar-System
   name: historical-name-faction-Central-Government-of-the-Solar-System
   description: historical-description-Faction-Central-Government-of-the-Solar-System
-  historyType: enum.HistoryType.Faction
+  historyType: Faction
   container:
     skills: {}
     defaultSkillLevels: {}
@@ -21,7 +21,7 @@
   id: faction-Free-Trade-Union
   name: historical-name-faction-Free-Trade-Union
   description: historical-description-Faction-Free-Trade-Union
-  historyType: enum.HistoryType.Faction
+  historyType: Faction
   container:
     defaultSkillLevels:
       economy: enum.SkillLevel.Basic

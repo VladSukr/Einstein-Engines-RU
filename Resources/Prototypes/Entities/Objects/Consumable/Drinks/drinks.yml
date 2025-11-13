@@ -116,7 +116,7 @@
         Blunt: 5
   - type: PhysicalComposition
     materialComposition:
-      Glass: 13
+      Glass: 3
   - type: ExaminableSolution
     solution: drink
   - type: FitsInDispenser

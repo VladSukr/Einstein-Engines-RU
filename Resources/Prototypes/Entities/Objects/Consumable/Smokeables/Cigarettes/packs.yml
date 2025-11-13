@@ -41,7 +41,7 @@
     - Trash
   - type: PhysicalComposition
     materialComposition:
-      Steel: 50
+      Steel: 5
   - type: SpaceGarbage
   - type: Item
     size: Tiny
@@ -112,7 +112,7 @@
     - Trash
   - type: PhysicalComposition
     materialComposition:
-      Steel: 50
+      Steel: 5
   - type: SpaceGarbage
   - type: Item
     size: Tiny

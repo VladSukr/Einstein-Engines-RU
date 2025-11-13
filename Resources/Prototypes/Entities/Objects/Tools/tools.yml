@@ -63,7 +63,7 @@
   - type: ToolTileCompatible
   - type: PhysicalComposition
     materialComposition:
-      Steel: 100
+      Steel: 20
   - type: StaticPrice
     price: 5
   # Shitmed Change
@@ -161,7 +161,7 @@
         screwdriver: Rainbow
   - type: PhysicalComposition
     materialComposition:
-      Steel: 100
+      Steel: 20
   - type: StaticPrice
     price: 5
   # Shitmed Change
@@ -244,7 +244,7 @@
       path: /Audio/Items/ratchet.ogg
   - type: PhysicalComposition
     materialComposition:
-      Steel: 100
+      Steel: 20
   - type: StaticPrice
     price: 5
   - type: Fixtures
@@ -900,7 +900,7 @@
     - Rolling
   - type: PhysicalComposition
     materialComposition:
-      Wood: 100
+      Wood: 30
   - type: Tag
     tags:
     - RollingPin

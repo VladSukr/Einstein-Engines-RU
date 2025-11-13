@@ -65,7 +65,7 @@
     state: packet-empty
   - type: PhysicalComposition
     materialComposition:
-      Plastic: 50
+      Plastic: 5
   - type: Tag
     tags:
       - Packet
@@ -365,7 +365,7 @@
           False: {state: "bottle-empty"}
   - type: PhysicalComposition
     materialComposition:
-      Glass: 50
+      Glass: 5
 
 - type: entity
   parent: BaseFoodCondimentBottle
