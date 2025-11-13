@@ -1895,6 +1895,8 @@
   - type: Icon
     sprite: Objects/Consumable/Drinks/sol_dry_glass.rsi
     state: icon
+  - type: StaticPrice
+    price: 0.5
 
 - type: entity
   parent: DrinkGlass
@@ -1943,6 +1945,8 @@
   - type: Icon
     sprite: Objects/Consumable/Drinks/space-up_glass.rsi
     state: icon
+  - type: StaticPrice
+    price: 0.5
 
 - type: entity
   parent: DrinkGlass

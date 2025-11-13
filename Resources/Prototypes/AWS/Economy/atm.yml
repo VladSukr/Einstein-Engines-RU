@@ -70,6 +70,7 @@
     interfaces:
       enum.EconomyBankATMUiKey.Key:
         type: EconomyBankATMBoundUserInteface
+  - type: ItemSlots
   - type: WiresPanel
   - type: WiresVisuals
   - type: Anchorable
@@ -95,3 +96,8 @@
       whitelist:
         components:
         - EconomyAccountHolder
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+      ATM-CardId: !type:ContainerSlot

@@ -24,6 +24,8 @@
     - Document
   - type: StackPrice
     price: 1
+  - type: StaticPrice
+    price: 0
 
 - type: entity
   parent: SheetPrinter

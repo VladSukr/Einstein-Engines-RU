@@ -1,16 +1,27 @@
 using System;
-using Robust.Shared.ViewVariables;
 using Robust.Shared.Serialization;
+using Robust.Shared.ViewVariables;
 
 namespace Content.Shared._White.Bark;
 
-[Serializable, NetSerializable]
+[Serializable, NetSerializable, DataDefinition]
 public sealed partial class BarkPercentageApplyData
 {
-    [ViewVariables(VVAccess.ReadWrite)] public byte Pause { get; set; }
-    [ViewVariables(VVAccess.ReadWrite)] public byte Pitch { get; set; }
-    [ViewVariables(VVAccess.ReadWrite)] public byte PitchVariance { get; set; }
-    [ViewVariables(VVAccess.ReadWrite)] public byte Volume { get; set; }
+    [DataField("pause")]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public byte Pause { get; set; }
+
+    [DataField("pitch")]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public byte Pitch { get; set; }
+
+    [DataField("pitchVariance")]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public byte PitchVariance { get; set; }
+
+    [DataField("volume")]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public byte Volume { get; set; }
 
     public static BarkPercentageApplyData Default => new();
 

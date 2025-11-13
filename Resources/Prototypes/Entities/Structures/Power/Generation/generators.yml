@@ -323,9 +323,9 @@
         spawn:
           SheetSteel1:
             min: 1
-            max: 5
+            max: 3
           SheetUranium1:
             min: 1
-            max: 5
+            max: 3
       - !type:DoActsBehavior
         acts: [ "Destruction" ]

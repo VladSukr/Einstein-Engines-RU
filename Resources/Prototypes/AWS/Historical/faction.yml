@@ -11,6 +11,10 @@
   description: historical-description-Faction-Central-Government-of-the-Solar-System
   historyType: enum.HistoryType.Faction
   container:
+    skills: {}
+    defaultSkillLevels: {}
+    unblockedSkillLevels: {}
+    blockedSkillLevels: {}
     additionalSkillPoints: 5
 
 - type: history

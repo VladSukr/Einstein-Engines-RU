@@ -14,4 +14,5 @@ public sealed partial class EconomyThalerCargoComponent : Component
 
     [DataField]
     public ProtoId<CurrencyPrototype> Currency = "Thaler";
+
 }

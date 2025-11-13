@@ -97,6 +97,11 @@
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+      ManagementConsole-IdSlot: !type:ContainerSlot
+      ManagementConsole-Target-IdSlot: !type:ContainerSlot
 
 - type: entity
   parent: [ BaseComputerCircuitboard ]

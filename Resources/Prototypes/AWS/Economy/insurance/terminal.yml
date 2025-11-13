@@ -23,8 +23,9 @@
     interfaces:
       enum.EconomyInsuranceTerminalUiKey.Key:
         type: EconomyInsuranceTerminalBoundUserInterface
+  - type: ItemSlots
   - type: Computer
-    board: ComputerLogsCircuitboard
+    board: ComputerInsuranceCircuitboard
   - type: PointLight
     radius: 1.5
     energy: 1.6
@@ -38,6 +39,10 @@
       whitelist:
         components:
         - IdCard
+  - type: ContainerContainer
+    containers:
+      board: !type:Container
+      InsuranceTerminal-IdSlot: !type:ContainerSlot
 
 - type: entity
   parent: [ BaseComputerCircuitboard ]
