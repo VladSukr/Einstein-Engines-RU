@@ -10,42 +10,38 @@ namespace Content.Server.AWS.Economy.CargoBridge;
 public sealed class CargoStationSetupSystem : EntitySystem
 {
     [Dependency] private readonly EconomyBankAccountSystem _economyBankAccount = default!;
+    [Dependency] private readonly CargoSystem _cargoSystem = default!;
 
     public override void Initialize()
     {
         SubscribeLocalEvent<StationInitializedEvent>(OnStationInitialized);
-        SubscribeLocalEvent<EconomyThalerCargoComponent, ComponentStartup>(OnCargoComponentStartup);
     }
 
     private void OnStationInitialized(StationInitializedEvent args)
     {
-        if (HasComp<EconomyThalerCargoComponent>(args.Station))
-            return;
-
-        var component = EnsureComp<EconomyThalerCargoComponent>(args.Station);
-        if (string.IsNullOrWhiteSpace(component.AccountId))
-            component.AccountId = "NT-Cargo";
+        StationInitialized(args.Station);
     }
 
-    private void OnCargoComponentStartup(EntityUid uid, EconomyThalerCargoComponent component, ref ComponentStartup args)
+    private void StationInitialized(EntityUid station)
     {
+        var component = EnsureComp<EconomyThalerCargoComponent>(station);
         if (string.IsNullOrWhiteSpace(component.AccountId))
-            return;
+            component.AccountId = "NT-Cargo";
 
         if (!_economyBankAccount.TryGetAccount(component.AccountId, out var account))
             return;
 
-        if (!TryComp(uid, out StationBankAccountComponent? bank))
+        if (!TryComp(station, out StationBankAccountComponent? bank))
             return;
 
         var newBalance = account.Value.Comp.Balance > int.MaxValue
             ? int.MaxValue
             : (int) account.Value.Comp.Balance;
 
-        if (bank.Balance == newBalance)
+        if (bank.Balance >= newBalance)
             return;
 
-        bank.Balance = newBalance;
-        Dirty(uid, bank);
+        var delta = newBalance - bank.Balance;
+        _cargoSystem.UpdateBankAccount(station, bank, delta);
     }
 }
